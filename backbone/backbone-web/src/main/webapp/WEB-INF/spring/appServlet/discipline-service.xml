@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<bean id="disciplineServiceImpl" class="za.co.masa.discipline.service.impl.DisciplineServiceMapImpl">
+		<property name="disciplines">
+			<map>
+				<entry key="karate1" value-ref="karate" />
+				<entry key="kickboxing1" value-ref="kickboxing" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="karate" class="za.co.masa.discipline.service.Discipline">
+		<property name="id" value="karate1"/>
+		<property name="year" value="2015"/>
+		<property name="website" value="www.karate.com"/>
+		<property name="clubs">
+			<list>
+			</list>
+		</property>
+		<property name="affiliations">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="kickboxing" class="za.co.masa.discipline.service.Discipline">
+		<property name="id" value="kickboxing1"/>
+		<property name="year" value="2015"/>
+		<property name="website" value="www.kickboxing.com"/>
+		<property name="clubs">
+			<list>
+			</list>
+		</property>
+		<property name="affiliations">
+			<list>
+			</list>
+		</property>
+	</bean>
+ 
+</beans>
