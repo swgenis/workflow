@@ -7,59 +7,35 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<bean id="personServiceImpl" class="za.co.masa.person.service.impl.PersonServiceMapImpl">
+	<bean id="personServiceImpl" class="za.ac.nwu.workflow.backbone.person.service.impl.PersonServiceMapImpl">
 		<property name="persons">
 			<map>
-				<entry key="person1" value-ref="bobPerson" />
-				<entry key="person2" value-ref="carolPerson" />
-				<entry key="person3" value-ref="johnPerson" />
+				<entry key="bob" value-ref="bobPerson" />
+				<entry key="carol" value-ref="carolPerson" />
+				<entry key="john" value-ref="johnPerson" />
 			</map>
 		</property>
 	</bean>
 	
-	<bean id="bobPerson" class="za.co.masa.person.service.Person">
+	<bean id="bobPerson" class="za.ac.nwu.workflow.backbone.person.service.Person">
 		<property name="id" value="person1"/>
 		<property name="name" value="Bob"/>
 		<property name="surname" value="Robertson"/>
-		<property name="email" value="bob@karatekids.co.za"/>
-		<property name="cellphone" value="083 123 4567"/>
-		<property name="faxNumber" value="021 123 4567"/>
-		<property name="phoneNumber" value="011 123 4567"/>
-		<property name="racialType" value="Bob"/>
-		<property name="genderType" value="Bob"/>
-		<property name="firstAid" value="true"/>
-		<property name="licenseType" value="Bob"/>
-		<property name="previousDisadvantage" value="false"/>
+		<property name="email" value="bob@nwu.ac.za"/>
 	</bean>
 	
-	<bean id="carolPerson" class="za.co.masa.person.service.Person">
+	<bean id="carolPerson" class="za.ac.nwu.workflow.backbone.person.service.Person">
 		<property name="id" value="person2"/>
-		<property name="name" value="Caro"/>
-		<property name="surname" value="Bob"/>
-		<property name="email" value="Bob"/>
-		<property name="cellphone" value="Bob"/>
-		<property name="faxNumber" value="Bob"/>
-		<property name="phoneNumber" value="Bob"/>
-		<property name="racialType" value="Bob"/>
-		<property name="genderType" value="Bob"/>
-		<property name="firstAid" value="false"/>
-		<property name="licenseType" value="Bob"/>
-		<property name="previousDisadvantage" value="false"/>
+		<property name="name" value="Carol"/>
+		<property name="surname" value="Carinus"/>
+		<property name="email" value="carol@nwu.ac.za"/>
 	</bean>
 	
-	<bean id="johnPerson" class="za.co.masa.person.service.Person">
+	<bean id="johnPerson" class="za.ac.nwu.workflow.backbone.person.service.Person">
 		<property name="id" value="person3"/>
 		<property name="name" value="John"/>
 		<property name="surname" value="Smith"/>
 		<property name="email" value="Bob"/>
-		<property name="cellphone" value="Bob"/>
-		<property name="faxNumber" value="Bob"/>
-		<property name="phoneNumber" value="Bob"/>
-		<property name="racialType" value="Bob"/>
-		<property name="genderType" value="Bob"/>
-		<property name="firstAid" value="true"/>
-		<property name="licenseType" value="Bob"/>
-		<property name="previousDisadvantage" value="true"/>
 	</bean>
  
 </beans>

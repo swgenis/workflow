@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 
 	<name>Backbone Modules for NWU workflow apps</name>
-	
+
 	<modules>
 		<module>backbone-api</module>
 		<module>backbone-services</module>
@@ -16,7 +16,43 @@
 		<module>backbone-client</module>
 	</modules>
 
+	<properties>
+		<spring.version>3.2.2.RELEASE</spring.version>
+		<!--org.springframework-version>4.1.4.RELEASE</org.springframework-version-->
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<jackson.version>1.9.10</jackson.version>
+	
+		<!-- jboss deploy -->
+		<jboss.deploy.hostname>localhost</jboss.deploy.hostname>
+		<jboss.deploy.port>9999</jboss.deploy.port>
+		<jboss.deploy.username></jboss.deploy.username>
+		<jboss.deploy.password></jboss.deploy.password>
+		<jboss.deploy.domain.server-group></jboss.deploy.domain.server-group>
+		<version.jboss.maven.plugin>7.5.Final</version.jboss.maven.plugin>
+	</properties>
+
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.1.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jboss.as.plugins</groupId>
+					<artifactId>jboss-as-maven-plugin</artifactId>
+					<version>${version.jboss.maven.plugin}</version>
+					<configuration>
+						<hostname>${jboss.deploy.hostname}</hostname>
+						<port>${jboss.deploy.port}</port>
+						<username>${jboss.deploy.username}</username>
+						<password>${jboss.deploy.password}</password>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -54,5 +90,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

@@ -21,6 +21,13 @@
 			<artifactId>jbpm-form-modeler-api</artifactId>
 			<version>6.2.0.Final</version>
 		</dependency>
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

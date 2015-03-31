@@ -7,165 +7,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- Maps '/' requests to the 'home' view -->
-	<mvc:view-controller path="/" view-name="home"/>
-	
-	<context:component-scan base-package="za.co.masa" />
-	
-	<bean id="typeServiceImpl" class="za.co.masa.type.service.impl.TypeServiceMapImpl">
+	<bean id="typeServiceImpl" class="za.ac.nwu.workflow.backbone.type.service.impl.TypeServiceMapImpl">
 		<property name="types">
 			<map>
-				<entry key="za.co.masa.type.discipline.karate" value-ref="karateType" />
-				<entry key="za.co.masa.type.discipline.kickboxing" value-ref="kickboxingType" />
-				<entry key="za.co.masa.type.license.international" value-ref="internationalType" />
-				<entry key="za.co.masa.type.license.national" value-ref="nationalType" />
-				<entry key="za.co.masa.type.license.provincial" value-ref="provincialType" />
-				<entry key="za.co.masa.type.province.westerncape" value-ref="westernCapeType" />
-				<entry key="za.co.masa.type.province.northerncape" value-ref="northernCapeType" />
-				<entry key="za.co.masa.type.province.easterncape" value-ref="easternCapeType" />
-				<entry key="za.co.masa.type.province.kwazulunatal" value-ref="kwazuluNatalType" />
-				<entry key="za.co.masa.type.province.freestate" value-ref="freestateType" />
-				<entry key="za.co.masa.type.province.mpumalanga" value-ref="mpumalangaType" />
-				<entry key="za.co.masa.type.province.northwest" value-ref="northwestType" />
-				<entry key="za.co.masa.type.province.limpopo" value-ref="limpopoType" />
-				<entry key="za.co.masa.type.province.gauteng" value-ref="gautengType" />
+				<entry key="nwu.workflow.type.whatever" value-ref="whateverType" />
 			</map>
 		</property>
 	</bean>
 	
 	<!-- Discipline -->
-	<bean id="karateType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.discipline.karate"/>
-		<property name="category" value="za.co.masa.type.discipline"/>
-		<property name="description" value="Karate"/>
+	<bean id="whateverType" class="za.ac.nwu.workflow.backbone.type.service.Type">
+		<property name="key" value="nwu.workflow.backbone.whatevertype"/>
+		<property name="category" value="nwu.workflow.backbone.whatever"/>
+		<property name="description" value="Whatever"/>
 		<property name="active" value="true"/>
 	</bean>
-	
-	<bean id="kickboxingType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.discipline.kickboxing"/>
-		<property name="category" value="za.co.masa.type.discipline"/>
-		<property name="description" value="Kickboxing"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<!-- License - International, National, Provincial -->
-	<bean id="internationalType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.license.international"/>
-		<property name="category" value="za.co.masa.type.license"/>
-		<property name="description" value="International"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="nationalType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.license.national"/>
-		<property name="category" value="za.co.masa.type.license"/>
-		<property name="description" value="National"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="provincialType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.license.provincial"/>
-		<property name="category" value="za.co.masa.type.license"/>
-		<property name="description" value="Provincial"/>
-		<property name="active" value="true"/>
-	</bean>
-
-	<!-- Provinces -->
-	<bean id="westernCapeType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.westerncape"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Western Cape"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="northernCapeType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.northerncape"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Northern Cape"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="easternCapeType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.easterncape"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Eastern Cape"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="kwazuluNatalType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.kwazuluNatal"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Kwazulu Natal"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="freestateType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.freestate"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Free State"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="mpumalangaType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.mpumalanga"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Mpumalanga"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="northwestType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.northwest"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="North West"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="limpopoType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.limpopo"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Limpopo"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="gautengType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.province.gauteng"/>
-		<property name="category" value="za.co.masa.type.province"/>
-		<property name="description" value="Gauteng"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<!-- ClubCategory -->
-	<bean id="preschoolType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.clubcategory.preschool"/>
-		<property name="category" value="za.co.masa.type.clubcategory"/>
-		<property name="description" value="Mpumalanga"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="eightToThirteenType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.clubcategory.eighttothirteen"/>
-		<property name="category" value="za.co.masa.type.clubcategory"/>
-		<property name="description" value="Age 8 to 13"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="fourteenAndUpType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.clubcategory.fourteenandup"/>
-		<property name="category" value="za.co.masa.type.clubcategory"/>
-		<property name="description" value="Age 14 and up"/>
-		<property name="active" value="true"/>
-	</bean>
-	
-	<bean id="openType" class="za.co.masa.type.service.Type">
-		<property name="key" value="za.co.masa.type.clubcategory.open"/>
-		<property name="category" value="za.co.masa.type.clubcategory"/>
-		<property name="description" value="Open to all"/>
-		<property name="active" value="true"/>
-	</bean>
-
-	<!-- Race -->
-
-	<!-- Gender -->
-
  
 </beans>

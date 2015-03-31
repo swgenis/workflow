@@ -3,32 +3,46 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
 
-<script type="text/javascript" src="<c:url value="/resources/jquery/dataTables/jquery.dataTables.js" />"></script>
 <div id="person-lookup">
-	<script type="text/javascript" src="<c:url value="/resources/js/person.js" />"></script>
-	<div style="border: 1px solid #ccc; width: 250px;">
-		Search Criteria: <br/>
-		<input id="nameLookup" type="text" size="25"> +
-		<input id="surnameLookup" type="text" size="25">
-		<br/>
-		Sum: <span id="sum">(Result will be shown here)</span>
-	</div>
-	<p>
-		<table id="results-grid" class="display" width="100%" cellspacing="0">
-        	<thead>
-            	<tr>
-                	<th>Name</th>
-                	<th>Surname</th>
-                	<th>Email</th>
-            	</tr>
-        	</thead>
-        	<c:forEach items="${searchResult}" var="discipline">
-    			<tr>      
-        			<td>${result.name}</td>
-	       			<td>${result.surname}</td>
-	       			<td>${result.email}</td>
-	    		</tr>
-			</c:forEach>
-		</table>
-	</p>
+	<script type="text/javascript"
+		src="<c:url value="/resources/js/person.js" />"></script>
+	<form:form id="person-lookup-form" method="post" modelAttribute="person-lookup-form"
+		cssClass="cleanform" action="/backbone/person/lookup">
+		<fieldset>
+			<legend>Person Inspector</legend>			
+			<div id="person-lookup-error" class="error"></div>
+			<form:label path="id">
+		  			NWU ID: <form:errors path="id" cssClass="error" />
+			</form:label>
+			<form:input path="id" />
+
+			<!-- Allow form submission with keyboard without duplicating the dialog button -->
+			<button type="submit">Submit</button>
+			
+			<div id="person-lookup-detail" class="success"></div>
+		</fieldset>
+
+	</form:form>
+	<script type="text/javascript">
+		$(document).ready( function() {
+					$("#person-lookup-form").submit( function() {
+								$.post($(this).attr("action"), $(this)
+										.serialize(), function(data) {
+									var detailSection = $("#person-lookup-detail").empty();
+									var errorSection = $("#person-lookup-error").empty();
+									if(data.name!=null){
+										detailSection.append("<h3>Name: " + data.name + " " + data.surname + "</h3>");
+										detailSection.append("<h3>Email: " + data.email + "</h3>");
+										detailSection.show();
+										errorSection.hide();
+									} else {
+										errorSection.append("<h3>Unable to retrieve person.</h3>");
+										errorSection.show();
+										detailSection.hide();
+									}
+								});
+								return false;
+							});
+				});
+	</script>
 </div>
