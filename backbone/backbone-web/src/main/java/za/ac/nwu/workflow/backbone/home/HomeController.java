@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import za.ac.nwu.workflow.backbone.person.PersonLookupForm;
+import za.ac.nwu.workflow.backbone.leave.LeaveApplicationForm;
 
 /**
  * Handles requests for the application home page.
@@ -29,11 +29,22 @@ public class HomeController {
 		model.addAttribute("message", "welcome to nwu backbone!");
 		return "home";
 	}
-
-	@ModelAttribute("person-lookup-form")
-	public PersonLookupForm createFormBean() {
+	
+	@ModelAttribute("leave-application-form")
+	public LeaveApplicationForm createFormBean() {
 		logger.info("Create new person inspector form");
-		return new PersonLookupForm();
+		return new LeaveApplicationForm();
+	}
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/tasklist", method = RequestMethod.GET)
+	public String taskList(Model model) {
+		logger.info("Displaying the task list for the user.");
+
+		model.addAttribute("message", "welcome to nwu backbone!");
+		return "task-list";
 	}
 
 }

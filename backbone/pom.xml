@@ -17,12 +17,19 @@
 	</modules>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- Java -->
+		<javax.j2ee.version>7.0</javax.j2ee.version>
+
+		<!-- 3rd party libs -->
+		<jbpm.version>6.2.0.CR4</jbpm.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
-		<!--org.springframework-version>4.1.4.RELEASE</org.springframework-version-->
+		<!--org.springframework-version>4.1.4.RELEASE</org.springframework-version -->
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<jackson.version>1.9.10</jackson.version>
-	
+
 		<!-- jboss deploy -->
 		<jboss.deploy.hostname>localhost</jboss.deploy.hostname>
 		<jboss.deploy.port>9999</jboss.deploy.port>
@@ -31,6 +38,30 @@
 		<jboss.deploy.domain.server-group></jboss.deploy.domain.server-group>
 		<version.jboss.maven.plugin>7.5.Final</version.jboss.maven.plugin>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javax.j2ee.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-bom</artifactId>
+				<version>${jbpm.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-bom</artifactId>
+                <version>3.0.9.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
