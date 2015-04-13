@@ -5,17 +5,16 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import za.ac.nwu.workflow.backbone.person.service.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
-@Controller
+@RestController
 @RequestMapping("/person")
 public class PersonController {
 	
@@ -24,22 +23,24 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public @ResponseBody List<Person> search(@RequestParam(value="name", required=true) String name,
-    							@RequestParam(value="surname", required=true) String surname,
-    							Model model) throws Exception {
+	@RequestMapping(value = "/search")
+	public @ResponseBody List<Person> search(@RequestParam(value="name", required=false) String name,
+    							@RequestParam(value="surname", required=false) String surname) throws Exception {
 		logger.debug("Searching for a person " + name + " " + surname);
 		
 		// Delegate to service to do the actual adding
 		List<Person> searchResult = personService.searchPerson(name, surname);
-		model.addAttribute("searchResult", searchResult);
 		return searchResult;
 	}
 	
-	@RequestMapping(value="/lookup", method = RequestMethod.POST)
-	public @ResponseBody Person getPerson(@RequestParam(value="personLookupId", required=true) String personLookupId,
-			Model model) {
+	@RequestMapping(value="/lookup")
+	public @ResponseBody Person getPerson(@RequestParam String personLookupId) {
 		return personService.getPersonById(personLookupId);
 	}
+	
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	public Person greetByRequest(@RequestParam String name) {
+    	return new Person();
+    }
 	
 }

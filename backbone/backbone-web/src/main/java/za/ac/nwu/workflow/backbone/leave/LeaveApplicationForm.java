@@ -1,11 +1,14 @@
 package za.ac.nwu.workflow.backbone.leave;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.ws.rs.FormParam;
 
-public class LeaveApplicationForm {
+public class LeaveApplicationForm implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@FormParam("personLookupId")
 	private String personId;
 	

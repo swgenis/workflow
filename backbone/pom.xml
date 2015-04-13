@@ -24,11 +24,10 @@
 
 		<!-- 3rd party libs -->
 		<jbpm.version>6.2.0.CR4</jbpm.version>
-		<spring.version>3.2.2.RELEASE</spring.version>
-		<!--org.springframework-version>4.1.4.RELEASE</org.springframework-version -->
+		<spring.version>4.1.1.RELEASE</spring.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
-		<jackson.version>1.9.10</jackson.version>
+		<jackson.version>2.2.2</jackson.version>
 
 		<!-- jboss deploy -->
 		<jboss.deploy.hostname>localhost</jboss.deploy.hostname>
@@ -53,13 +52,6 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-			<dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-bom</artifactId>
-                <version>3.0.9.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 		</dependencies>
 	</dependencyManagement>
 

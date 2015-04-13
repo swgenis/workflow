@@ -11,7 +11,7 @@
 				NWU ID: <br/>
 			<input id="person-lookup-id" type="text" size="25">
 			<br/>
-			<button type="submit" onclick="add()">...</button>
+			<button type="button" onclick="add()">...</button>
 		</div>
 		<div id="person-lookup-detail" class="success"></div>
 	</fieldset>
@@ -22,7 +22,7 @@
 			$("#person-lookup-error").hide();
 		});
 		function add() {
-			$.post("/backbone/person/lookup", 
+			$.get("/backbone/person/lookup", 
 					{ personLookupId: $("#person-lookup-id").val() }, function(data) {
 				var detailSection = $("#person-lookup-detail").empty();
 				var errorSection = $("#person-lookup-error").empty();

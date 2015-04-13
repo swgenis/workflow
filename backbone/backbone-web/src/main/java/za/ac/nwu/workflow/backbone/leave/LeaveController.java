@@ -1,47 +1,42 @@
 package za.ac.nwu.workflow.backbone.leave;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
 
 import org.jbpm.examples.util.StartupBean;
 import org.jbpm.services.ejb.api.ProcessServiceEJBLocal;
-import org.jbpm.services.ejb.api.RuntimeDataServiceEJBLocal;
 import org.jbpm.services.ejb.api.UserTaskServiceEJBLocal;
-import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Handles requests for the application home page.
  */
-@Path("/leave")
-public class LeaveRestServiceImpl {
+@RestController
+@RequestMapping("/leave")
+public class LeaveController {
 
-	@EJB
+	@EJB(mappedName="java:module/ProcessServiceEJBImpl!org.jbpm.services.ejb.api.ProcessServiceEJBLocal")
 	private ProcessServiceEJBLocal processService;
 	
-	@EJB
+	@EJB(mappedName="java:module/UserTaskServiceEJBImpl!org.jbpm.services.ejb.api.UserTaskServiceEJBLocal")
     private UserTaskServiceEJBLocal userTaskService;
 
-    @EJB
-    private RuntimeDataServiceEJBLocal runtimeDataService;
-
 	private static final Logger logger = LoggerFactory
-			.getLogger(LeaveRestServiceImpl.class);
+			.getLogger(LeaveController.class);
 
-	@POST
-	@Path("/apply")
-	public String apply(LeaveApplicationForm leaveApplicationForm) {
+	@RequestMapping(value="/apply")
+	public @ResponseBody String apply(LeaveApplicationForm leaveApplicationForm) {
 
 		long processInstanceId = -1;
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("recipient", leaveApplicationForm.getPersonId());
+		params.put("form", leaveApplicationForm);
 		processInstanceId = processService.startProcess(
 				StartupBean.DEPLOYMENT_ID, "org.jbpm.examples.rewards", params);
 		logger.info("Process instance " + processInstanceId
@@ -50,11 +45,4 @@ public class LeaveRestServiceImpl {
 		return "You have succesfully applied for leave.";
 	}
 	
-	@GET
-	@Path("/list")
-	public List<TaskSummary> taskList(String user){
-		List<TaskSummary> taskList = runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
-        return taskList;
-	}
-
 }

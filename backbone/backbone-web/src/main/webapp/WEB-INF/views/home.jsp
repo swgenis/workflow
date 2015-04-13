@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/jqueryui/1.11.2/jquery-ui.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jquery/appendGrid/jquery.appendGrid-1.5.1.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jquery/dataTables/jquery.dataTables.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/js/bacbone.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/backbone.js" />"></script>
 </head>
 <body>
 	<h2>NWU Backbone!</h2>
@@ -44,8 +44,8 @@
 		});
 	</script>
 	<ul>
-		<li><a href="task?user=jiri&amp;cmd=list">Jiri's Task</a></li>
-		<li><a href="task?user=mary&amp;cmd=list">Mary's Task</a></li>
+		<li><a href="tasklist?user=jiri">Jiri's Task</a></li>
+		<li><a href="tasklist?user=mary">Mary's Task</a></li>
 	</ul>
 </body>
 </html>
