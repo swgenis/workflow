@@ -14,6 +14,7 @@
 		<module>backbone-services</module>
 		<module>backbone-web</module>
 		<module>backbone-client</module>
+		<module>leave-application</module>
 	</modules>
 
 	<properties>
