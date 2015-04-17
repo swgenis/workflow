@@ -36,7 +36,7 @@ public class LeaveController {
 
 		long processInstanceId = -1;
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("recipient", leaveApplicationForm.getPersonId());
+		params.put("personId", leaveApplicationForm.getPersonId());
 		params.put("form", leaveApplicationForm);
 		processInstanceId = processService.startProcess(
 				StartupBean.DEPLOYMENT_ID, "ac.za.nwu.workflow.leave-application", params);
