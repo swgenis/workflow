@@ -21,28 +21,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/leave")
 public class LeaveController {
 
-	@EJB(mappedName="java:module/ProcessServiceEJBImpl!org.jbpm.services.ejb.api.ProcessServiceEJBLocal")
+	@EJB(mappedName = "java:module/ProcessServiceEJBImpl!org.jbpm.services.ejb.api.ProcessServiceEJBLocal")
 	private ProcessServiceEJBLocal processService;
-	
-	@EJB(mappedName="java:module/UserTaskServiceEJBImpl!org.jbpm.services.ejb.api.UserTaskServiceEJBLocal")
-    private UserTaskServiceEJBLocal userTaskService;
+
+	@EJB(mappedName = "java:module/UserTaskServiceEJBImpl!org.jbpm.services.ejb.api.UserTaskServiceEJBLocal")
+	private UserTaskServiceEJBLocal userTaskService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(LeaveController.class);
 
-	@RequestMapping(value="/apply")
-	public @ResponseBody String apply(LeaveApplicationForm leaveApplicationForm) {
+	@RequestMapping(value = "/apply")
+	public @ResponseBody
+	String apply(LeaveApplicationForm leaveApplicationForm) {
 
 		long processInstanceId = -1;
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("recipient", leaveApplicationForm.getPersonId());
 		params.put("form", leaveApplicationForm);
 		processInstanceId = processService.startProcess(
-				StartupBean.DEPLOYMENT_ID, "org.jbpm.examples.rewards", params);
+				StartupBean.DEPLOYMENT_ID, "ac.za.nwu.workflow.leave-application", params);
 		logger.info("Process instance " + processInstanceId
 				+ " has been successfully started.");
 
 		return "You have succesfully applied for leave.";
 	}
-	
+
 }

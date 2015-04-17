@@ -8,17 +8,12 @@ public class EmployeeReward implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@org.kie.api.definition.type.Label(value = "Reward recipient")
-	@org.kie.api.definition.type.Position(value = 0)
 	private java.lang.String recipient;
-	@org.kie.api.definition.type.Label(value = "reward amount")
-	@org.kie.api.definition.type.Position(value = 1)
+
 	private java.lang.Integer reward;
-	@org.kie.api.definition.type.Label(value = "comment of employee's manager")
-	@org.kie.api.definition.type.Position(value = 2)
+
 	private java.lang.String pmComment;
-	@org.kie.api.definition.type.Label(value = "comment of HR department")
-	@org.kie.api.definition.type.Position(value = 3)
+
 	private java.lang.String hrComment;
 
 	public java.lang.String getRecipient() {

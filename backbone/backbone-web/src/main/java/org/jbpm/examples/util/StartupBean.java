@@ -29,7 +29,7 @@ import javax.ejb.Startup;
 @Startup
 public class StartupBean {
 
-    public static final String DEPLOYMENT_ID = "org.jbpm.examples:rewards:1.0";
+    public static final String DEPLOYMENT_ID = "nwu.workflow.backbone:leave-application:1.0-SNAPSHOT";
 
     @EJB
     DeploymentServiceEJBLocal deploymentService;
