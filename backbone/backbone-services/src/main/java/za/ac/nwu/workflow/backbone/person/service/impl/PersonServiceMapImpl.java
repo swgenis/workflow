@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.inject.Default;
+
 import za.ac.nwu.workflow.backbone.person.service.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
+@Default
 public class PersonServiceMapImpl implements PersonService {
 	
 	private Map<String, Person> persons = new HashMap<String, Person>();

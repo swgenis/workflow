@@ -3,6 +3,10 @@ package za.ac.nwu.workflow.backbone.home;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
 import org.jbpm.examples.util.StartupBean;
 import org.jbpm.services.ejb.api.RuntimeDataServiceEJBLocal;
@@ -13,19 +17,12 @@ import org.jbpm.services.task.commands.StartTaskCommand;
 import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import za.ac.nwu.workflow.backbone.leave.LeaveApplicationForm;
 
 /**
  * Handles requests for the application home page.
  */
-@Controller
+@Stateless
+@Path("/task")
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory
@@ -40,43 +37,24 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-		logger.info("Welcome home! The client locale is {}.");
-
-		model.addAttribute("message", "welcome to nwu backbone!");
-		return "home";
-	}
-
-	@ModelAttribute("leave-application-form")
-	public LeaveApplicationForm createFormBean() {
-		logger.info("Create new person inspector form");
-		return new LeaveApplicationForm();
-	}
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/tasklist", method = RequestMethod.GET)
-	public String taskList(@RequestParam String user, Model model) {
+	@GET
+	@Path("/list")
+	public List<TaskSummary> taskList(@QueryParam("user") String user) {
 		logger.info("Displaying the task list for the user.");
 
-		List<TaskSummary> taskList = runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
-		model.addAttribute("taskList", taskList);
-		return "task-list";
+		return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
 	}
 
-	@RequestMapping(value = "/approve", method = RequestMethod.GET)
-	public String approveTask(@RequestParam long taskId,
-			@RequestParam String user, Model model) {
+	@GET
+	@Path("/approve")
+	public String approveTask(@QueryParam("taskId") long taskId,
+			@QueryParam("user") String user) {
 		String message;
-		CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, null),
+		CompositeCommand compositeCommand = new CompositeCommand(
+				new CompleteTaskCommand(taskId, user, null),
 				new StartTaskCommand(taskId, user));
 		userTaskService.execute(StartupBean.DEPLOYMENT_ID, compositeCommand);
-		message = "Task (id = " + taskId + ") has been completed by " + user;
-		System.out.println(message);
-		model.addAttribute("message", message);
-		return "home";
+		return "Task (id = " + taskId + ") has been completed by " + user;
 	}
 
 }
