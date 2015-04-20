@@ -29,10 +29,10 @@ public class TaskRestServiceImpl {
 	private static final Logger logger = LoggerFactory
 			.getLogger(TaskRestServiceImpl.class);
 
-	@EJB(mappedName = "java:module/RuntimeDataServiceEJBImpl!org.jbpm.services.ejb.api.RuntimeDataServiceEJBLocal")
+	@EJB
 	private RuntimeDataServiceEJBLocal runtimeDataService;
 
-	@EJB(mappedName = "java:module/UserTaskServiceEJBImpl!org.jbpm.services.ejb.api.UserTaskServiceEJBLocal")
+	@EJB
 	private UserTaskServiceEJBLocal userTaskService;
 
 	/**

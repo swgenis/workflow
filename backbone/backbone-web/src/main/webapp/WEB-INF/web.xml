@@ -8,13 +8,10 @@
 		<welcome-file>html/home.html</welcome-file>
 	</welcome-file-list>
 
-	<!-- One of the way of activating REST Servises is adding these lines, the 
-		server is responsible for adding the corresponding servlet automatically. 
-		If the src folder, org.jboss.as.quickstarts.rshelloworld.HelloWorld class 
-		has the Annotations to receive REST invocation -->
+	<!-- Activate Rest Services -->
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
