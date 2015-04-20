@@ -51,8 +51,59 @@
 	
 	<!-- Main content view -->
 	<div class="container" ng-controller="LeaveApplicationCtrl" style="margin-top: 60px">
-		<h1>Leave Application</h1>
+		<h1>HC113 - AANSOEKVORM OM VERLOF</h1>
 		<person-lookup></person-lookup>
+		<form class="form-horizontal">
+			<input type="hidden" name="userid" value="{{userid}}" />
+			<div class="form-group">
+				<label for="leavetype" class="col-sm-3 control-label">Tiepe Verlof</label>
+				<div class="col-sm-9">
+					<select class="form-control" id="leavetype">
+						<option>Jaarliks</option>
+						<option>Opgehoopte</option>
+						<option>Gesinsverpligting</option>
+						<option>Siekte</option>
+						<option>Besering aan diens</option>
+						<option>Studie</option>
+						<option>Kraam</option>
+						<option>Onbetaald</option>
+						<option>Spesiale</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="col-sm-3 control-label">Adres Tydens Verlof</label>
+				<div class="col-sm-9">
+					<textarea class="form-control" rows="3" id="address"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="reason" class="col-sm-3 control-label">Rede</label>
+				<div class="col-sm-9">
+					<textarea class="form-control" rows="3" id="reason"></textarea>
+				</div>
+			</div>
+			<div>
+				<table class="table table-bordered">
+					<cation>Bookings</cation>
+					<thead>
+						<th>Type</th>
+						<th>From</th>
+						<th>To</th>
+						<th>Days</th>
+						<th>&nbsp;</th>
+					</thead>
+					<tbody>
+						<td>Jaarliks</td>
+						<td>2015-09-01</td>
+						<td>2015-09-05</td>
+						<td>4</td>
+						<td><button class="btn btn-danger btn-sm" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+					</tbody>
+				</table>
+			</div>
+			<div><input class="btn btn-default" type="submit" value="Dien in"></div>
+		</form>
 	</div>
 
 	<nav class="navbar navbar-inverse navbar-fixed-bottom"
