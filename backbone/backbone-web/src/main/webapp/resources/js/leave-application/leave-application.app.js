@@ -4,8 +4,14 @@
 	/**
 	 * Controller for leave application
 	 */
-	.controller("LeaveApplicationCtrl", [function(){
+	.controller("LeaveApplicationCtrl", 
+	["$scope", "LeaveRestServices", 
+	function($scope, LeaveRestServices){
 		
+		// Get the leave types
+		LeaveRestServices.getLeaveTypes().then(function(leaveTypes){
+			$scope.leaveTypes = leaveTypes;
+		});
 		
 	}]);
 	

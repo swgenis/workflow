@@ -16,20 +16,20 @@
 				var deferred = $q.defer();
 
 				// TODO implement CSRF
-	            var token = null;  //$("meta[name='_csrf']").attr("content");
-	            var header = null; // $("meta[name='_csrf_header']").attr("content");
-	            var headers = {};
+				var token = null;  //$("meta[name='_csrf']").attr("content");
+				var header = null; // $("meta[name='_csrf_header']").attr("content");
+				var headers = {};
 
-	            if(header != null && header != ""){
-	                headers[header] = token;
-	            }
-	            
+				if(header != null && header != ""){
+					headers[header] = token;
+				}
+				
 				$http({
 					'method': method,
 					'url': contextPath + url,
 					'data' : sendingData,
 					'params': params,
-	                'headers' : headers
+					'headers' : headers
 				}).success(function(data, status, headers, config) {
 					deferred.resolve(data == "" ? null : data);
 				}).error(function(data, status, headers, config) {

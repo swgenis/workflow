@@ -27,13 +27,13 @@
 	
 	<!-- Include our scripts -->
 	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.app.js"></script>
-	<script type="text/javascript" src="/backbone/resources/js/directives.js"></script>
+	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.directives.js"></script>
 	<script type="text/javascript" src="/backbone/resources/js/leave-application/leave-application.app.js"></script>
-	<script type="text/javascript" src="/backbone/resources/js/leave-application/rest.js"></script>
+	<script type="text/javascript" src="/backbone/resources/js/leave-application/leave-application.rest.js"></script>
 </head>
 <body ng-app="nwu-backbone">
 	<!-- Fixed navbar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" style="padding: 3px 3px 1px 6px;" type="button">
 				<span class="glyphicon glyphicon-th glyphicon-inverse" style="font-size: 1.5em;"></span>
@@ -56,18 +56,10 @@
 		<form class="form-horizontal">
 			<input type="hidden" name="userid" value="{{userid}}" />
 			<div class="form-group">
-				<label for="leavetype" class="col-sm-3 control-label">Tiepe Verlof</label>
+				<label for="leavetype" class="col-sm-3 control-label">Tipe Verlof</label>
 				<div class="col-sm-9">
 					<select class="form-control" id="leavetype">
-						<option>Jaarliks</option>
-						<option>Opgehoopte</option>
-						<option>Gesinsverpligting</option>
-						<option>Siekte</option>
-						<option>Besering aan diens</option>
-						<option>Studie</option>
-						<option>Kraam</option>
-						<option>Onbetaald</option>
-						<option>Spesiale</option>
+						<option ng-repeat="leaveType in leaveTypes" value="{{leaveType.id}}">{{leaveType.description}}</option>
 					</select>
 				</div>
 			</div>
@@ -87,18 +79,22 @@
 				<table class="table table-bordered">
 					<cation>Bookings</cation>
 					<thead>
-						<th>Type</th>
-						<th>From</th>
-						<th>To</th>
-						<th>Days</th>
-						<th>&nbsp;</th>
+						<tr>
+							<th>Type</th>
+							<th>From</th>
+							<th>To</th>
+							<th>Days</th>
+							<th>&nbsp;</th>
+						</tr>
 					</thead>
 					<tbody>
-						<td>Jaarliks</td>
-						<td>2015-09-01</td>
-						<td>2015-09-05</td>
-						<td>4</td>
-						<td><button class="btn btn-danger btn-sm" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+						<tr>
+							<td>Jaarliks</td>
+							<td>2015-09-01</td>
+							<td>2015-09-05</td>
+							<td>4</td>
+							<td><button class="btn btn-danger btn-sm" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+						<tr>
 					</tbody>
 				</table>
 			</div>
@@ -106,7 +102,7 @@
 		</form>
 	</div>
 
-	<nav class="navbar navbar-inverse navbar-fixed-bottom"
+	<nav class="navbar navbar-default navbar-fixed-bottom"
 		role="navigation">
 		<div class="container">
 			<div class="container">
