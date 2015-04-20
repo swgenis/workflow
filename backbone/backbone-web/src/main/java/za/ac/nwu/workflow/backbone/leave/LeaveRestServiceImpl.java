@@ -37,12 +37,11 @@ public class LeaveRestServiceImpl {
 			.getLogger(LeaveRestServiceImpl.class);
 
 	@Path(value = "/apply")
-	public String apply(LeaveApplication leaveApplicationForm) {
+	public String apply(LeaveApplication leaveApplication) {
 
 		long processInstanceId = -1;
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("applicantId", leaveApplicationForm.getApplicantId());
-		params.put("form", leaveApplicationForm);
+		params.put("applicantId", leaveApplication.getApplicantId());
 		processInstanceId = processService.startProcess(
 				StartupBean.DEPLOYMENT_ID,
 				"ac.za.nwu.workflow.leave-application", params);
