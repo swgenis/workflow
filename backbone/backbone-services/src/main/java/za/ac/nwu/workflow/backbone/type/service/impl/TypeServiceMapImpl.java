@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import za.ac.nwu.workflow.backbone.type.service.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
@@ -12,6 +14,20 @@ public class TypeServiceMapImpl implements TypeService {
 
 	private Map<String, Type> types = new HashMap<String, Type>();
 
+	@PostConstruct
+	public void initialize(){
+		addType("leave.type.annual", "leave.type.category");
+		addType("leave.type.family", "leave.type.category");
+		addType("leave.type.sick", "leave.type.category");
+	}
+	
+	private void addType(String key, String category) {
+		Type type = new Type();
+		type.setKey(key);
+		type.setCategory(category);
+		types.put(key, type);
+	}
+	
 	@Override
 	public Type getTypeByKey(String key) {
 		if (types.containsKey(key)) {

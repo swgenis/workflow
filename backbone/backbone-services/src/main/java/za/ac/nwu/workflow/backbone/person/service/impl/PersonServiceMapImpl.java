@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 
 import za.ac.nwu.workflow.backbone.person.service.Person;
@@ -14,6 +15,23 @@ import za.ac.nwu.workflow.backbone.person.service.PersonService;
 public class PersonServiceMapImpl implements PersonService {
 	
 	private Map<String, Person> persons = new HashMap<String, Person>();
+	
+	@PostConstruct
+	public void initialize(){
+		addPerson("Bob", "Bobson");
+		addPerson("John", "Johnson");
+		addPerson("Carol", "Carolson");
+		addPerson("Jiri", "McJiri");
+		addPerson("Mary", "McMary");
+	}
+
+	private void addPerson(String name, String surname) {
+		Person person = new Person();
+		person.setId(name.toLowerCase());
+		person.setName(name);
+		person.setSurname(surname);
+		persons.put(person.getId(), person);
+	}
 
 	@Override
 	public Person getPersonById(String key) {

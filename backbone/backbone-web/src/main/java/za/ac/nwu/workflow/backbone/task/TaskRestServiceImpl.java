@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.home;
+package za.ac.nwu.workflow.backbone.task;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import org.jbpm.examples.util.StartupBean;
@@ -23,10 +24,10 @@ import org.slf4j.LoggerFactory;
  */
 @Stateless
 @Path("/task")
-public class HomeController {
+public class TaskRestServiceImpl {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+			.getLogger(TaskRestServiceImpl.class);
 
 	@EJB(mappedName = "java:module/RuntimeDataServiceEJBImpl!org.jbpm.services.ejb.api.RuntimeDataServiceEJBLocal")
 	private RuntimeDataServiceEJBLocal runtimeDataService;
@@ -39,6 +40,7 @@ public class HomeController {
 	 */
 	@GET
 	@Path("/list")
+	@Produces({ "application/json" })
 	public List<TaskSummary> taskList(@QueryParam("user") String user) {
 		logger.info("Displaying the task list for the user.");
 
@@ -47,9 +49,9 @@ public class HomeController {
 
 	@GET
 	@Path("/approve")
+	@Produces({ "application/json" })
 	public String approveTask(@QueryParam("taskId") long taskId,
 			@QueryParam("user") String user) {
-		String message;
 		CompositeCommand compositeCommand = new CompositeCommand(
 				new CompleteTaskCommand(taskId, user, null),
 				new StartTaskCommand(taskId, user));

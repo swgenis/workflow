@@ -1,27 +1,26 @@
-package za.ac.nwu.workflow.backbone.leave;
+package za.ac.nwu.workflow.leave;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.ws.rs.FormParam;
+import za.ac.nwu.workflow.backbone.Entity;
 
-public class LeaveApplicationForm implements Serializable {
+public class LeaveApplication extends Entity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@FormParam("personLookupId")
-	private String personId;
+	private String applicantId;
 	
 	private Date startDate;
 	
 	private Date endDate;
 
-	public String getPersonId() {
-		return personId;
+	public String getApplicantId() {
+		return applicantId;
 	}
 
-	public void setPersonId(String personId) {
-		this.personId = personId;
+	public void setApplicantId(String applicantId) {
+		this.applicantId = applicantId;
 	}
 
 	public Date getStartDate() {
