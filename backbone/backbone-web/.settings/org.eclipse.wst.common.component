@@ -4,12 +4,6 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="backbone-api-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/backbone-api/backbone-api">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="backbone-services-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/backbone-services/backbone-services">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="leave-application-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leave-application/leave-application">
             <dependency-type>uses</dependency-type>
         </dependent-module>

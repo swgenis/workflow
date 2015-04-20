@@ -15,18 +15,28 @@
 				scope.error = null;
 				
 				/**
-				 * Callback funtion to lookup a user
+				 * Callback function to lookup a user
 				 */
-				scope.lookup = function(username){
-					BackboneServices.findPerson(username)
+				scope.findPerson = function(){
+					scope.userdetails = null;
+					scope.error = null;
+					
+					BackboneServices.findPerson(scope.nwuuid)
 					.then(
 					// Success handler
 					function(userdetails){
-						scope.userdetails = userdetails;
+						// If we didn't find the user
+						if(userdetails == null){
+							scope.error = "Could not find user for ID \"" + scope.nwuuid + "\"";
+						}
+						// We found the user
+						else{
+							scope.userdetails = userdetails;
+						}
 					}, 
 					// Error handler
 					function(reason){
-						
+						scope.error = "An error ocurred while trying to find the user";
 					})
 				}
 			}

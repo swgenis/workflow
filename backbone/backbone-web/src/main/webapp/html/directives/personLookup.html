@@ -4,16 +4,30 @@
 		<form class="form-inline">
 			<div class="form-group">
 				<label for="nwuid">Name</label> 
-				<input type="text" class="form-control" id="nwuid" placeholder="NWU ID">
+				<input type="text" class="form-control" id="nwuid" placeholder="NWU ID" ng-model="nwuuid">
 			</div>
-			<button type="submit" class="btn btn-default">Search</button>
+			<button type="submit" class="btn btn-default" ng-click="findPerson()">Search</button>
 		</form>
 	</div>
 	<div class="panel-footer" ng-if="error || userdetails">
-		<div class="bg-danger"  ng-if="error">{{error}}</div>
-		<div class="bg-success" ng-if="userdetails != null">
-			<h3>{{userdetails.name}} {{userdetails.surname}} </h3>
-			<h3>Email:  {{userdetails.email}} </h3>
+		<div class="text-warning"  ng-if="error">{{error}}</div>
+		<div class="container-fluid" ng-if="userdetails != null">
+			<div class="row">
+				<div class="col-xs-3">
+					<b>Name: </b>
+				</div>
+				<div class="col-xs-9">
+					{{userdetails.name}} {{userdetails.surname}}
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-xs-3">
+					<b>Email: </b>
+				</div>
+				<div class="col-xs-9">
+					{{userdetails.email}}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
