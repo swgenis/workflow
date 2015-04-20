@@ -4,19 +4,50 @@ import java.util.List;
 
 import za.ac.nwu.workflow.leave.LeaveApplication;
 
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 public interface LeaveService {
 
-	LeaveApplication getLeaveApplicattionById(String key);
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	LeaveApplication getLeaveApplicationById(String key);
 
+	/**
+	 * 
+	 * @param leaveApplication
+	 * @throws Exception
+	 */
 	void insertLeaveApplication(LeaveApplication leaveApplication)
 			throws Exception;
 
-	void updateLeaveApplicationForm(LeaveApplication person)
+	/**
+	 * 
+	 * @param person
+	 * @throws Exception
+	 */
+	void updateLeaveApplication(LeaveApplication person)
 			throws Exception;
 
+	/**
+	 * 
+	 * @param id
+	 * @throws Exception
+	 */
 	void deleteLeaveApplicationFormById(String id) throws Exception;
 
-	List<LeaveApplication> searchLeaveApplicationForm(String applicant)
+	/**
+	 * 
+	 * @param applicant
+	 * @return
+	 * @throws Exception
+	 */
+	List<LeaveApplication> searchLeaveApplication(String applicant)
 			throws Exception;
 
 }

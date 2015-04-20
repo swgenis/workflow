@@ -15,17 +15,13 @@ public class TypeServiceMapImpl implements TypeService {
 	private Map<String, Type> types = new HashMap<String, Type>();
 
 	@PostConstruct
-	public void initialize(){
-		addType("leave.type.annual", "leave.type.category");
-		addType("leave.type.family", "leave.type.category");
-		addType("leave.type.sick", "leave.type.category");
-	}
-	
-	private void addType(String key, String category) {
-		Type type = new Type();
-		type.setKey(key);
-		type.setCategory(category);
-		types.put(key, type);
+	public void initialize() throws Exception{
+		TypeDataLoader dataLoader = new TypeDataLoader(this);
+		try {
+			dataLoader.loadData();
+		} catch (Exception e) {
+			throw new Exception("Unable to load data for TypeServiceMapImpl", e);
+		}
 	}
 	
 	@Override

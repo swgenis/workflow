@@ -1,7 +1,7 @@
 package za.ac.nwu.workflow.leave;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 import za.ac.nwu.workflow.backbone.Entity;
 
@@ -11,9 +11,7 @@ public class LeaveApplication extends Entity implements Serializable {
 
 	private String applicantId;
 	
-	private Date startDate;
-	
-	private Date endDate;
+	private List<LeavePeriod> leavePeriods;
 
 	public String getApplicantId() {
 		return applicantId;
@@ -23,20 +21,14 @@ public class LeaveApplication extends Entity implements Serializable {
 		this.applicantId = applicantId;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public List<LeavePeriod> getLeavePeriods() {
+		return leavePeriods;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setLeavePeriods(List<LeavePeriod> leavePeriods) {
+		this.leavePeriods = leavePeriods;
 	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+	
+	
 
 }

@@ -1,20 +1,35 @@
-package za.ac.nwu.workflow.leave.service;
+package za.ac.nwu.workflow.leave.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import za.ac.nwu.workflow.leave.LeaveApplication;
+import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Default;
 
+import za.ac.nwu.workflow.leave.LeaveApplication;
+import za.ac.nwu.workflow.leave.service.LeaveService;
+
+@Default
 public class LeaveServiceMapImpl implements LeaveService {
 
 	private Map<String, LeaveApplication> leaveApplications = new HashMap<String, LeaveApplication>();
+	
+	@PostConstruct
+	public void initialize() throws Exception{
+		LeaveMockDataLoader dataLoader = new LeaveMockDataLoader(this);
+		try {
+			dataLoader.loadData();
+		} catch (Exception e) {
+			throw new Exception("Unable to load data for PersonServiceMapImpl", e);
+		}
+	}
 
 	@Override
-	public LeaveApplication getLeaveApplicattionById(String key) {
-		if(leaveApplications.containsKey(key)){
-			return leaveApplications.get(key);
+	public LeaveApplication getLeaveApplicationById(String id) {
+		if(leaveApplications.containsKey(id)){
+			return leaveApplications.get(id);
 		}
 		return null;
 	}
@@ -28,7 +43,7 @@ public class LeaveServiceMapImpl implements LeaveService {
 	}
 
 	@Override
-	public void updateLeaveApplicationForm(LeaveApplication person) throws Exception {
+	public void updateLeaveApplication(LeaveApplication person) throws Exception {
 		if(!leaveApplications.containsKey(person.getId())){
 			throw new Exception("Person does not exist for id " + person.getId());
 		}
@@ -45,7 +60,7 @@ public class LeaveServiceMapImpl implements LeaveService {
 	}
 	
 	@Override
-	public List<LeaveApplication> searchLeaveApplicationForm(String applicantId) throws Exception {
+	public List<LeaveApplication> searchLeaveApplication(String applicantId) throws Exception {
 		List<LeaveApplication> searchResults = new ArrayList<LeaveApplication>();
 		for (LeaveApplication person : leaveApplications.values()) {
 			if(applicantId!=null){
