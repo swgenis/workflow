@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jbpm.examples.util;
+package za.ac.nwu.workflow;
 
 import org.jbpm.kie.services.impl.KModuleDeploymentUnit;
 import org.jbpm.services.api.model.DeploymentUnit;
@@ -37,7 +37,7 @@ public class StartupBean {
     @PostConstruct
     public void init() {
         System.setProperty("org.jbpm.ht.callback", "custom");
-        System.setProperty("org.jbpm.ht.custom.callback", "org.jbpm.examples.util.RewardsUserGroupCallback");
+        System.setProperty("org.jbpm.ht.custom.callback", "za.ac.nwu.workflow.NWUUserGroupCallback");
         String[] gav = DEPLOYMENT_ID.split(":");
         DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(gav[0], gav[1], gav[2]);
         deploymentService.deploy(deploymentUnit);

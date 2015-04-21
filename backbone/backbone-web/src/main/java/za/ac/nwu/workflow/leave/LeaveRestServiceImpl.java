@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.leave;
+package za.ac.nwu.workflow.leave;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,12 +8,12 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 
-import org.jbpm.examples.util.StartupBean;
 import org.jbpm.services.ejb.api.ProcessServiceEJBLocal;
 import org.jbpm.services.ejb.api.UserTaskServiceEJBLocal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import za.ac.nwu.workflow.StartupBean;
 import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 

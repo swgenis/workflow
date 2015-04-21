@@ -14,21 +14,38 @@
  * limitations under the License.
  */
 
-package org.jbpm.examples.util;
-
-import org.kie.api.task.UserGroupCallback;
+package za.ac.nwu.workflow;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RewardsUserGroupCallback implements UserGroupCallback {
+import javax.inject.Inject;
+
+import org.kie.api.task.UserGroupCallback;
+
+import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
+import za.ac.nwu.workflow.backbone.authorization.Group;
+import za.ac.nwu.workflow.backbone.authorization.User;
+
+public class NWUUserGroupCallback implements UserGroupCallback {
+	
+	@Inject
+	private AuthorizationService authorizationService;
 
     public boolean existsUser(String userId) {
-        return userId.equals("jiri") || userId.equals("mary") || userId.equals("Administrator");
+    	User user = authorizationService.getUserById(userId);
+    	if(user!=null){
+    		return true;
+    	}
+        return false;
     }
 
     public boolean existsGroup(String groupId) {
-        return groupId.equals("PM") || groupId.equals("HR");
+    	Group group = authorizationService.getGroupById(groupId);
+    	if(group!=null){
+    		return true;
+    	}
+        return false;
     }
 
     public List<String> getGroupsForUser(String userId,
