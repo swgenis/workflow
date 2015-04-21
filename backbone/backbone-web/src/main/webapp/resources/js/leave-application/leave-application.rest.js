@@ -5,8 +5,8 @@
 	 * Rest Services for leave application
 	 */
 	.factory("LeaveRestServices", 
-	["$q",
-	function($q){
+	["$q","$http",
+	function($q, $http){
 		return {
 			'_callService' : function(method, url, sendingData, params){
 				var contextPath = "/backbone/rest/"; // TODO get this from application
@@ -34,6 +34,12 @@
 					deferred.reject(data);
 				});
 				return deferred.promise;
+			},
+			/**
+			 * Submit leave for approval
+			 */
+			'submitLeave' : function(data){
+				return this._callService('POST', 'leave/apply', data);
 			},
 			/**
 			 * Get the types of leave a person can take
