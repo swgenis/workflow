@@ -4,7 +4,7 @@
 	/**
 	 * Rest Services for leave application
 	 */
-	.factory("LeaveRestServices", 
+	.factory("TaskListRestServices", 
 	["$q","$http",
 	function($q, $http){
 		return {
@@ -36,55 +36,16 @@
 				return deferred.promise;
 			},
 			/**
-			 * Submit leave for approval
+			 * Get the tasks for a user
 			 */
-			'submitLeave' : function(data){
-				return this._callService('POST', 'leave/apply', data);
+			'getTasks' : function(username){
+				return this._callService('GET', 'task/list',null, {'username' : username});
 			},
 			/**
-			 * Get the types of leave a person can take
+			 * Get the tasks for a user
 			 */
-			'getLeaveTypes' : function(personLookupId){
-				return $q.when({
-					'1':{
-						'id' : 1,
-						'description' : 'Jaarliks'
-					},
-					'2':{
-						'id' : 2,
-						'description' : 'Opgehoopte'
-					},
-					'3':{
-						'id' : 3,
-						'description' : 'Gesinsverpligting'
-					},
-					'4':{
-						'id' : 4,
-						'description' : 'Siekte'
-					},
-					'5':{
-						'id' : 5,
-						'description' : 'Besering aan diens'
-					},
-					'6':{
-						'id' : 6,
-						'description' : 'Studie'
-					},
-					'7':{
-						'id' : 7,
-						'description' : 'Kraam'
-					},
-					'8':{
-						'id' : 8,
-						'description' : 'Onbetaald'
-					},
-					'9':{
-						'id' : 9,
-						'description' : 'Spesiale'
-					}
-					});
-				
-				//return this._callService('GET', 'leave/getTypes');
+			'approveTask' : function(username, taskId){
+				return this._callService('GET', 'task/approve',null, {'username' : username, 'taskId' : taskId});
 			}
 		}
 		

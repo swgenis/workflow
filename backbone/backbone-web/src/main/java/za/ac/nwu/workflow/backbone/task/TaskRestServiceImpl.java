@@ -59,7 +59,7 @@ public class TaskRestServiceImpl {
 				new CompleteTaskCommand(taskId, user, null),
 				new StartTaskCommand(taskId, user));
 		userTaskService.execute(StartupBean.DEPLOYMENT_ID, compositeCommand);
-		return "Task (id = " + taskId + ") has been completed by " + user;
+		return "{\"msg\":\"Task (id = " + taskId + ") has been completed by " + user + "\"}";
 	}
 	
 	@GET
