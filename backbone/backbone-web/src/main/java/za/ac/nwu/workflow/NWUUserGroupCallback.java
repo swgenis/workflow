@@ -23,29 +23,29 @@ import javax.inject.Inject;
 
 import org.kie.api.task.UserGroupCallback;
 
-import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
-import za.ac.nwu.workflow.backbone.authorization.Group;
-import za.ac.nwu.workflow.backbone.authorization.User;
+//import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
+//import za.ac.nwu.workflow.backbone.authorization.Group;
+//import za.ac.nwu.workflow.backbone.authorization.User;
 
 public class NWUUserGroupCallback implements UserGroupCallback {
 	
-	@Inject
-	private AuthorizationService authorizationService;
+//	@Inject
+//	private AuthorizationService authorizationService;
 
     public boolean existsUser(String userId) {
-    	User user = authorizationService.getUserById(userId);
-    	if(user!=null){
+//    	User user = authorizationService.getUserById(userId);
+//    	if(user!=null){
     		return true;
-    	}
-        return false;
+//    	}
+//        return false;
     }
 
     public boolean existsGroup(String groupId) {
-    	Group group = authorizationService.getGroupById(groupId);
-    	if(group!=null){
+//    	Group group = authorizationService.getGroupById(groupId);
+//    	if(group!=null){
     		return true;
-    	}
-        return false;
+//    	}
+//        return false;
     }
 
     public List<String> getGroupsForUser(String userId,
