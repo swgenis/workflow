@@ -27,7 +27,8 @@
 		<jbpm.version>6.2.0.CR4</jbpm.version>
 		<spring.version>4.1.1.RELEASE</spring.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.slf4j-version>1.7.2</org.slf4j-version>
+		<log4j.version>1.2.16</log4j.version>
 		<jackson.version>2.2.2</jackson.version>
 
 		<!-- Test Libs -->
@@ -59,6 +60,23 @@
 				<version>${jbpm.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${org.slf4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
 			</dependency>
 
 			<!-- Test dependencies -->
