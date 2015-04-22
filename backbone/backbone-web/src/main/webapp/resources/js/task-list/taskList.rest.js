@@ -45,13 +45,13 @@
 			 * Get the tasks for a user
 			 */
 			'approveTask' : function(username, taskId){
-				return this._callService('GET', 'task/approve',null, {'username' : username, 'taskId' : taskId});
+				return this._callService('GET', 'task/approve',null, {'user' : username, 'taskId' : taskId});
 			},
 			/**
 			 * Get the tasks for a user
 			 */
 			'denyTask' : function(username, taskId){
-				return this._callService('GET', 'task/approve',null, {'username' : username, 'taskId' : taskId});
+				return this._callService('GET', 'task/approve',null, {'user' : username, 'taskId' : taskId});
 			}
 		}
 		
