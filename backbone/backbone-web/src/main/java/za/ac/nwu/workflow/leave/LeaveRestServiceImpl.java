@@ -6,7 +6,10 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 import org.jbpm.services.ejb.api.ProcessServiceEJBLocal;
 import org.jbpm.services.ejb.api.UserTaskServiceEJBLocal;
@@ -14,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.StartupBean;
-import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 
 /**
@@ -29,7 +31,7 @@ public class LeaveRestServiceImpl {
 
 	@EJB
 	private UserTaskServiceEJBLocal userTaskService;
-	
+
 	@Inject
 	private LeaveService leaveService;
 
@@ -37,6 +39,9 @@ public class LeaveRestServiceImpl {
 			.getLogger(LeaveRestServiceImpl.class);
 
 	@Path(value = "/apply")
+	@POST
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
 	public String apply(LeaveApplication leaveApplication) {
 
 		long processInstanceId = -1;
@@ -48,7 +53,7 @@ public class LeaveRestServiceImpl {
 		logger.info("Process instance " + processInstanceId
 				+ " has been successfully started.");
 
-		return "You have succesfully applied for leave.";
+		return "{\"msg\":\"You have succesfully applied for leave\"}";
 	}
 
 }

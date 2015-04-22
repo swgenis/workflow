@@ -83,7 +83,10 @@
 						<tr ng-repeat="task in tasks">
 							<td>{{task.id}}</td>
 							<td>{{task.status}}</td>
-							<td><button class="btn btn-primary" type="button" ng-click="approve()">Approve</button></td>
+							<td>
+								<button class="btn btn-primary" type="button" ng-click="approveTask(task)">Approve</button>
+								<button class="btn btn-danger" type="button" ng-click="denyTask(task)">Deny</button>
+							</td>
 						<tr>
 					</tbody>
 				</table>

@@ -55,6 +55,7 @@ public class TaskRestServiceImpl {
 	@Produces({ "application/json" })
 	public String approveTask(@QueryParam("taskId") long taskId,
 			@QueryParam("user") String user) {
+		System.out.println("Approving task: taskId=" + taskId +" ,user="+ user);
 		CompositeCommand compositeCommand = new CompositeCommand(
 				new CompleteTaskCommand(taskId, user, null),
 				new StartTaskCommand(taskId, user));
@@ -67,6 +68,7 @@ public class TaskRestServiceImpl {
 	@Produces({ "application/json" })
 	public String denyTask(@QueryParam("taskId") long taskId,
 			@QueryParam("user") String user) {
+		System.out.println("Denying task: taskId=" + taskId +" ,user="+ user);
 		CompositeCommand compositeCommand = new CompositeCommand(
 				new CompleteTaskCommand(taskId, user, null),
 				new StartTaskCommand(taskId, user));
