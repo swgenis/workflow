@@ -9,6 +9,8 @@
 	function($scope, LeaveRestServices){
 		
 		$scope.leaveEntries = [];
+		$scope.submitFail = false;
+		$scope.submitSuccess = false;
 		
 		// Get the leave types
 		LeaveRestServices.getLeaveTypes().then(function(leaveTypes){
@@ -32,7 +34,8 @@
 		 * Function to submit the leave
 		 */
 		$scope.submitLeave = function(){
-			
+			$scope.submitFail = false;
+			$scope.submitSuccess = false;
 			// Build the object to submit
 			
 			var data = {
@@ -43,11 +46,13 @@
 			LeaveRestServices.submitLeave(data).then(
 				// Success handler
 				function(){
-					console.log("Leave submitted");
+					$scope.submitFail = false;
+					$scope.submitSuccess = true;
 				},
 				// Error handler
 				function(reason){
-					console.log("Failed to submit leave");
+					$scope.submitFail = true;
+					$scope.submitSuccess = false;
 				});
 		};
 		
