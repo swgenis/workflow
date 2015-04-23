@@ -13,7 +13,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Backbone UI war for NWU workflow apps</name>
+	<name>Backbone Web for NWU workflow apps</name>
 
 	<dependencies>
 
@@ -74,8 +74,7 @@
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
+			<artifactId>slf4j-api</artifactId>	
 		</dependency>
 
 		<!-- Test -->
