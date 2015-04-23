@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,6 +17,8 @@ import org.jbpm.services.ejb.api.ProcessServiceEJBLocal;
 import org.jbpm.services.ejb.api.UserTaskServiceEJBLocal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.io.JsonStringEncoder;
 
 import za.ac.nwu.workflow.StartupBean;
 import za.ac.nwu.workflow.leave.service.LeaveService;
@@ -54,6 +58,17 @@ public class LeaveRestServiceImpl {
 				+ " has been successfully started.");
 
 		return "{\"msg\":\"You have succesfully applied for leave\"}";
+	}
+	
+	/**
+	 * Gets the types of leave that are available
+	 * @return
+	 */
+	@Path(value = "/types.json")
+	@GET
+	@Produces({ "application/json" })
+	public String getLeaveTypes(){
+		return ""; // TODO
 	}
 
 }
