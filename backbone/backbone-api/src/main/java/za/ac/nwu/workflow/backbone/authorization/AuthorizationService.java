@@ -6,7 +6,7 @@ public interface AuthorizationService {
 	
 	public User getUserById(String userId);
 	
-	public void insertUser(User user);
+	public void insertUser(User user) throws Exception;
 	
 	public void updateUser(User user);
 	
@@ -14,7 +14,7 @@ public interface AuthorizationService {
 	
 	public Group getGroupById(String groupId);
 	
-	public void insertGroup(Group group);
+	public void insertGroup(Group group) throws Exception;
 	
 	public void updateGroup(Group group);
 	

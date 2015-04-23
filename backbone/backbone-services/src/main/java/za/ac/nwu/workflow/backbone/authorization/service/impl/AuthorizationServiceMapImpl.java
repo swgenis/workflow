@@ -1,9 +1,11 @@
-package za.ac.nwu.workflow.backbone.authorization.service;
+package za.ac.nwu.workflow.backbone.authorization.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.PostConstruct;
 
 import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
 import za.ac.nwu.workflow.backbone.authorization.Group;
@@ -13,6 +15,16 @@ public class AuthorizationServiceMapImpl implements AuthorizationService {
 	
 	private Map<String, User> users = new HashMap<String, User>();
 	private Map<String, Group> groups = new HashMap<String, Group>();
+	
+	@PostConstruct
+	public void initialize() throws Exception{
+		AuthorizationMockDataLoader dataLoader = new AuthorizationMockDataLoader(this);
+		try {
+			dataLoader.loadData();
+		} catch (Exception e) {
+			throw new Exception("Unable to load data for AuthorizationServiceMapImpl", e);
+		}
+	}
 
 	@Override
 	public User getUserById(String userId) {
@@ -23,9 +35,11 @@ public class AuthorizationServiceMapImpl implements AuthorizationService {
 	}
 
 	@Override
-	public void insertUser(User user) {
-		// TODO Auto-generated method stub
-
+	public void insertUser(User user) throws Exception {
+		if(users.containsKey(user.getId())){
+			throw new Exception("User already exists for id " + user.getId());
+		}
+		users.put(user.getId(), user);	
 	}
 
 	@Override
@@ -49,9 +63,11 @@ public class AuthorizationServiceMapImpl implements AuthorizationService {
 	}
 
 	@Override
-	public void insertGroup(Group group) {
-		// TODO Auto-generated method stub
-
+	public void insertGroup(Group group) throws Exception {
+		if(groups.containsKey(group.getId())){
+			throw new Exception("Group already exists for id " + group.getId());
+		}
+		groups.put(group.getId(), group);	
 	}
 
 	@Override

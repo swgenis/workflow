@@ -43,7 +43,7 @@ public class PersonMockDataLoader {
 
 	private void addPerson(String id, String name, String surname) throws Exception {
 		Person person = new Person();
-		person.setId(name.toLowerCase());
+		person.setId(id);
 		person.setName(name);
 		person.setSurname(surname);
 		personService.insertPerson(person);
