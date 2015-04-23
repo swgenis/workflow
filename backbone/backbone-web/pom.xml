@@ -13,7 +13,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Backbone UI war for NWU workflow apps</name>
+	<name>Backbone Web for NWU workflow apps</name>
 
 	<dependencies>
 

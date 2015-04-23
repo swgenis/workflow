@@ -6,20 +6,16 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.cdi.Kjar;
-import org.kie.api.KieServices;
-import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.RuntimeEngine;
-import org.kie.api.runtime.manager.RuntimeEnvironment;
-import org.kie.api.runtime.manager.RuntimeEnvironmentBuilder;
 import org.kie.api.runtime.manager.RuntimeManager;
-import org.kie.api.runtime.manager.RuntimeManagerFactory;
 import org.kie.api.runtime.process.ProcessInstance;
 import org.kie.internal.runtime.manager.cdi.qualifier.Singleton;
 import org.kie.internal.runtime.manager.context.EmptyContext;
@@ -52,6 +48,17 @@ public class LeaveRestServiceImpl {
 	@Inject
     @Singleton
     private RuntimeManager singletonManager;
+	
+	/**
+	 * Gets the types of leave that are available
+	 * @return
+	 */
+	@Path(value = "/types.json")
+	@GET
+	@Produces({ "application/json" })
+	public String getLeaveTypes(){
+		return ""; // TODO
+	}
 
 	@Path("/apply")
 	@POST

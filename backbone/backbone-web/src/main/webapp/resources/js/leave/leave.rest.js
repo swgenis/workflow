@@ -42,6 +42,26 @@
 				return this._callService('POST', 'leave/apply', data);
 			},
 			/**
+			 * Search for leave applications for a user
+			 */
+			'searchLeave' : function(username){
+				/// TODO returning a fixed array
+				return $q.when([{
+							id : 1,
+							typeKey : 1,
+							startDate: "2015-05-01",
+							endDate : "2015-05-02",
+							status : "approved"
+						},
+						{
+							id : 2,
+							typeKey : 3,
+							startDate: "2015-07-22",
+							endDate : "2015-07-30",
+							status : "declined"
+						}]);
+			},
+			/**
 			 * Get the types of leave a person can take
 			 */
 			'getLeaveTypes' : function(personLookupId){
