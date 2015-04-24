@@ -78,7 +78,7 @@ public class LeaveRestServiceImpl {
 		RuntimeEngine runtime = singletonManager.getRuntimeEngine(EmptyContext.get());
         KieSession ksession = runtime.getKieSession();        
         logger.debug("Registering work item handlers");
-		ksession.getWorkItemManager().registerWorkItemHandler("Human Task", getHumanTaskWorkItemHandler());
+		ksession.getWorkItemManager().registerWorkItemHandler("Leave Submission", getHumanTaskWorkItemHandler());
         
         Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicantId", leaveApplication.getApplicantId());

@@ -16,6 +16,8 @@ import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import za.ac.nwu.workflow.backbone.Message;
+
 /**
  * Handles requests for the application home page.
  */
@@ -36,28 +38,30 @@ public class TaskRestServiceImpl {
 	@Path("/list")
 	@Produces({ "application/json" })
 	public List<TaskSummary> taskList(@QueryParam("user") String user) {
-		logger.info("Displaying the task list for the user.");
+		logger.info("Displaying the task list for " + user);
 		return taskService.getTasksAssignedAsPotentialOwner(user, null);
 	}
 	
 	@GET
 	@Path("/approve")
 	@Produces({ "application/json" })
-	public String approveTask(@QueryParam("taskId") long taskId,
+	public Message approveTask(@QueryParam("taskId") long taskId,
 			@QueryParam("user") String user) {
+		logger.info("User " + user + " is approving task " + taskId);
 		taskService.start(taskId, user);
         taskService.complete(taskId, user, null);
-		return "{\"msg\":\"Task (id = " + taskId + ") has been completed by " + user + "\"}";
+		return new Message("Task (id = " + taskId + ") has been completed by " + user);
 	}
 	
 	@GET
 	@Path("/deny")
 	@Produces({ "application/json" })
-	public String denyTask(@QueryParam("taskId") long taskId,
+	public Message denyTask(@QueryParam("taskId") long taskId,
 			@QueryParam("user") String user) {
+		logger.info("User " + user + " is denying task " + taskId);
 		taskService.start(taskId, user);
         taskService.complete(taskId, user, null);
-		return "Task (id = " + taskId + ") has been completed by " + user;
+		return new Message("Task (id = " + taskId + ") has been completed by " + user);
 	}
 	
 	@GET
