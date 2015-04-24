@@ -72,11 +72,4 @@ public class LeaveServiceMapImpl implements LeaveService {
 		return searchResults;
 	}
 
-	public Map<String, LeaveApplication> getPersons() {
-		return leaveApplications;
-	}
-
-	public void setPersons(Map<String, LeaveApplication> leaveApplications) {
-		this.leaveApplications = leaveApplications;
-	}
 }

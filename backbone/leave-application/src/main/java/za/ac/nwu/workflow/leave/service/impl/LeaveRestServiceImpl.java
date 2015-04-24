@@ -1,6 +1,7 @@
 package za.ac.nwu.workflow.leave.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
@@ -11,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler;
 import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.cdi.Kjar;
 import org.kie.api.runtime.KieSession;
@@ -23,6 +25,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.backbone.Message;
+import za.ac.nwu.workflow.backbone.type.service.Type;
+import za.ac.nwu.workflow.backbone.type.service.TypeService;
+import za.ac.nwu.workflow.backbone.type.service.TypeServiceConstants;
 import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 
@@ -42,6 +47,9 @@ public class LeaveRestServiceImpl {
 	private LeaveService leaveService;
 	
 	@Inject
+	private TypeService typeService;
+	
+	@Inject
     @Kjar
     DeploymentService deploymentService;
 	
@@ -52,12 +60,13 @@ public class LeaveRestServiceImpl {
 	/**
 	 * Gets the types of leave that are available
 	 * @return
+	 * @throws Exception 
 	 */
-	@Path(value = "/types.json")
+	@Path("/types.json")
 	@GET
 	@Produces({ "application/json" })
-	public String getLeaveTypes(){
-		return ""; // TODO
+	public List<Type> getLeaveTypes() throws Exception{
+		return typeService.getTypesByCategory(TypeServiceConstants.CATEGORY_LEAVE_TYPES);
 	}
 
 	@Path("/apply")
@@ -68,6 +77,8 @@ public class LeaveRestServiceImpl {
 		
 		RuntimeEngine runtime = singletonManager.getRuntimeEngine(EmptyContext.get());
         KieSession ksession = runtime.getKieSession();        
+        logger.debug("Registering work item handlers");
+		ksession.getWorkItemManager().registerWorkItemHandler("Human Task", getHumanTaskWorkItemHandler());
         
         Map<String, Object> params = new HashMap<String, Object>();
 		params.put("applicantId", leaveApplication.getApplicantId());
@@ -94,6 +105,16 @@ public class LeaveRestServiceImpl {
 		}
 		return new Message("Leave application has been approved for "
 				+ leaveApplication.getApplicantId());
+	}
+	
+	/**
+	 * Creates a WorkItemHandler for processing User Tasks.
+	 * @return WSHumanTaskHandler
+	 */
+	private SystemOutWorkItemHandler getHumanTaskWorkItemHandler() {
+		logger.debug("Creating a Human Task Handler");
+		SystemOutWorkItemHandler handler = new SystemOutWorkItemHandler();
+		return handler;
 	}
 
 }

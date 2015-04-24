@@ -12,11 +12,8 @@ import za.ac.nwu.workflow.backbone.person.service.impl.PersonMockDataLoader;
  */
 public class AuthorizationMockDataLoader {
 	
-	public static final String USER1_ID = "user1";
-	public static final String USER2_ID = "user2";
-	public static final String USER3_ID = "user3";
-	public static final String USER4_ID = "user4";
-	public static final String USER5_ID = "user5";
+	public static final String USER1_ID = "jiri";
+	public static final String USER2_ID = "mary";
 	public static final String GROUP1_ID = "PM";
 	public static final String GROUP2_ID = "HR";
 
@@ -27,11 +24,8 @@ public class AuthorizationMockDataLoader {
 	}
 
 	public void loadData() throws Exception {
-		addUser(USER1_ID, PersonMockDataLoader.PERSON1_ID);
-		addUser(USER2_ID, PersonMockDataLoader.PERSON2_ID);
-		addUser(USER3_ID, PersonMockDataLoader.PERSON3_ID);
-		addUser(USER4_ID, PersonMockDataLoader.PERSON4_ID);
-		addUser(USER5_ID, PersonMockDataLoader.PERSON5_ID);
+		addUser(USER1_ID, PersonMockDataLoader.PERSON4_ID);
+		addUser(USER2_ID, PersonMockDataLoader.PERSON5_ID);
 		
 		addGroup(GROUP1_ID);
 		addGroup(GROUP2_ID);

@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Default;
 
 import za.ac.nwu.workflow.backbone.type.service.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
+@Default
 public class TypeServiceMapImpl implements TypeService {
 
 	private Map<String, Type> types = new HashMap<String, Type>();

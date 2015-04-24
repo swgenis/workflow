@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Default;
 
 import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
 import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
 
+@Default
 public class AuthorizationServiceMapImpl implements AuthorizationService {
 	
 	private Map<String, User> users = new HashMap<String, User>();
