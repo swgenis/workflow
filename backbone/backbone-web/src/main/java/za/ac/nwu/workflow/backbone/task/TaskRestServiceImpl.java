@@ -87,7 +87,6 @@ public class TaskRestServiceImpl {
         	Task processTask = taskService.getTaskById(processTaskId);
         	logger.info("Process Task " + processTask.getId() + " " + processTask.getTaskData().getStatus().toString());
         }
-        taskService.
 	}
 
 }
