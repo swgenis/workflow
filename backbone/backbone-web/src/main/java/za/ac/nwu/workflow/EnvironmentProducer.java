@@ -6,15 +6,18 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
 import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.cdi.Kjar;
+import org.jbpm.services.task.audit.JPATaskLifeCycleEventListener;
 import org.jbpm.services.task.identity.DefaultUserInfo;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.manager.RuntimeEnvironment;
 import org.kie.api.runtime.manager.RuntimeEnvironmentBuilder;
+import org.kie.api.task.TaskLifeCycleEventListener;
 import org.kie.api.task.UserGroupCallback;
 import org.kie.internal.identity.IdentityProvider;
 import org.kie.internal.io.ResourceFactory;
@@ -75,11 +78,11 @@ public class EnvironmentProducer {
 		return new DefaultUserInfo(true);
 	}
 
-	// @Produces
-	// @Named("Logs")
-	// public TaskLifeCycleEventListener produceTaskAuditListener() {
-	// return new JPATaskLifeCycleEventListener(true);
-	// }
+	@Produces
+	@Named("Logs")
+	public TaskLifeCycleEventListener produceTaskAuditListener() {
+		return new JPATaskLifeCycleEventListener(true);
+	}
 
 	@Produces
 	public DeploymentService getDeploymentService() {

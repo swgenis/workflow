@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import org.jbpm.services.api.ProcessService;
+import org.kie.api.runtime.process.ProcessInstance;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
@@ -30,6 +32,9 @@ public class TaskRestServiceImpl {
 	
 	@Inject
     TaskService taskService;
+	
+	@Inject
+	ProcessService processService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -50,6 +55,7 @@ public class TaskRestServiceImpl {
 		logger.info("User " + user + " is approving task " + taskId);
 		taskService.start(taskId, user);
         taskService.complete(taskId, user, null);
+        logProcessInstanceStatus(taskId);
 		return new Message("Task (id = " + taskId + ") has been completed by " + user);
 	}
 	
@@ -61,6 +67,7 @@ public class TaskRestServiceImpl {
 		logger.info("User " + user + " is denying task " + taskId);
 		taskService.start(taskId, user);
         taskService.complete(taskId, user, null);
+        logProcessInstanceStatus(taskId);
 		return new Message("Task (id = " + taskId + ") has been completed by " + user);
 	}
 	
@@ -70,6 +77,17 @@ public class TaskRestServiceImpl {
 	public Task getTask(@PathParam("id") long taskId) {
 		logger.info("Retrieving the task by id.");
 		return taskService.getTaskById(taskId);
+	}
+	
+	private void logProcessInstanceStatus(long taskId){
+		Task task = taskService.getTaskById(taskId);
+        logger.info("Completed task " + task.toString());
+        List<Long> taskIds = taskService.getTasksByProcessInstanceId(task.getTaskData().getProcessInstanceId());
+        for(long processTaskId : taskIds){
+        	Task processTask = taskService.getTaskById(processTaskId);
+        	logger.info("Process Task " + processTask.getId() + " " + processTask.getTaskData().getStatus().toString());
+        }
+        taskService.
 	}
 
 }
