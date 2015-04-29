@@ -1,5 +1,6 @@
 import org.drools.core.process.core.datatype.impl.type.StringDataType;
 import org.drools.core.process.core.datatype.impl.type.ObjectDataType;
+import za.ac.nwu.workflow.leave.LeaveApplication;
 
 [
   [
@@ -10,8 +11,7 @@ import org.drools.core.process.core.datatype.impl.type.ObjectDataType;
       "Subject" : new StringDataType(),
       "Body" : new StringDataType()
     ],
-    "displayName" : "Email",
-    "icon" : "defaultemailicon.gif"
+    "displayName" : "Email"
   ],
 
   [
@@ -19,8 +19,7 @@ import org.drools.core.process.core.datatype.impl.type.ObjectDataType;
     "parameters" : [
       "Message" : new StringDataType()
     ],
-    "displayName" : "Log",
-    "icon" : "defaultlogicon.gif"
+    "displayName" : "Log"
   ],
 
   [
@@ -36,8 +35,7 @@ import org.drools.core.process.core.datatype.impl.type.ObjectDataType;
     "results" : [
         "Result" : new ObjectDataType(),
     ],
-    "displayName" : "WS",
-    "icon" : "defaultservicenodeicon.png"
+    "displayName" : "WS"
   ],
 
   [
@@ -53,8 +51,15 @@ import org.drools.core.process.core.datatype.impl.type.ObjectDataType;
     "results" : [
         "Result" : new ObjectDataType(),
     ],
-    "displayName" : "REST",
-    "icon" : "defaultservicenodeicon.png"
+    "displayName" : "REST"
+  ]
+  
+  [
+    "name" : "SubmitLeaveApplication",
+    "parameters" : [
+        "leaveApplication" : new LeaveApplication()
+    ],
+    "displayName" : "Submit Leave Application"
   ]
 
 ]
