@@ -65,46 +65,7 @@
 			 * Get the types of leave a person can take
 			 */
 			'getLeaveTypes' : function(personLookupId){
-				return $q.when({
-					'1':{
-						'id' : 1,
-						'description' : 'Jaarliks'
-					},
-					'2':{
-						'id' : 2,
-						'description' : 'Opgehoopte'
-					},
-					'3':{
-						'id' : 3,
-						'description' : 'Gesinsverpligting'
-					},
-					'4':{
-						'id' : 4,
-						'description' : 'Siekte'
-					},
-					'5':{
-						'id' : 5,
-						'description' : 'Besering aan diens'
-					},
-					'6':{
-						'id' : 6,
-						'description' : 'Studie'
-					},
-					'7':{
-						'id' : 7,
-						'description' : 'Kraam'
-					},
-					'8':{
-						'id' : 8,
-						'description' : 'Onbetaald'
-					},
-					'9':{
-						'id' : 9,
-						'description' : 'Spesiale'
-					}
-					});
-				
-				//return this._callService('GET', 'leave/getTypes');
+				return this._callService('GET', 'leave/types.json');
 			}
 		}
 		
