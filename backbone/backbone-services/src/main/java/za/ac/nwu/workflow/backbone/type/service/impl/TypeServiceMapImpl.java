@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 
-import za.ac.nwu.workflow.backbone.type.service.Type;
+import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
 @Default

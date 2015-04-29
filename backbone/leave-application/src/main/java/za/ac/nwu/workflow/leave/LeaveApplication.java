@@ -28,7 +28,5 @@ public class LeaveApplication extends Entity implements Serializable {
 	public void setLeavePeriods(List<LeavePeriod> leavePeriods) {
 		this.leavePeriods = leavePeriods;
 	}
-	
-	
 
 }

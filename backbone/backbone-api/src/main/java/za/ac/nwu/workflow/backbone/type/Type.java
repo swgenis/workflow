@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.type.service;
+package za.ac.nwu.workflow.backbone.type;
 
 public class Type {
 	

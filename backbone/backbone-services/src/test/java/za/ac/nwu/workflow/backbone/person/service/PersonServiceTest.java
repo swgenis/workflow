@@ -15,6 +15,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.impl.PersonMockDataLoader;
 import za.ac.nwu.workflow.backbone.person.service.impl.PersonServiceMapImpl;
 

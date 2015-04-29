@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 
-import za.ac.nwu.workflow.backbone.person.service.Person;
+import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
 @Default

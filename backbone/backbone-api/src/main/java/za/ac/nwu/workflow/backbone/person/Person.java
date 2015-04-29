@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.person.service;
+package za.ac.nwu.workflow.backbone.person;
 
 import za.ac.nwu.workflow.backbone.Entity;
 

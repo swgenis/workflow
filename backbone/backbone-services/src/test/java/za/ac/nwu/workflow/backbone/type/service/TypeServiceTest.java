@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.impl.TypeServiceMapImpl;
 
 @RunWith(Arquillian.class)

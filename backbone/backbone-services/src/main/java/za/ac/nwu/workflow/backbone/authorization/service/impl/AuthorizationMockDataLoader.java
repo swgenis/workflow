@@ -1,8 +1,8 @@
 package za.ac.nwu.workflow.backbone.authorization.service.impl;
 
-import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
 import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
+import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 import za.ac.nwu.workflow.backbone.person.service.impl.PersonMockDataLoader;
 
 /**

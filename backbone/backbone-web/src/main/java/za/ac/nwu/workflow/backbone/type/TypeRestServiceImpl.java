@@ -12,7 +12,6 @@ import javax.ws.rs.Produces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import za.ac.nwu.workflow.backbone.type.service.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
 @Stateless

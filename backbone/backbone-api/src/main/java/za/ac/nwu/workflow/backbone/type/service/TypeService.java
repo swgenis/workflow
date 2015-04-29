@@ -2,6 +2,8 @@ package za.ac.nwu.workflow.backbone.type.service;
 
 import java.util.List;
 
+import za.ac.nwu.workflow.backbone.type.Type;
+
 /**
  * 
  * @author SW Genis

@@ -8,9 +8,9 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 
-import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
 import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
+import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 
 @Default
 public class AuthorizationServiceMapImpl implements AuthorizationService {

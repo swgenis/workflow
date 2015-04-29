@@ -23,9 +23,9 @@ import javax.inject.Inject;
 
 import org.kie.api.task.UserGroupCallback;
 
-import za.ac.nwu.workflow.backbone.authorization.AuthorizationService;
 import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
+import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 
 @Backbone
 public class BackboneUserGroupCallback implements UserGroupCallback {

@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.backbone.Message;
-import za.ac.nwu.workflow.backbone.type.service.Type;
+import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 import za.ac.nwu.workflow.backbone.type.service.TypeServiceConstants;
 import za.ac.nwu.workflow.leave.LeaveApplication;

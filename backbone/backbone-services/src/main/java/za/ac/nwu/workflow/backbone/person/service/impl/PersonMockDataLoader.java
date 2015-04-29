@@ -1,6 +1,6 @@
 package za.ac.nwu.workflow.backbone.person.service.impl;
 
-import za.ac.nwu.workflow.backbone.person.service.Person;
+import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
 /**
