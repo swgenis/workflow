@@ -1,6 +1,8 @@
 package za.ac.nwu.workflow.backbone.task;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -56,8 +58,11 @@ public class TaskRestServiceImpl {
 	public Message approveTask(@QueryParam("taskId") long taskId,
 			@QueryParam("user") String user) {
 		logger.info("User " + user + " is approving task " + taskId);
+		Map<String, Object> inParams = userTaskService.getTaskInputContentByTaskId(taskId);
+		Map<String, Object> outParams = new HashMap<String, Object>();
+		outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
         CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user,
-                null),
+        		outParams),
                 new StartTaskCommand(taskId, user));
         userTaskService.execute(StartupBean.DEPLOYMENT_ID, compositeCommand);
 		return new Message("Task (id = " + taskId + ") has been completed by "

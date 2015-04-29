@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
@@ -36,6 +37,12 @@ public class LeaveServiceMapImpl implements LeaveService {
 
 	@Override
 	public void insertLeaveApplication(LeaveApplication leaveApplication) throws Exception {
+		//Set new id if it is null.
+		if(leaveApplication.getId() == null){
+			leaveApplication.setId(UUID.randomUUID().toString());
+		}
+		
+		//Check if id does not already exist.
 		if(leaveApplications.containsKey(leaveApplication.getId())){
 			throw new Exception("Person already exists for id " + leaveApplication.getId());
 		}

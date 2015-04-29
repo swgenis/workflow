@@ -23,7 +23,7 @@ public class LeaveApplicationWorkItem implements WorkItemHandler {
 	public void executeWorkItem(WorkItem workItem, WorkItemManager manager) {
 		logger.info("Submitting an approved leave application");
 		try {
-			leaveService.insertLeaveApplication((LeaveApplication) workItem.getParameter("leaveApplication"));
+			leaveService.insertLeaveApplication((LeaveApplication) workItem.getParameter("leaveApplicationIn"));
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to submit leave applicaiton.", e);
 		}

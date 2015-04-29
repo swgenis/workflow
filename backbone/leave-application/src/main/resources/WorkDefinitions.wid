@@ -55,9 +55,9 @@ import za.ac.nwu.workflow.leave.LeaveApplication;
   ]
   
   [
-    "name" : "SubmitLeaveApplication",
+    "name" : "Submit Leave Application",
     "parameters" : [
-        "leaveApplication" : new LeaveApplication()
+        "leaveApplicationIn" : new LeaveApplication()
     ],
     "displayName" : "Submit Leave Application"
   ]

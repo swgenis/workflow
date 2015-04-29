@@ -16,7 +16,7 @@
 				return;
 			}
 			
-			LeaveRestServices.searchLeave(newValue).then(function(leaveEntries){
+			LeaveRestServices.searchLeave(newValue.id).then(function(leaveEntries){
 				$scope.leaveEntries = leaveEntries;
 			});
 		});
