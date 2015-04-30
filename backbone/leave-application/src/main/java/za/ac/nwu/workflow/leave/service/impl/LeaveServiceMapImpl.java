@@ -8,11 +8,13 @@ import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
+import javax.inject.Singleton;
 
 import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 
 @Default
+@Singleton
 public class LeaveServiceMapImpl implements LeaveService {
 
 	private Map<String, LeaveApplication> leaveApplications = new HashMap<String, LeaveApplication>();

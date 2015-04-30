@@ -18,11 +18,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.backbone.Message;
+import za.ac.nwu.workflow.backbone.authorization.User;
+import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
+import za.ac.nwu.workflow.backbone.organization.OrgUnit;
+import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
+import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 import za.ac.nwu.workflow.backbone.type.service.TypeServiceConstants;
 import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
+import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
 
 /**
  * Handles requests for the application home page.
@@ -43,6 +49,12 @@ public class LeaveRestServiceImpl {
 	private TypeService typeService;
 
 	@Inject
+	private OrganizationService organizationService;
+	
+	@Inject
+	private AuthorizationService authorizationService;
+
+	@Inject
 	private ProcessService processService;
 
 	/**
@@ -58,7 +70,7 @@ public class LeaveRestServiceImpl {
 		return typeService
 				.getTypesByCategory(TypeServiceConstants.CATEGORY_LEAVE_TYPES);
 	}
-	
+
 	/**
 	 * Gets the types of leave that are available
 	 * 
@@ -68,7 +80,8 @@ public class LeaveRestServiceImpl {
 	@Path("/search")
 	@GET
 	@Produces({ "application/json" })
-	public List<LeaveApplication> searchLeaveApplications(@QueryParam("applicantId") String applicantId) throws Exception {
+	public List<LeaveApplication> searchLeaveApplications(
+			@QueryParam("applicantId") String applicantId) throws Exception {
 		return leaveService.searchLeaveApplication(applicantId);
 	}
 
@@ -77,14 +90,34 @@ public class LeaveRestServiceImpl {
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
 	public Message apply(LeaveApplication leaveApplication) {
-		long processInstanceId = -1;
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("leaveApplication", leaveApplication);
-		processInstanceId = processService.startProcess(
-				"nwu.workflow.backbone:leave-application:1.0-SNAPSHOT",
-				"ac.za.nwu.workflow.leave-application", params);
-		logger.info("Succesfully started process with id: " + processInstanceId);
 		
+		try {
+			List<OrgUnitMember> orgUnitMembers = organizationService
+					.searchOrgUnitMember(null,
+							leaveApplication.getApplicantId());
+			for (OrgUnitMember orgUnitMember : orgUnitMembers) {
+				List<OrgUnitMember> managers = organizationService
+						.getOrgUnitMembersByOrgIdAndType(
+								orgUnitMember.getOrgId(),
+								TypeServiceConstants.TYPE_ORGUNITMEMBER_MANAGER);
+				for(OrgUnitMember manager : managers){
+					User user = authorizationService.getUserByPersonId(manager.getPersonId());
+					params.put("manager", user.getId());
+				}
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("Unable to retrieve Manager for "
+					+ leaveApplication.getApplicantId(), e);
+		}
+
+		long processInstanceId = processService.startProcess(
+				LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID,
+				LeaveServiceConstants.LEAVE_APPLICATION_PROCESS_ID, params);
+		logger.info("Succesfully started process with id: " + processInstanceId);
+
 		return new Message("You have succesfully applied for leave");
 	}
 

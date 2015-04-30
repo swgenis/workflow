@@ -7,11 +7,13 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
+import javax.inject.Singleton;
 
 import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
 @Default
+@Singleton
 public class PersonServiceMapImpl implements PersonService {
 	
 	private Map<String, Person> persons = new HashMap<String, Person>();

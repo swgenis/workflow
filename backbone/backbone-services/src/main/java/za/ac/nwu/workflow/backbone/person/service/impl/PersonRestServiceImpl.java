@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.person;
+package za.ac.nwu.workflow.backbone.person.service.impl;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import javax.ws.rs.QueryParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
 @Stateless

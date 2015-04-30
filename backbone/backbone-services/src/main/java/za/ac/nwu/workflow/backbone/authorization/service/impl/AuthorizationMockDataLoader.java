@@ -14,8 +14,7 @@ public class AuthorizationMockDataLoader {
 	
 	public static final String USER1_ID = "jiri";
 	public static final String USER2_ID = "mary";
-	public static final String GROUP1_ID = "PM";
-	public static final String GROUP2_ID = "HR";
+	public static final String GROUP1_ID = "HR";
 
 	private AuthorizationService authorizationService;
 	
@@ -27,8 +26,7 @@ public class AuthorizationMockDataLoader {
 		addUser(USER1_ID, PersonMockDataLoader.PERSON4_ID);
 		addUser(USER2_ID, PersonMockDataLoader.PERSON5_ID);
 		
-		addGroup(GROUP1_ID);
-		addGroup(GROUP2_ID);
+		addGroup(GROUP1_ID, USER2_ID);
 	}
 
 	private void addUser(String id, String personId) throws Exception {
@@ -38,9 +36,14 @@ public class AuthorizationMockDataLoader {
 		authorizationService.insertUser(user);
 	}
 	
-	private void addGroup(String id) throws Exception{
+	private void addGroup(String id, String... userIds) throws Exception{
 		Group group = new Group();
 		group.setId(id);
+		
+		for(String userId : userIds){
+			group.getUsers().add(authorizationService.getUserById(userId));
+		}
+		
 		authorizationService.insertGroup(group);
 	}
 

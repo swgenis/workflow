@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.type;
+package za.ac.nwu.workflow.backbone.type.service.impl;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
 @Stateless

@@ -7,12 +7,14 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
+import javax.inject.Singleton;
 
 import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
 import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 
 @Default
+@Singleton
 public class AuthorizationServiceMapImpl implements AuthorizationService {
 	
 	private Map<String, User> users = new HashMap<String, User>();
@@ -32,6 +34,16 @@ public class AuthorizationServiceMapImpl implements AuthorizationService {
 	public User getUserById(String userId) {
 		if(users.containsKey(userId)){
 			return users.get(userId);
+		}
+		return null;
+	}
+	
+	@Override
+	public User getUserByPersonId(String personId) {
+		for (User user : users.values()) {
+			if(user.getPersonId().equals(personId)){
+				return user;
+			};
 		}
 		return null;
 	}
@@ -95,6 +107,12 @@ public class AuthorizationServiceMapImpl implements AuthorizationService {
 	}
 
 	private boolean isUserInGroup(String userId, Group group) {
+		// If list is empty, return false.
+		if(group.getUsers().isEmpty()){
+			return false;
+		}
+		
+		// Loop thru list to check if user is a member of this group.
 		for(User user : group.getUsers()){
 			if(user.getId().equals(userId)){
 				return true;

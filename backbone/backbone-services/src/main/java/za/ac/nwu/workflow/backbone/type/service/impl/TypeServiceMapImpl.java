@@ -7,11 +7,13 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
+import javax.inject.Singleton;
 
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
 @Default
+@Singleton
 public class TypeServiceMapImpl implements TypeService {
 
 	private Map<String, Type> types = new HashMap<String, Type>();

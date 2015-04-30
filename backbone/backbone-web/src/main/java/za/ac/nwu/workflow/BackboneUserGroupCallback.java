@@ -57,11 +57,6 @@ public class BackboneUserGroupCallback implements UserGroupCallback {
 
 	public List<String> getGroupsForUser(String userId, List<String> groupIds,
 			List<String> allExistingGroupIds) {
-		List<String> groups = new ArrayList<String>();
-		if (userId.equals("jiri"))
-			groups.add("PM");
-		else if (userId.equals("mary"))
-			groups.add("HR");
-		return groups;
+		return authorizationService.getGroupIdsForUser(userId);
 	}
 }
