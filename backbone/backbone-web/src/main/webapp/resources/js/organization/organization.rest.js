@@ -4,7 +4,7 @@
 	/**
 	 * Rest Services for leave application
 	 */
-	.factory("LeaveRestServices", 
+	.factory("OrganizationRestServices", 
 	["$q","$http",
 	function($q, $http){
 		return {
@@ -34,36 +34,6 @@
 					deferred.reject(data);
 				});
 				return deferred.promise;
-			},
-			/**
-			 * Submit leave for approval
-			 */
-			'submitLeave' : function(data){
-				return this._callService('POST', 'leave/apply', data);
-			},
-			/**
-			 * Get the tasks for a user
-			 */
-			'approveTask' : function(username, taskId){
-				return this._callService('GET', 'leave/approve',null, {'user' : username, 'taskId' : taskId});
-			},
-			/**
-			 * Get the tasks for a user
-			 */
-			'denyTask' : function(username, taskId){
-				return this._callService('GET', 'leave/deny',null, {'user' : username, 'taskId' : taskId});
-			},
-			/**
-			 * Search for leave applications for a user
-			 */
-			'searchLeave' : function(username){
-				return this._callService('GET', 'leave/search', null, {'applicantId': username});
-			},
-			/**
-			 * Get the types of leave a person can take
-			 */
-			'getLeaveTypes' : function(personLookupId){
-				return this._callService('GET', 'leave/types.json');
 			}
 		}
 		

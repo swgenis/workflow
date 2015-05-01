@@ -12,79 +12,84 @@ import javax.inject.Singleton;
 import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 @Default
 @Singleton
 public class PersonServiceMapImpl implements PersonService {
-	
-	private Map<String, Person> persons = new HashMap<String, Person>();
-	
-	@PostConstruct
-	public void initialize() throws Exception{
-		PersonMockDataLoader dataLoader = new PersonMockDataLoader(this);
-		try {
-			dataLoader.loadData();
-		} catch (Exception e) {
-			throw new Exception("Unable to load data for PersonServiceMapImpl", e);
+
+    private Map<String, Person> persons = new HashMap<String, Person>();
+
+    @PostConstruct
+    public void initialize() throws Exception {
+	PersonMockDataLoader dataLoader = new PersonMockDataLoader(this);
+	try {
+	    dataLoader.loadData();
+	} catch (Exception e) {
+	    throw new Exception("Unable to load data for PersonServiceMapImpl", e);
+	}
+    }
+
+    @Override
+    public Person getPersonById(String key) {
+	if (persons.containsKey(key)) {
+	    return persons.get(key);
+	}
+	return null;
+    }
+
+    @Override
+    public void insertPerson(Person person) throws Exception {
+	if (persons.containsKey(person.getId())) {
+	    throw new Exception("Person already exists for id " + person.getId());
+	}
+	persons.put(person.getId(), person);
+    }
+
+    @Override
+    public void updatePerson(Person person) throws Exception {
+	if (!persons.containsKey(person.getId())) {
+	    throw new Exception("Person does not exist for id " + person.getId());
+	}
+	persons.put(person.getId(), person);
+
+    }
+
+    @Override
+    public void deletePersonById(String id) throws Exception {
+	if (!persons.containsKey(id)) {
+	    throw new Exception("Person does not exist for id " + id);
+	}
+	persons.remove(id);
+    }
+
+    @Override
+    public List<Person> searchPerson(String name, String surname) throws Exception {
+	List<Person> searchResults = new ArrayList<Person>();
+	for (Person person : persons.values()) {
+	    if (name != null) {
+		if (person.getName().equalsIgnoreCase(name)) {
+		    searchResults.add(person);
 		}
-	}
-
-	@Override
-	public Person getPersonById(String key) {
-		if(persons.containsKey(key)){
-			return persons.get(key);
+	    }
+	    if (surname != null) {
+		if (person.getSurname().equalsIgnoreCase(surname)) {
+		    searchResults.add(person);
 		}
-		return null;
+	    }
 	}
+	return searchResults;
+    }
 
-	@Override
-	public void insertPerson(Person person) throws Exception {
-		if(persons.containsKey(person.getId())){
-			throw new Exception("Person already exists for id " + person.getId());
-		}
-		persons.put(person.getId(), person);	
-	}
+    public Map<String, Person> getPersons() {
+	return persons;
+    }
 
-	@Override
-	public void updatePerson(Person person) throws Exception {
-		if(!persons.containsKey(person.getId())){
-			throw new Exception("Person does not exist for id " + person.getId());
-		}
-		persons.put(person.getId(), person);
-
-	}
-
-	@Override
-	public void deletePersonById(String id) throws Exception {
-		if(!persons.containsKey(id)){
-			throw new Exception("Person does not exist for id " + id);
-		}
-		persons.remove(id);	
-	}
-	
-	@Override
-	public List<Person> searchPerson(String name, String surname) throws Exception {
-		List<Person> searchResults = new ArrayList<Person>();
-		for (Person person : persons.values()) {
-			if(name!=null){
-				if (person.getName().equalsIgnoreCase(name)) {
-					searchResults.add(person);
-				}
-			}
-			if(surname!=null){
-				if (person.getSurname().equalsIgnoreCase(surname)) {
-					searchResults.add(person);
-				}
-			}
-		}
-		return searchResults;
-	}
-
-	public Map<String, Person> getPersons() {
-		return persons;
-	}
-
-	public void setPersons(Map<String, Person> persons) {
-		this.persons = persons;
-	}
+    public void setPersons(Map<String, Person> persons) {
+	this.persons = persons;
+    }
 
 }

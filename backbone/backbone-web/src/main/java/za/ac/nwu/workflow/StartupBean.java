@@ -22,6 +22,8 @@ import org.jbpm.services.api.model.DeploymentUnit;
 import org.jbpm.services.cdi.Kjar;
 import org.kie.internal.runtime.cdi.BootOnLoad;
 
+import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -30,15 +32,13 @@ import javax.inject.Inject;
 @BootOnLoad
 public class StartupBean {
 
-    public static final String DEPLOYMENT_ID = "nwu.workflow.backbone:leave-application:1.0-SNAPSHOT";
-
     @Inject
     @Kjar
     DeploymentService deploymentService;
 
     @PostConstruct
     public void init() {
-        String[] gav = DEPLOYMENT_ID.split(":");
+        String[] gav = LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID.split(":");
         DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(gav[0], gav[1], gav[2]);
         deploymentService.deploy(deploymentUnit);
     }
