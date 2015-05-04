@@ -5,6 +5,11 @@ import java.util.List;
 
 import za.ac.nwu.workflow.backbone.Entity;
 
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 public class Group extends Entity {
 
     private List<User> users;

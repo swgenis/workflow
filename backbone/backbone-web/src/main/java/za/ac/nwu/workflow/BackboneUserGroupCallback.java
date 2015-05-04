@@ -27,7 +27,7 @@ import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
 import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 
-@Backbone
+@BackboneQualifier
 public class BackboneUserGroupCallback implements UserGroupCallback {
 
 	@Inject

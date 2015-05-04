@@ -1,5 +1,10 @@
 package za.ac.nwu.workflow.backbone;
 
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 public class Entity {
 
     private String id;

@@ -6,6 +6,11 @@ import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 
 /**
+ * CRUD service for the maintenance of the organization hierarchy. 
+ * 
+ * The organization hierarchy is used to store the relationships between
+ * organizational units. The service can also be used toe determine supervisors 
+ * and staff members for a specific department, campus or school. 
  * 
  * @author SW Genis
  * 
@@ -13,6 +18,7 @@ import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 public interface OrganizationService {
 
     /**
+     * Retrieve the organizational unit for the given orgUnitId.
      * 
      * @param id
      * @return
@@ -20,9 +26,10 @@ public interface OrganizationService {
     public OrgUnit getOrgUnitById(String id);
 
     /**
+     * Retrieve all child organization units that belong the given orgUnitId.
      * 
-     * @param id
-     * @return
+     * @param parentOrgUnitId
+     * @return List<OrgUnit>
      */
     public List<OrgUnit> getOrgUnitsByParentId(String parentOrgUnitId);
 

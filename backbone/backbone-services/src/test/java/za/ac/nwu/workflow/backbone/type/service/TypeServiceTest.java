@@ -14,47 +14,47 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.impl.TypeServiceMapImpl;
 
 @RunWith(Arquillian.class)
 public class TypeServiceTest {
 
-	@Inject
-	private TypeService typeService;
+    @Inject
+    private TypeService typeService;
 
-	@Deployment
-	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class)
-				.addClass(TypeServiceMapImpl.class)
-				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-	}
+    @Deployment
+    public static JavaArchive createDeployment() {
+	return ShrinkWrap.create(JavaArchive.class).addClass(TypeServiceMapImpl.class)
+		.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
 
-	@Test
-	public void testGetTypeByKey() {
-		Type type = typeService.getTypeByKey(TypeServiceConstants.TYPE_LEAVE_ANNUAL);
-		assertNotNull(type);
-	}
+    @Test
+    public void testGetTypeByKey() {
+	Type type = typeService.getTypeByKey(OrganizationServiceConstants.TYPE_ORGUNIT_CAMPUS);
+	assertNotNull(type);
+    }
 
-	@Test
-	public void testGetTypeByCategory() throws Exception {
-		List<Type> types = typeService.getTypesByCategory(TypeServiceConstants.CATEGORY_LEAVE_TYPES);
-		assertNotNull(types);
-	}
+    @Test
+    public void testGetTypeByCategory() throws Exception {
+	List<Type> types = typeService.getTypesByCategory(OrganizationServiceConstants.CATEGORY_ORGUNIT_TYPES);
+	assertNotNull(types);
+    }
 
-	@Test
-	public void testInsertType() {
+    @Test
+    public void testInsertType() {
 
-	}
+    }
 
-	@Test
-	public void testUpdateType() {
+    @Test
+    public void testUpdateType() {
 
-	}
+    }
 
-	@Test
-	public void testDeleteType() {
+    @Test
+    public void testDeleteType() {
 
-	}
+    }
 
 }

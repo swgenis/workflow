@@ -5,6 +5,7 @@ import java.util.List;
 import za.ac.nwu.workflow.leave.LeaveApplication;
 
 /**
+ * CRUD Service to persist leave applications.
  * 
  * @author SW Genis
  * 

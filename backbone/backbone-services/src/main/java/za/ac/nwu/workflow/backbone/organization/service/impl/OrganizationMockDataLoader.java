@@ -3,8 +3,8 @@ package za.ac.nwu.workflow.backbone.organization.service.impl;
 import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
+import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
 import za.ac.nwu.workflow.backbone.person.service.impl.PersonMockDataLoader;
-import za.ac.nwu.workflow.backbone.type.service.TypeServiceConstants;
 
 /**
  * 
@@ -30,19 +30,19 @@ public class OrganizationMockDataLoader {
     }
 
     public void loadData() throws Exception {
-	addOrgUnit(ORG_POTCH_ID, "Potchefstroom Campus", null, TypeServiceConstants.TYPE_ORGUNIT_CAMPUS);
-	addOrgUnit(ORG_IT_ID, "IT Department", ORG_POTCH_ID, TypeServiceConstants.TYPE_ORGUNIT_DEPARTMENT);
+	addOrgUnit(ORG_POTCH_ID, "Potchefstroom Campus", null, OrganizationServiceConstants.TYPE_ORGUNIT_CAMPUS);
+	addOrgUnit(ORG_IT_ID, "IT Department", ORG_POTCH_ID, OrganizationServiceConstants.TYPE_ORGUNIT_DEPARTMENT);
 	addOrgUnitMember(ORG_IT_BOB_ID, ORG_IT_ID, PersonMockDataLoader.PERSON1_ID,
-		TypeServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
+		OrganizationServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
 	addOrgUnitMember(ORG_IT_JOHN_ID, ORG_IT_ID, PersonMockDataLoader.PERSON2_ID,
-		TypeServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
+		OrganizationServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
 	addOrgUnitMember(ORG_IT_CAROL_ID, ORG_IT_ID, PersonMockDataLoader.PERSON3_ID,
-		TypeServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
+		OrganizationServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
 	addOrgUnitMember(ORG_IT_JIRI_ID, ORG_IT_ID, PersonMockDataLoader.PERSON4_ID,
-		TypeServiceConstants.TYPE_ORGUNITMEMBER_MANAGER);
-	addOrgUnit(ORG_HR_ID, "HR Department", ORG_POTCH_ID, TypeServiceConstants.TYPE_ORGUNIT_DEPARTMENT);
+		OrganizationServiceConstants.TYPE_ORGUNITMEMBER_MANAGER);
+	addOrgUnit(ORG_HR_ID, "HR Department", ORG_POTCH_ID, OrganizationServiceConstants.TYPE_ORGUNIT_DEPARTMENT);
 	addOrgUnitMember(ORG_HR_MARY_ID, ORG_HR_ID, PersonMockDataLoader.PERSON5_ID,
-		TypeServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
+		OrganizationServiceConstants.TYPE_ORGUNITMEMBER_STAFF);
     }
 
     private void addOrgUnit(String id, String name, String parentOrgUnitId, String typeKey) throws Exception {

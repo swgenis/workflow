@@ -22,55 +22,54 @@ import za.ac.nwu.workflow.backbone.person.service.impl.PersonServiceMapImpl;
 @RunWith(Arquillian.class)
 public class PersonServiceTest {
 
-	@Inject
-	private PersonService personService;
+    @Inject
+    private PersonService personService;
 
-	@Deployment
-	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class)
-				.addClass(PersonServiceMapImpl.class)
-				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-	}
+    @Deployment
+    public static JavaArchive createDeployment() {
+	return ShrinkWrap.create(JavaArchive.class).addClass(PersonServiceMapImpl.class)
+		.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
 
-	@Test
-	public void testGetLeaveApplicationById() {
-		Person person = personService.getPersonById(PersonMockDataLoader.PERSON1_ID);
-		assertNotNull(person);
-	}
+    @Test
+    public void testGetLeaveApplicationById() {
+	Person person = personService.getPersonById(PersonMockDataLoader.PERSON1_ID);
+	assertNotNull(person);
+    }
 
-	@Test
-	public void testInsertPerson() throws Exception {
-		Person person = new Person();
-		person.setId("test");
-		person.setName("Test");
-		personService.insertPerson(person);
+    @Test
+    public void testInsertPerson() throws Exception {
+	Person person = new Person();
+	person.setId("test");
+	person.setName("Test");
+	personService.insertPerson(person);
 
-		Person retrievedPerson = personService.getPersonById("test");
-		assertNotNull(retrievedPerson);
-		assertEquals("Test", retrievedPerson.getName());
-	}
+	Person retrievedPerson = personService.getPersonById("test");
+	assertNotNull(retrievedPerson);
+	assertEquals("Test", retrievedPerson.getName());
+    }
 
-	@Test
-	public void testUpdatePerson() throws Exception {
-		Person person = personService.getPersonById(PersonMockDataLoader.PERSON1_ID);
-		person.setEmail(PersonMockDataLoader.PERSON1_EMAIL);
-		personService.updatePerson(person);
-		
-		Person updatedPerson = personService.getPersonById(PersonMockDataLoader.PERSON1_ID);
-		assertEquals(PersonMockDataLoader.PERSON1_EMAIL, updatedPerson.getEmail());
-	}
+    @Test
+    public void testUpdatePerson() throws Exception {
+	Person person = personService.getPersonById(PersonMockDataLoader.PERSON1_ID);
+	person.setEmail(PersonMockDataLoader.PERSON1_EMAIL);
+	personService.updatePerson(person);
 
-	@Test
-	public void testDeletePerson() throws Exception{
-		personService.deletePersonById(PersonMockDataLoader.PERSON3_ID);
-		Person person = personService.getPersonById(PersonMockDataLoader.PERSON3_ID);
-		assertEquals(null, person);
-	}
+	Person updatedPerson = personService.getPersonById(PersonMockDataLoader.PERSON1_ID);
+	assertEquals(PersonMockDataLoader.PERSON1_EMAIL, updatedPerson.getEmail());
+    }
 
-	@Test
-	public void testSearchPerson() throws Exception {
-		List<Person> persons = personService.searchPerson(PersonMockDataLoader.PERSON1_NAME, null);
-		assertNotNull(persons);
-		assertEquals(1, persons.size());
-	}
+    @Test
+    public void testDeletePerson() throws Exception {
+	personService.deletePersonById(PersonMockDataLoader.PERSON3_ID);
+	Person person = personService.getPersonById(PersonMockDataLoader.PERSON3_ID);
+	assertEquals(null, person);
+    }
+
+    @Test
+    public void testSearchPerson() throws Exception {
+	List<Person> persons = personService.searchPerson(PersonMockDataLoader.PERSON1_NAME, null);
+	assertNotNull(persons);
+	assertEquals(1, persons.size());
+    }
 }

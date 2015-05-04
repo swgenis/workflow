@@ -5,6 +5,7 @@ import java.util.List;
 import za.ac.nwu.workflow.backbone.person.Person;
 
 /**
+ * CRUD Service interface used to persist person related information.
  * 
  * @author SW Genis
  * 
@@ -12,6 +13,7 @@ import za.ac.nwu.workflow.backbone.person.Person;
 public interface PersonService {
 
     /**
+     * Retrieve a person for the given personId.
      * 
      * @param id
      * @return

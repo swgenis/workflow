@@ -12,11 +12,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import org.jbpm.services.api.ProcessService;
+import org.jbpm.services.api.DeploymentNotFoundException;
+import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.api.UserTaskService;
+import org.jbpm.services.api.model.DeployedUnit;
+import org.jbpm.services.cdi.Kjar;
 import org.jbpm.services.task.commands.CompleteTaskCommand;
 import org.jbpm.services.task.commands.CompositeCommand;
 import org.jbpm.services.task.commands.StartTaskCommand;
+import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.manager.RuntimeEngine;
+import org.kie.api.runtime.manager.RuntimeManager;
+import org.kie.api.runtime.process.ProcessInstance;
+import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,9 +33,9 @@ import za.ac.nwu.workflow.backbone.authorization.User;
 import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
+import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
-import za.ac.nwu.workflow.backbone.type.service.TypeServiceConstants;
 import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
@@ -53,10 +61,41 @@ public class LeaveRestServiceImpl {
     private AuthorizationService authorizationService;
 
     @Inject
-    private ProcessService processService;
+    @Kjar
+    DeploymentService deploymentService;
 
     @Inject
     private UserTaskService userTaskService;
+
+    /**
+     * This method must be extracted to a super class.
+     * 
+     * @param deploymentId
+     * @param processId
+     * @param params
+     * @return
+     */
+    private Long startProcess(String deploymentId, String processId, Map<String, Object> params) {
+	DeployedUnit deployedUnit = deploymentService.getDeployedUnit(deploymentId);
+	if (deployedUnit == null) {
+	    throw new DeploymentNotFoundException("No deployments available for " + deploymentId);
+	}
+	if (!deployedUnit.isActive()) {
+	    throw new DeploymentNotFoundException("Deployments " + deploymentId + " is not active");
+	}
+
+	RuntimeManager manager = deployedUnit.getRuntimeManager();
+
+	RuntimeEngine engine = manager.getRuntimeEngine(ProcessInstanceIdContext.get());
+	KieSession ksession = engine.getKieSession();
+	ProcessInstance pi = null;
+	try {
+	    pi = ksession.startProcess(processId, params);
+	    return pi.getId();
+	} finally {
+	    manager.disposeRuntimeEngine(engine);
+	}
+    }
 
     /**
      * Gets the types of leave that are available
@@ -68,7 +107,7 @@ public class LeaveRestServiceImpl {
     @Path("/types.json")
     @Produces({ "application/json" })
     public List<Type> getLeaveTypes() throws Exception {
-	return typeService.getTypesByCategory(TypeServiceConstants.CATEGORY_LEAVE_TYPES);
+	return typeService.getTypesByCategory(LeaveServiceConstants.CATEGORY_LEAVE_TYPES);
     }
 
     /**
@@ -93,27 +132,30 @@ public class LeaveRestServiceImpl {
 
 	Map<String, Object> params = new HashMap<String, Object>();
 	params.put("leaveApplication", leaveApplication);
+	params.put("manager", getManagerForApplicant(leaveApplication.getApplicantId()));
 
-	try {
-	    List<OrgUnitMember> orgUnitMembers = organizationService.searchOrgUnitMember(null,
-		    leaveApplication.getApplicantId());
-	    for (OrgUnitMember orgUnitMember : orgUnitMembers) {
-		List<OrgUnitMember> managers = organizationService.getOrgUnitMembersByOrgIdAndType(
-			orgUnitMember.getOrgId(), TypeServiceConstants.TYPE_ORGUNITMEMBER_MANAGER);
-		for (OrgUnitMember manager : managers) {
-		    User user = authorizationService.getUserByPersonId(manager.getPersonId());
-		    params.put("manager", user.getId());
-		}
-	    }
-	} catch (Exception e) {
-	    throw new RuntimeException("Unable to retrieve Manager for " + leaveApplication.getApplicantId(), e);
-	}
-
-	long processInstanceId = processService.startProcess(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID,
+	long processInstanceId = this.startProcess(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID,
 		LeaveServiceConstants.LEAVE_APPLICATION_PROCESS_ID, params);
 	logger.info("Succesfully started process with id: " + processInstanceId);
 
 	return new Message("You have succesfully applied for leave");
+    }
+
+    private String getManagerForApplicant(String applicantId) {
+	try {
+	    List<OrgUnitMember> orgUnitMembers = organizationService.searchOrgUnitMember(null, applicantId);
+	    for (OrgUnitMember orgUnitMember : orgUnitMembers) {
+		List<OrgUnitMember> managers = organizationService.getOrgUnitMembersByOrgIdAndType(
+			orgUnitMember.getOrgId(), OrganizationServiceConstants.TYPE_ORGUNITMEMBER_MANAGER);
+		for (OrgUnitMember manager : managers) {
+		    User user = authorizationService.getUserByPersonId(manager.getPersonId());
+		    return user.getId();
+		}
+	    }
+	} catch (Exception e) {
+	    throw new RuntimeException("Unable to retrieve Manager for " + applicantId, e);
+	}
+	return null;
     }
 
     @GET

@@ -2,6 +2,11 @@ package za.ac.nwu.workflow.backbone.organization;
 
 import za.ac.nwu.workflow.backbone.Entity;
 
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 public class OrgUnit extends Entity {
 
     private String parentOrgUnitId;

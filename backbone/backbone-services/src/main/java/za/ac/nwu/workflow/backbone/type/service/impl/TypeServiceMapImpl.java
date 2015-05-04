@@ -12,6 +12,14 @@ import javax.inject.Singleton;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
+/**
+ * 
+ * This class is a singleton to force the application server not to create more than
+ * one instance of the service. A non-map based service should not be a singleton.
+ * 
+ * @author SW Genis
+ *
+ */
 @Default
 @Singleton
 public class TypeServiceMapImpl implements TypeService {

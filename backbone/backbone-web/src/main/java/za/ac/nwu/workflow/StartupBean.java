@@ -16,18 +16,30 @@
 
 package za.ac.nwu.workflow;
 
+import java.io.File;
+import java.io.InputStream;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
 import org.jbpm.kie.services.impl.KModuleDeploymentUnit;
 import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.api.model.DeploymentUnit;
 import org.jbpm.services.cdi.Kjar;
 import org.kie.internal.runtime.cdi.BootOnLoad;
 
-import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
+import za.ac.nwu.workflow.backbone.Backbone;
+import za.ac.nwu.workflow.backbone.Deployment;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 @ApplicationScoped
 @BootOnLoad
 public class StartupBean {
@@ -38,9 +50,28 @@ public class StartupBean {
 
     @PostConstruct
     public void init() {
-        String[] gav = LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID.split(":");
-        DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(gav[0], gav[1], gav[2]);
-        deploymentService.deploy(deploymentUnit);
+	try {
+
+	    // Read the main configuration file.
+	    InputStream is = StartupBean.class.getClassLoader().getResourceAsStream("backbone.xml");
+	    JAXBContext jaxbContext = JAXBContext.newInstance(Backbone.class);
+
+	    // Unmarshall xml to java object.
+	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	    Backbone backbone = (Backbone) jaxbUnmarshaller.unmarshal(is);
+
+	    // Deploy.
+	    for (Deployment deployment : backbone.getDeployments()) {
+		DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(deployment.getGroupId(),
+			deployment.getArtifactId(), deployment.getVersion());
+		deploymentService.deploy(deploymentUnit);
+
+	    }
+
+	} catch (JAXBException e) {
+	    e.printStackTrace();
+	}
+
     }
 
 }

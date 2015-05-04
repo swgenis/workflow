@@ -6,11 +6,24 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Default;
+import javax.inject.Singleton;
 
 import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 
+/**
+ * A map based implementation of the OrganizationService.
+ * 
+ * This class is a singleton to force the application server not to create more than
+ * one instance of the service. A non-map based service should not be a singleton. 
+ * 
+ * @author SW Genis
+ *
+ */
+@Default
+@Singleton
 public class OrganizationServiceMapImpl implements OrganizationService {
 
     private Map<String, OrgUnit> orgUnits = new HashMap<String, OrgUnit>();

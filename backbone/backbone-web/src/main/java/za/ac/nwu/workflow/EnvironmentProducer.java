@@ -36,37 +36,37 @@ public class EnvironmentProducer {
 
     @PersistenceUnit(unitName = "org.jbpm.domain")
     private EntityManagerFactory emf;
-    
+
     @Inject
-	@Backbone
-	private UserGroupCallback userGroupCallback; 
-    
+    @BackboneQualifier
+    private UserGroupCallback userGroupCallback;
+
     @Inject
     @Kjar
     private Instance<DeploymentService> deploymentService;
 
     @Produces
     public EntityManagerFactory produceEntityManagerFactory() {
-        if (this.emf == null) {
-            this.emf = Persistence
-                    .createEntityManagerFactory("org.jbpm.domain");
-        }
-        return this.emf;
-    }
-    
-    @Produces
-	public UserGroupCallback produceSelectedUserGroupCalback() {
-		return userGroupCallback;
+	if (this.emf == null) {
+	    this.emf = Persistence.createEntityManagerFactory("org.jbpm.domain");
 	}
+	return this.emf;
+    }
+
+    @Produces
+    public UserGroupCallback produceSelectedUserGroupCalback() {
+	return userGroupCallback;
+    }
 
     @Produces
     public DeploymentService produceDeploymentService() {
-         return deploymentService.select(new AnnotationLiteral<Kjar>() {}).get();
+	return deploymentService.select(new AnnotationLiteral<Kjar>() {
+	}).get();
     }
 
     @Produces
     public TaskLifeCycleEventListener produceAuditListener() {
-    	return new JPATaskLifeCycleEventListener(true);
+	return new JPATaskLifeCycleEventListener(true);
     }
-    
+
 }

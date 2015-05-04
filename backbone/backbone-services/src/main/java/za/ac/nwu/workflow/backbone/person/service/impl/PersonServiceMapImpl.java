@@ -14,6 +14,9 @@ import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
 /**
  * 
+ * This class is a singleton to force the application server not to create more than
+ * one instance of the service. A non-map based service should not be a singleton.
+ * 
  * @author SW Genis
  *
  */

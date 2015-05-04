@@ -13,6 +13,14 @@ import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
 import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 
+/**
+ * 
+ * This class is a singleton to force the application server not to create more than
+ * one instance of the service. A non-map based service should not be a singleton.
+ * 
+ * @author SW Genis
+ *
+ */
 @Default
 @Singleton
 public class AuthorizationServiceMapImpl implements AuthorizationService {
