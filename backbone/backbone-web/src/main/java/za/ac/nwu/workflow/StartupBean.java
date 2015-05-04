@@ -16,7 +16,6 @@
 
 package za.ac.nwu.workflow;
 
-import java.io.File;
 import java.io.InputStream;
 
 import javax.annotation.PostConstruct;
@@ -34,11 +33,15 @@ import org.kie.internal.runtime.cdi.BootOnLoad;
 
 import za.ac.nwu.workflow.backbone.Backbone;
 import za.ac.nwu.workflow.backbone.Deployment;
+import za.ac.nwu.workflow.backbone.data.DataLoaderCallback;
+import za.ac.nwu.workflow.backbone.data.JsonDataLoader;
+import za.ac.nwu.workflow.backbone.type.Type;
+import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
 /**
  * 
  * @author SW Genis
- *
+ * 
  */
 @ApplicationScoped
 @BootOnLoad
@@ -47,6 +50,11 @@ public class StartupBean {
     @Inject
     @Kjar
     DeploymentService deploymentService;
+
+    @Inject
+    private TypeService typeService;
+
+    private JsonDataLoader<Type> typeDataLoader;
 
     @PostConstruct
     public void init() {
@@ -62,9 +70,21 @@ public class StartupBean {
 
 	    // Deploy.
 	    for (Deployment deployment : backbone.getDeployments()) {
+		
+		// Deploy the deployment unit.
 		DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(deployment.getGroupId(),
 			deployment.getArtifactId(), deployment.getVersion());
 		deploymentService.deploy(deploymentUnit);
+
+		// Load types from source file.
+		if (deployment.getTypeSourceFile() != null) {
+		    try {
+			getTypeDataLoader().loadData(deployment.getTypeSourceFile());
+		    } catch (Exception e) {
+			throw new RuntimeException("Unable to load types for source file "
+				+ deployment.getTypeSourceFile(), e);
+		    }
+		}
 
 	    }
 
@@ -72,6 +92,26 @@ public class StartupBean {
 	    e.printStackTrace();
 	}
 
+    }
+
+    private JsonDataLoader<Type> getTypeDataLoader() {
+	if (typeDataLoader == null) {
+	    typeDataLoader = new JsonDataLoader<Type>(Type.class);
+	    typeDataLoader.setCallback(new DataLoaderCallback<Type>() {
+
+		@Override
+		public void loadElement(Type t) {
+		    try {
+			typeService.insertType(t);
+		    } catch (Exception e) {
+			throw new RuntimeException("Unable to load types for sub deployment.", e);
+		    }
+
+		}
+	    });
+
+	}
+	return typeDataLoader;
     }
 
 }

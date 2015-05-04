@@ -1,0 +1,24 @@
+[{
+	"key":"orgunit.type.campus", 
+    "category":"orgunit.type.category",
+    "description":"Campus",
+    "active":"true"
+},
+{
+    "key":"orgunit.type.department", 
+    "category":"orgunit.type.category",
+    "description":"Department",
+    "active":"true"
+},
+{
+    "key":"orgunitmember.type.manager", 
+    "category":"orgunitmember.type.category",
+    "description":"Manager",
+    "active":"true"
+},
+{
+    "key":"orgunitmember.type.staff", 
+    "category":"orgunitmember.type.category",
+    "description":"Staff",
+    "active":"true"
+}]

@@ -27,16 +27,16 @@ public class BackboneIdentityProvider implements IdentityProvider {
 
     @Override
     public String getName() {
-        return "system";
+	return "system";
     }
 
     @Override
     public List<String> getRoles() {
-        return roles;
+	return roles;
     }
 
     @Override
     public boolean hasRole(String s) {
-        return true;
+	return true;
     }
 }

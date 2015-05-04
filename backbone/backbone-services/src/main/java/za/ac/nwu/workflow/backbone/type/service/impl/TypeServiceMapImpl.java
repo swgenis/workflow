@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
+import za.ac.nwu.workflow.backbone.data.DataLoaderCallback;
+import za.ac.nwu.workflow.backbone.data.JsonDataLoader;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
@@ -28,12 +30,19 @@ public class TypeServiceMapImpl implements TypeService {
 
     @PostConstruct
     public void initialize() throws Exception {
-	TypeDataLoader dataLoader = new TypeDataLoader(this);
-	try {
-	    dataLoader.loadData();
-	} catch (Exception e) {
-	    throw new Exception("Unable to load data for TypeServiceMapImpl", e);
-	}
+	JsonDataLoader<Type> dataLoader = new JsonDataLoader<Type>(Type.class);
+	dataLoader.loadData("type.json", new DataLoaderCallback<Type>() {
+
+	    @Override
+	    public void loadElement(Type type) {
+		try {
+		    TypeServiceMapImpl.this.insertType(type);
+		} catch (Exception e) {
+		    throw new RuntimeException("Unable to load initial type information.", e);
+		}
+		
+	    }
+	});
     }
 
     @Override

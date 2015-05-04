@@ -19,6 +19,9 @@ public class Deployment {
     @XmlElement(name = "version")
     private String version;
 
+    @XmlElement(name = "type-source")
+    private String typeSourceFile;
+
     public String getGroupId() {
 	return groupId;
     }
@@ -41,6 +44,14 @@ public class Deployment {
 
     public void setVersion(String version) {
 	this.version = version;
+    }
+
+    public String getTypeSourceFile() {
+	return typeSourceFile;
+    }
+
+    public void setTypeSourceFile(String typeSourceFile) {
+	this.typeSourceFile = typeSourceFile;
     }
 
 }

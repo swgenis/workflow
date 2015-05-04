@@ -18,15 +18,14 @@ import za.ac.nwu.workflow.leave.service.impl.LeaveApplicationWorkItem;
  */
 @ApplicationScoped
 public class CustomWorkItemHandlerProducer implements WorkItemHandlerProducer {
-	
-	@Inject
-	private LeaveApplicationWorkItem leaveApplicationWorkItem;
 
-	public Map<String, WorkItemHandler> getWorkItemHandlers(String identifier,
-			Map<String, Object> params) {
-		Map<String, WorkItemHandler> handlers = new HashMap<String, WorkItemHandler>();
-		handlers.put("submitLeaveApplication", leaveApplicationWorkItem);
-		return handlers;
-	}
+    @Inject
+    private LeaveApplicationWorkItem leaveApplicationWorkItem;
+
+    public Map<String, WorkItemHandler> getWorkItemHandlers(String identifier, Map<String, Object> params) {
+	Map<String, WorkItemHandler> handlers = new HashMap<String, WorkItemHandler>();
+	handlers.put("submitLeaveApplication", leaveApplicationWorkItem);
+	return handlers;
+    }
 
 }

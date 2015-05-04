@@ -16,7 +16,6 @@
 
 package za.ac.nwu.workflow;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,33 +29,32 @@ import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 @BackboneQualifier
 public class BackboneUserGroupCallback implements UserGroupCallback {
 
-	@Inject
-	private AuthorizationService authorizationService;
+    @Inject
+    private AuthorizationService authorizationService;
 
-	public boolean existsUser(String userId) {
-		// TODO: Not yet sure why this is required. 
-		if(userId.equals("Administrator")){
-			return true;
-		}
-		
-		// For everybody else check authorization service.
-		User user = authorizationService.getUserById(userId);
-		if (user != null) {
-			return true;
-		}
-		return false;
+    public boolean existsUser(String userId) {
+	// TODO: Not yet sure why this is required.
+	if (userId.equals("Administrator")) {
+	    return true;
 	}
 
-	public boolean existsGroup(String groupId) {
-		Group group = authorizationService.getGroupById(groupId);
-		if (group != null) {
-			return true;
-		}
-		return false;
+	// For everybody else check authorization service.
+	User user = authorizationService.getUserById(userId);
+	if (user != null) {
+	    return true;
 	}
+	return false;
+    }
 
-	public List<String> getGroupsForUser(String userId, List<String> groupIds,
-			List<String> allExistingGroupIds) {
-		return authorizationService.getGroupIdsForUser(userId);
+    public boolean existsGroup(String groupId) {
+	Group group = authorizationService.getGroupById(groupId);
+	if (group != null) {
+	    return true;
 	}
+	return false;
+    }
+
+    public List<String> getGroupsForUser(String userId, List<String> groupIds, List<String> allExistingGroupIds) {
+	return authorizationService.getGroupIdsForUser(userId);
+    }
 }

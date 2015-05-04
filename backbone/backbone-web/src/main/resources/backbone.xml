@@ -5,6 +5,7 @@
 			<group>nwu.workflow.backbone</group>
 			<artifact>leave-application</artifact>
 			<version>1.0-SNAPSHOT</version>
+			<type-source>leave-type.json</type-source>
 		</deployment>
 	</deployments>
 </backbone>
