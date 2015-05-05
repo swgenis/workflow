@@ -9,12 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.leave.LeaveApplication;
+import za.ac.nwu.workflow.leave.LeaveRecord;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 
 /**
  * 
  * @author SW Genis
- *
+ * 
  */
 public class LeaveApplicationWorkItem implements WorkItemHandler {
 
@@ -27,7 +28,12 @@ public class LeaveApplicationWorkItem implements WorkItemHandler {
     public void executeWorkItem(WorkItem workItem, WorkItemManager manager) {
 	logger.info("Submitting an approved leave application");
 	try {
-	    leaveService.insertLeaveApplication((LeaveApplication) workItem.getParameter("leaveApplicationIn"));
+	    LeaveRecord record = new LeaveRecord();
+	    LeaveApplication application = (LeaveApplication) workItem.getParameter("leaveApplicationIn");
+	    record.setApplicantId(application.getApplicantId());
+	    record.setLeavePeriods(application.getLeavePeriods());
+	    record.setState(application.getState());
+	    leaveService.insertLeaveRecord(record);
 	} catch (Exception e) {
 	    throw new RuntimeException("Unable to submit leave applicaiton.", e);
 	}

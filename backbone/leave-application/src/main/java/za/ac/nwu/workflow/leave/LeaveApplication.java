@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import za.ac.nwu.workflow.backbone.Entity;
+import za.ac.nwu.workflow.backbone.workflow.service.BackboneState;
 
 /**
  * 
  * @author SW Genis
- *
+ * 
  */
 public class LeaveApplication extends Entity implements Serializable {
 
@@ -17,6 +18,8 @@ public class LeaveApplication extends Entity implements Serializable {
     private String applicantId;
 
     private List<LeavePeriod> leavePeriods;
+
+    private BackboneState state;
 
     public String getApplicantId() {
 	return applicantId;
@@ -32,6 +35,14 @@ public class LeaveApplication extends Entity implements Serializable {
 
     public void setLeavePeriods(List<LeavePeriod> leavePeriods) {
 	this.leavePeriods = leavePeriods;
+    }
+
+    public BackboneState getState() {
+	return state;
+    }
+
+    public void setState(BackboneState state) {
+	this.state = state;
     }
 
 }

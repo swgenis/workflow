@@ -44,20 +44,26 @@
 			/**
 			 * Get the tasks for a user
 			 */
-			'approveTask' : function(username, taskId){
+			'approveLeave' : function(username, taskId){
 				return this._callService('GET', 'leave/approve',null, {'user' : username, 'taskId' : taskId});
 			},
 			/**
 			 * Get the tasks for a user
 			 */
-			'denyTask' : function(username, taskId){
+			'denyLeave' : function(username, taskId){
 				return this._callService('GET', 'leave/deny',null, {'user' : username, 'taskId' : taskId});
 			},
 			/**
 			 * Search for leave applications for a user
 			 */
 			'searchLeave' : function(username){
-				return this._callService('GET', 'leave/search', null, {'applicantId': username});
+				return this._callService('GET', 'leave/search/records', null, {'applicantId': username});
+			},
+			/**
+			 * Search for leave applications for a user
+			 */
+			'searchLeaveTasks' : function(username){
+				return this._callService('GET', 'leave/search/applications', null, {'user': username});
 			},
 			/**
 			 * Get the types of leave a person can take
