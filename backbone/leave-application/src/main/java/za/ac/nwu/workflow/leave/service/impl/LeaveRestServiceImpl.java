@@ -12,19 +12,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import org.jbpm.services.api.DeploymentNotFoundException;
-import org.jbpm.services.api.DeploymentService;
 import org.jbpm.services.api.UserTaskService;
-import org.jbpm.services.api.model.DeployedUnit;
-import org.jbpm.services.cdi.Kjar;
 import org.jbpm.services.task.commands.CompleteTaskCommand;
 import org.jbpm.services.task.commands.CompositeCommand;
 import org.jbpm.services.task.commands.StartTaskCommand;
-import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.manager.RuntimeEngine;
-import org.kie.api.runtime.manager.RuntimeManager;
-import org.kie.api.runtime.process.ProcessInstance;
-import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +27,7 @@ import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
+import za.ac.nwu.workflow.backbone.workflow.service.WorkflowService;
 import za.ac.nwu.workflow.leave.LeaveApplication;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
@@ -59,43 +51,12 @@ public class LeaveRestServiceImpl {
 
     @Inject
     private AuthorizationService authorizationService;
-
+    
     @Inject
-    @Kjar
-    DeploymentService deploymentService;
+    private WorkflowService workflowService;
 
     @Inject
     private UserTaskService userTaskService;
-
-    /**
-     * This method must be extracted to a super class.
-     * 
-     * @param deploymentId
-     * @param processId
-     * @param params
-     * @return
-     */
-    private Long startProcess(String deploymentId, String processId, Map<String, Object> params) {
-	DeployedUnit deployedUnit = deploymentService.getDeployedUnit(deploymentId);
-	if (deployedUnit == null) {
-	    throw new DeploymentNotFoundException("No deployments available for " + deploymentId);
-	}
-	if (!deployedUnit.isActive()) {
-	    throw new DeploymentNotFoundException("Deployments " + deploymentId + " is not active");
-	}
-
-	RuntimeManager manager = deployedUnit.getRuntimeManager();
-
-	RuntimeEngine engine = manager.getRuntimeEngine(ProcessInstanceIdContext.get());
-	KieSession ksession = engine.getKieSession();
-	ProcessInstance pi = null;
-	try {
-	    pi = ksession.startProcess(processId, params);
-	    return pi.getId();
-	} finally {
-	    manager.disposeRuntimeEngine(engine);
-	}
-    }
 
     /**
      * Gets the types of leave that are available
@@ -134,7 +95,7 @@ public class LeaveRestServiceImpl {
 	params.put("leaveApplication", leaveApplication);
 	params.put("manager", getManagerForApplicant(leaveApplication.getApplicantId()));
 
-	long processInstanceId = this.startProcess(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID,
+	long processInstanceId = workflowService.startProcess(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID,
 		LeaveServiceConstants.LEAVE_APPLICATION_PROCESS_ID, params);
 	logger.info("Succesfully started process with id: " + processInstanceId);
 

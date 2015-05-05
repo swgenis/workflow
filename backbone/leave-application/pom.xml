@@ -61,39 +61,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- jBPM 6 dependencies (this should be replace with backbone api -->
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-flow</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-flow-builder</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-bpmn2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-persistence-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-human-task-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-runtime-manager</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-kie-services</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-services-cdi</artifactId>
-		</dependency>
 	</dependencies>
 
 </project>
