@@ -22,8 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.backbone.Message;
-import za.ac.nwu.workflow.backbone.authorization.User;
-import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
@@ -52,9 +50,6 @@ public class LeaveRestServiceImpl {
 
     @Inject
     private OrganizationService organizationService;
-
-    @Inject
-    private AuthorizationService authorizationService;
     
     @Inject
     private WorkflowService workflowService;
@@ -132,8 +127,7 @@ public class LeaveRestServiceImpl {
 		List<OrgUnitMember> managers = organizationService.getOrgUnitMembersByOrgIdAndType(
 			orgUnitMember.getOrgId(), OrganizationServiceConstants.TYPE_ORGUNITMEMBER_MANAGER);
 		for (OrgUnitMember manager : managers) {
-		    User user = authorizationService.getUserByPersonId(manager.getPersonId());
-		    return user.getId();
+		    return manager.getUserId();
 		}
 	    }
 	} catch (Exception e) {

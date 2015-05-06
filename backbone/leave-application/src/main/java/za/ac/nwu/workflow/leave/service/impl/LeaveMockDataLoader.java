@@ -11,9 +11,9 @@ import za.ac.nwu.workflow.leave.service.LeaveService;
 public class LeaveMockDataLoader {
 
     public static final String APPLICANT1_ID = "bob";
-    public static final String Record1_ID = "Record.1";
+    public static final String RECORD1_ID = "Record.1";
     public static final String APPLICANT2_ID = "john";
-    public static final String Record2_ID = "Record.2";
+    public static final String RECORD2_ID = "Record.2";
 
     private LeaveService leaveService;
 
@@ -22,8 +22,8 @@ public class LeaveMockDataLoader {
     }
 
     public void loadData() throws Exception {
-	addLeave(Record1_ID, APPLICANT1_ID);
-	addLeave(Record2_ID, APPLICANT2_ID);
+	addLeave(RECORD1_ID, APPLICANT1_ID);
+	addLeave(RECORD2_ID, APPLICANT2_ID);
     }
 
     private void addLeave(String id, String applicantId) throws Exception {

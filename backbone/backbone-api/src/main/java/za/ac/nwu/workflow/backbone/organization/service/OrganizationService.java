@@ -2,6 +2,7 @@ package za.ac.nwu.workflow.backbone.organization.service;
 
 import java.util.List;
 
+import za.ac.nwu.workflow.backbone.organization.Group;
 import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 
@@ -106,5 +107,38 @@ public interface OrganizationService {
      * @throws Exception
      */
     public List<OrgUnitMember> searchOrgUnitMember(String orgUnitId, String personId) throws Exception;
+    
+    /**
+     * 
+     * @param groupId
+     * @return
+     */
+    public Group getGroupById(String groupId);
+
+    /**
+     * 
+     * @param group
+     * @throws Exception
+     */
+    public void insertGroup(Group group) throws Exception;
+
+    /**
+     * 
+     * @param group
+     */
+    public void updateGroup(Group group);
+
+    /**
+     * 
+     * @param groupId
+     */
+    public void deleteGroup(String groupId);
+
+    /**
+     * 
+     * @param userId
+     * @return
+     */
+    public List<String> getGroupIdsForUser(String userId);
 
 }

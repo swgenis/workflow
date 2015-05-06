@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
+import za.ac.nwu.workflow.backbone.organization.Group;
 import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
@@ -16,11 +17,12 @@ import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 /**
  * A map based implementation of the OrganizationService.
  * 
- * This class is a singleton to force the application server not to create more than
- * one instance of the service. A non-map based service should not be a singleton. 
+ * This class is a singleton to force the application server not to create more
+ * than one instance of the service. A non-map based service should not be a
+ * singleton.
  * 
  * @author SW Genis
- *
+ * 
  */
 @Default
 @Singleton
@@ -28,6 +30,7 @@ public class OrganizationServiceMapImpl implements OrganizationService {
 
     private Map<String, OrgUnit> orgUnits = new HashMap<String, OrgUnit>();
     private Map<String, OrgUnitMember> orgUnitMembers = new HashMap<String, OrgUnitMember>();
+    private Map<String, Group> groups = new HashMap<String, Group>();
 
     @PostConstruct
     public void initialize() throws Exception {
@@ -137,18 +140,68 @@ public class OrganizationServiceMapImpl implements OrganizationService {
     }
 
     @Override
-    public List<OrgUnitMember> searchOrgUnitMember(String orgUnitId, String personId) throws Exception {
+    public List<OrgUnitMember> searchOrgUnitMember(String orgUnitId, String userId) throws Exception {
 	List<OrgUnitMember> searchResults = new ArrayList<OrgUnitMember>();
 	for (OrgUnitMember orgUnitMember : orgUnitMembers.values()) {
 	    if ((orgUnitId != null) && (!orgUnitMember.getOrgId().equals(orgUnitId))) {
 		continue;
 	    }
-	    if ((personId != null) && (!orgUnitMember.getPersonId().equals(personId))) {
+	    if ((userId != null) && (!orgUnitMember.getUserId().equals(userId))) {
 		continue;
 	    }
 	    searchResults.add(orgUnitMember);
 	}
 	return searchResults;
+    }
+
+    @Override
+    public Group getGroupById(String groupId) {
+	if (groups.containsKey(groupId)) {
+	    return groups.get(groupId);
+	}
+	return null;
+    }
+
+    @Override
+    public void insertGroup(Group group) throws Exception {
+	if (groups.containsKey(group.getId())) {
+	    throw new Exception("Group already exists for id " + group.getId());
+	}
+	groups.put(group.getId(), group);
+    }
+
+    @Override
+    public void updateGroup(Group group) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void deleteGroup(String groupId) {
+	// TODO Auto-generated method stub
+
+    }
+
+    public List<String> getGroupIdsForUser(String userId) {
+	List<String> groupIds = new ArrayList<String>();
+	for (Group group : groups.values()) {
+	    if (isUserInGroup(userId, group)) {
+		groupIds.add(group.getId());
+	    }
+	}
+	return groupIds;
+    }
+
+    private boolean isUserInGroup(String userId, Group group) {
+	// If list is empty, return false.
+	if (group.getUserIds().isEmpty()) {
+	    return false;
+	}
+
+	if (group.getUserIds().contains(userId)){
+	    return true;
+	}
+	return false;
     }
 
 }

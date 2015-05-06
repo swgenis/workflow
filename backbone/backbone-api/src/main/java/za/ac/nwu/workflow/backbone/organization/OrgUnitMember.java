@@ -5,13 +5,13 @@ import za.ac.nwu.workflow.backbone.Entity;
 /**
  * 
  * @author SW Genis
- *
+ * 
  */
 public class OrgUnitMember extends Entity {
 
     private String orgId;
 
-    private String personId;
+    private String userId;
 
     private String typeKey;
 
@@ -23,12 +23,12 @@ public class OrgUnitMember extends Entity {
 	this.orgId = orgId;
     }
 
-    public String getPersonId() {
-	return personId;
+    public String getUserId() {
+	return userId;
     }
 
-    public void setPersonId(String personId) {
-	this.personId = personId;
+    public void setUserId(String userId) {
+	this.userId = userId;
     }
 
     public String getTypeKey() {

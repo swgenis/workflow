@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import za.ac.nwu.workflow.leave.LeaveApplication;
+import za.ac.nwu.workflow.leave.LeaveRecord;
 import za.ac.nwu.workflow.leave.service.impl.LeaveMockDataLoader;
 import za.ac.nwu.workflow.leave.service.impl.LeaveServiceMapImpl;
 
@@ -30,18 +31,18 @@ public class LeaveServiceTest {
 
     @Test
     public void testGetLeaveApplicationById() {
-	LeaveApplication application = leaveService.getLeaveApplicationById(LeaveMockDataLoader.APPLICATION1_ID);
-	assertNotNull(application);
+	LeaveRecord record = leaveService.getLeaveRecordById(LeaveMockDataLoader.RECORD1_ID);
+	assertNotNull(record);
     }
 
     @Test
     public void testInsertLeaveApplication() throws Exception {
-	LeaveApplication application = new LeaveApplication();
-	application.setId("application.test");
-	application.setApplicantId("test");
-	leaveService.insertLeaveApplication(application);
-	LeaveApplication insertApplication = leaveService.getLeaveApplicationById("application.test");
-	assertNotNull(insertApplication);
+	LeaveRecord record = new LeaveRecord();
+	record.setId("application.test");
+	record.setApplicantId("test");
+	leaveService.insertLeaveRecord(record);
+	LeaveRecord insertRecord = leaveService.getLeaveRecordById("application.test");
+	assertNotNull(insertRecord);
     }
 
     @Test

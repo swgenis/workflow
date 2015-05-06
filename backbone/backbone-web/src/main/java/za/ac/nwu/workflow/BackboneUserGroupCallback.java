@@ -22,15 +22,19 @@ import javax.inject.Inject;
 
 import org.kie.api.task.UserGroupCallback;
 
-import za.ac.nwu.workflow.backbone.authorization.Group;
 import za.ac.nwu.workflow.backbone.authorization.User;
 import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
+import za.ac.nwu.workflow.backbone.organization.Group;
+import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 
 @BackboneQualifier
 public class BackboneUserGroupCallback implements UserGroupCallback {
 
     @Inject
     private AuthorizationService authorizationService;
+    
+    @Inject
+    private OrganizationService organizationService;
 
     public boolean existsUser(String userId) {
 	// TODO: Not yet sure why this is required.
@@ -47,7 +51,7 @@ public class BackboneUserGroupCallback implements UserGroupCallback {
     }
 
     public boolean existsGroup(String groupId) {
-	Group group = authorizationService.getGroupById(groupId);
+	Group group = organizationService.getGroupById(groupId);
 	if (group != null) {
 	    return true;
 	}
@@ -55,6 +59,6 @@ public class BackboneUserGroupCallback implements UserGroupCallback {
     }
 
     public List<String> getGroupsForUser(String userId, List<String> groupIds, List<String> allExistingGroupIds) {
-	return authorizationService.getGroupIdsForUser(userId);
+	return organizationService.getGroupIdsForUser(userId);
     }
 }
