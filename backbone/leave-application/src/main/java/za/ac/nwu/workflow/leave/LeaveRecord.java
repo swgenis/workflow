@@ -6,12 +6,7 @@ import java.util.List;
 import za.ac.nwu.workflow.backbone.Entity;
 import za.ac.nwu.workflow.backbone.workflow.service.BackboneState;
 
-/**
- * 
- * @author SW Genis
- * 
- */
-public class LeaveApplication extends Entity implements Serializable {
+public class LeaveRecord extends Entity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,5 +39,5 @@ public class LeaveApplication extends Entity implements Serializable {
     public void setState(BackboneState state) {
 	this.state = state;
     }
-
+    
 }

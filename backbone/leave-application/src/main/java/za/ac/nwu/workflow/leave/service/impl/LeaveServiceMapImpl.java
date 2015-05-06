@@ -10,14 +10,14 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
-import za.ac.nwu.workflow.leave.LeaveApplication;
+import za.ac.nwu.workflow.leave.LeaveRecord;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 
 @Default
 @Singleton
 public class LeaveServiceMapImpl implements LeaveService {
 
-    private Map<String, LeaveApplication> leaveApplications = new HashMap<String, LeaveApplication>();
+    private Map<String, LeaveRecord> leaveRecords = new HashMap<String, LeaveRecord>();
 
     @PostConstruct
     public void initialize() throws Exception {
@@ -30,48 +30,48 @@ public class LeaveServiceMapImpl implements LeaveService {
     }
 
     @Override
-    public LeaveApplication getLeaveApplicationById(String id) {
-	if (leaveApplications.containsKey(id)) {
-	    return leaveApplications.get(id);
+    public LeaveRecord getLeaveRecordById(String id) {
+	if (leaveRecords.containsKey(id)) {
+	    return leaveRecords.get(id);
 	}
 	return null;
     }
 
     @Override
-    public void insertLeaveApplication(LeaveApplication leaveApplication) throws Exception {
+    public void insertLeaveRecord(LeaveRecord leaveRecord) throws Exception {
 	// Set new id if it is null.
-	if (leaveApplication.getId() == null) {
-	    leaveApplication.setId(UUID.randomUUID().toString());
+	if (leaveRecord.getId() == null) {
+	    leaveRecord.setId(UUID.randomUUID().toString());
 	}
 
 	// Check if id does not already exist.
-	if (leaveApplications.containsKey(leaveApplication.getId())) {
-	    throw new Exception("Person already exists for id " + leaveApplication.getId());
+	if (leaveRecords.containsKey(leaveRecord.getId())) {
+	    throw new Exception("Person already exists for id " + leaveRecord.getId());
 	}
-	leaveApplications.put(leaveApplication.getId(), leaveApplication);
+	leaveRecords.put(leaveRecord.getId(), leaveRecord);
     }
 
     @Override
-    public void updateLeaveApplication(LeaveApplication person) throws Exception {
-	if (!leaveApplications.containsKey(person.getId())) {
+    public void updateLeaveRecord(LeaveRecord person) throws Exception {
+	if (!leaveRecords.containsKey(person.getId())) {
 	    throw new Exception("Person does not exist for id " + person.getId());
 	}
-	leaveApplications.put(person.getId(), person);
+	leaveRecords.put(person.getId(), person);
 
     }
 
     @Override
-    public void deleteLeaveApplicationFormById(String id) throws Exception {
-	if (!leaveApplications.containsKey(id)) {
+    public void deleteLeaveRecordFormById(String id) throws Exception {
+	if (!leaveRecords.containsKey(id)) {
 	    throw new Exception("Person does not exist for id " + id);
 	}
-	leaveApplications.remove(id);
+	leaveRecords.remove(id);
     }
 
     @Override
-    public List<LeaveApplication> searchLeaveApplication(String applicantId) throws Exception {
-	List<LeaveApplication> searchResults = new ArrayList<LeaveApplication>();
-	for (LeaveApplication person : leaveApplications.values()) {
+    public List<LeaveRecord> searchLeaveRecords(String applicantId) throws Exception {
+	List<LeaveRecord> searchResults = new ArrayList<LeaveRecord>();
+	for (LeaveRecord person : leaveRecords.values()) {
 	    if (applicantId != null) {
 		if (person.getApplicantId().equals(applicantId)) {
 		    searchResults.add(person);

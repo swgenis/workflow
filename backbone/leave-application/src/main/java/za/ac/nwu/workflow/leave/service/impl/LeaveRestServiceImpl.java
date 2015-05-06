@@ -12,10 +12,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import org.jbpm.services.api.RuntimeDataService;
 import org.jbpm.services.api.UserTaskService;
 import org.jbpm.services.task.commands.CompleteTaskCommand;
 import org.jbpm.services.task.commands.CompositeCommand;
 import org.jbpm.services.task.commands.StartTaskCommand;
+import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,8 +29,10 @@ import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
 import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
+import za.ac.nwu.workflow.backbone.workflow.service.BackboneState;
 import za.ac.nwu.workflow.backbone.workflow.service.WorkflowService;
 import za.ac.nwu.workflow.leave.LeaveApplication;
+import za.ac.nwu.workflow.leave.LeaveRecord;
 import za.ac.nwu.workflow.leave.service.LeaveService;
 import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
 
@@ -57,6 +61,9 @@ public class LeaveRestServiceImpl {
 
     @Inject
     private UserTaskService userTaskService;
+    
+    @Inject
+    private RuntimeDataService runtimeDataService;
 
     /**
      * Gets the types of leave that are available
@@ -72,24 +79,40 @@ public class LeaveRestServiceImpl {
     }
 
     /**
-     * Gets the types of leave that are available
+     * Search for finalized leave records
      * 
      * @return
      * @throws Exception
      */
     @GET
-    @Path("/search")
+    @Path("/search/records")
     @Produces({ "application/json" })
-    public List<LeaveApplication> searchLeaveApplications(@QueryParam("applicantId") String applicantId)
+    public List<LeaveRecord> searchLeaveRecords(@QueryParam("applicantId") String applicantId)
 	    throws Exception {
-	return leaveService.searchLeaveApplication(applicantId);
+	return leaveService.searchLeaveRecords(applicantId);
+    }
+    
+    /**
+     * Search for leave applications.
+     * 
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/search/applications")
+    @Produces({ "application/json" })
+    public List<TaskSummary> searchLeaveApplications(@QueryParam("user") String user)
+	    throws Exception {
+	logger.info("Displaying the task list for " + user);
+	return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
     }
 
     @POST
     @Path("/apply")
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Message apply(LeaveApplication leaveApplication) {
+	
+	leaveApplication.setState(BackboneState.APPLIED);
 
 	Map<String, Object> params = new HashMap<String, Object>();
 	params.put("leaveApplication", leaveApplication);
@@ -121,7 +144,6 @@ public class LeaveRestServiceImpl {
 
     @GET
     @Path("/approve")
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Message approveLeave(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is approving task " + taskId);
@@ -140,24 +162,16 @@ public class LeaveRestServiceImpl {
     @Produces({ "application/json" })
     public Message denyLeave(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is denying task " + taskId);
+	Map<String, Object> inParams = userTaskService.getTaskInputContentByTaskId(taskId);
+	LeaveApplication leaveApplication = (LeaveApplication) inParams.get("leaveApplicationIn");
+	leaveApplication.setState(BackboneState.DENIED);
+	
+	Map<String, Object> outParams = new HashMap<String, Object>();
+	outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
 	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, null),
 		new StartTaskCommand(taskId, user));
 	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
-    }
-
-    @POST
-    @Path(value = "/submit")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    public Message submit(LeaveApplication leaveApplication) {
-	try {
-	    leaveService.insertLeaveApplication(leaveApplication);
-	} catch (Exception e) {
-	    logger.error("Unable to insert leave application", e);
-	    return new Message("Error inserting leave application for " + leaveApplication.getApplicantId());
-	}
-	return new Message("Leave application has been approved for " + leaveApplication.getApplicantId());
     }
 
 }

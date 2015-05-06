@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 
  * @author SW Genis
- *
+ * 
  */
 public class LeavePeriod implements Serializable {
 

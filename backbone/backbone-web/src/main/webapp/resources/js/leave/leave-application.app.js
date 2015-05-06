@@ -18,6 +18,15 @@
 		});
 		
 		/**
+		 * Get tasks for the entered username
+		 */
+		$scope.searchLeaveTasks = function(){
+			LeaveRestServices.searchLeaveTasks($scope.username).then(function(tasks){
+				$scope.tasks = tasks;
+			});
+		};
+		
+		/**
 		 * Function to add a leave record
 		 */
 		$scope.addLeaveRecord = function(){
@@ -54,6 +63,26 @@
 					$scope.submitFail = true;
 					$scope.submitSuccess = false;
 				});
+		};
+		
+		/**
+		 * Function to approve a task
+		 */
+		$scope.approveLeave = function(task){
+			LeaveRestServices.approveLeave($scope.username, task.id).then(function(){
+				// Once done, refresh the task list
+				$scope.searchLeaveTasks();
+			});
+		};
+		
+		/**
+		 * Function to deny a task
+		 */
+		$scope.denyLeave = function(task){
+			LeaveRestServices.denyLeave($scope.username, task.id).then(function(){
+				// Once done, refresh the task list
+				$scope.searchLeaveTasks();
+			});
 		};
 		
 	}]);
