@@ -108,6 +108,34 @@
 			<artifactId>weld-core</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.kuali.rice</groupId>
+			<artifactId>par-kim-impl</artifactId>
+			<version>2.1.6-NWU-0.11-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>		
+
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>maven-snapshots</id>
+			<url>http://kualidev.nwu.ac.za:8082/nexus/content/repositories/snapshots</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+	</repository>
+	
+</repositories>
 
 </project>
