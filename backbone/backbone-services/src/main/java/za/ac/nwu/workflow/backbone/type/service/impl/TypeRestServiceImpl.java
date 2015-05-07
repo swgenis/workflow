@@ -2,7 +2,6 @@ package za.ac.nwu.workflow.backbone.type.service.impl;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,7 +16,6 @@ import za.ac.nwu.workflow.backbone.type.Type;
 import za.ac.nwu.workflow.backbone.type.service.TypeRestService;
 import za.ac.nwu.workflow.backbone.type.service.TypeService;
 
-@Stateless
 @Path("/type")
 public class TypeRestServiceImpl implements TypeRestService {
 

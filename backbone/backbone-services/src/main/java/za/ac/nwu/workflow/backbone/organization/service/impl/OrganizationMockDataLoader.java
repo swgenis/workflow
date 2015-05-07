@@ -1,6 +1,5 @@
 package za.ac.nwu.workflow.backbone.organization.service.impl;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import za.ac.nwu.workflow.backbone.authorization.service.impl.AuthorizationMockDataLoader;
@@ -9,7 +8,6 @@ import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationServiceConstants;
-import za.ac.nwu.workflow.backbone.person.service.impl.PersonMockDataLoader;
 
 /**
  * 

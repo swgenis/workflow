@@ -13,7 +13,6 @@
 		<module>backbone-api</module>
 		<module>backbone-services</module>
 		<module>backbone-web</module>
-		<module>leave-application</module>
 	</modules>
 
 	<properties>
@@ -108,7 +107,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.1.1</version>
+					<version>2.6</version>
 				</plugin>
 				<plugin>
 					<groupId>org.jboss.as.plugins</groupId>

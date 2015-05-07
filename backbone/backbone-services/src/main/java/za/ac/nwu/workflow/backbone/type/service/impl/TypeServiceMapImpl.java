@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
+import za.ac.nwu.backbone.qualifiers.MapService;
 import za.ac.nwu.workflow.backbone.data.DataLoaderCallback;
 import za.ac.nwu.workflow.backbone.data.JsonDataLoader;
 import za.ac.nwu.workflow.backbone.type.Type;
@@ -22,7 +22,7 @@ import za.ac.nwu.workflow.backbone.type.service.TypeService;
  * @author SW Genis
  *
  */
-@Default
+@MapService
 @Singleton
 public class TypeServiceMapImpl implements TypeService {
 

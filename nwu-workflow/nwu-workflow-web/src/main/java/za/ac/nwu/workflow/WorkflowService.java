@@ -1,6 +1,5 @@
 package za.ac.nwu.workflow;
 
-import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -17,8 +16,7 @@ import javax.inject.Qualifier;
  * @author SW Genis
  */
 @Qualifier
-@Target({ ElementType.TYPE, ElementType.FIELD, ElementType.PARAMETER })
-@Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface BackboneQualifier {
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
+public @interface WorkflowService {
 }

@@ -13,16 +13,12 @@ import javax.ws.rs.QueryParam;
 
 import org.jbpm.services.api.RuntimeDataService;
 import org.jbpm.services.api.UserTaskService;
-import org.jbpm.services.task.commands.CompleteTaskCommand;
-import org.jbpm.services.task.commands.CompositeCommand;
-import org.jbpm.services.task.commands.StartTaskCommand;
 import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.ac.nwu.workflow.backbone.Message;
-import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
 
 /**
  * Handles requests for the application home page.
@@ -54,12 +50,10 @@ public class TaskRestServiceImpl {
     @Produces({ "application/json" })
     public Message approveTask(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is approving task " + taskId);
-	Map<String, Object> inParams = userTaskService.getTaskInputContentByTaskId(taskId);
-	Map<String, Object> outParams = new HashMap<String, Object>();
-	outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
-	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, outParams),
-		new StartTaskCommand(taskId, user));
-	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
+	userTaskService.claim(taskId, user);
+	userTaskService.start(taskId, user);
+	Map<String, Object> params = new HashMap<String, Object>();
+	userTaskService.complete(taskId, user, params);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 
@@ -68,9 +62,10 @@ public class TaskRestServiceImpl {
     @Produces({ "application/json" })
     public Message cancelTask(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is denying task " + taskId);
-	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, null),
-		new StartTaskCommand(taskId, user));
-	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
+	userTaskService.claim(taskId, user);
+	userTaskService.start(taskId, user);
+	Map<String, Object> params = new HashMap<String, Object>();
+	userTaskService.complete(taskId, user, params);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 

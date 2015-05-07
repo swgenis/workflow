@@ -1,9 +1,6 @@
 package za.ac.nwu.workflow.backbone.authorization.service;
 
-import java.util.List;
-
 import za.ac.nwu.workflow.backbone.authorization.User;
-import za.ac.nwu.workflow.backbone.organization.Group;
 
 /**
  * 

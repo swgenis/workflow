@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>nwu.workflow</groupId>
+	<artifactId>nwu-workflow</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>NWU workflow project</name>
+
+	<modules>
+		<module>nwu-workflow-web</module>
+		<module>leave-application</module>
+	</modules>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- Java -->
+		<javax.j2ee.version>7.0</javax.j2ee.version>
+		
+		<!-- jboss deploy -->
+		<jboss.deploy.hostname>localhost</jboss.deploy.hostname>
+		<jboss.deploy.port>9999</jboss.deploy.port>
+		<jboss.deploy.username></jboss.deploy.username>
+		<jboss.deploy.password></jboss.deploy.password>
+		<jboss.deploy.domain.server-group></jboss.deploy.domain.server-group>
+		<version.jboss.maven.plugin>7.5.Final</version.jboss.maven.plugin>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jboss.as.plugins</groupId>
+					<artifactId>jboss-as-maven-plugin</artifactId>
+					<version>${version.jboss.maven.plugin}</version>
+					<configuration>
+						<hostname>${jboss.deploy.hostname}</hostname>
+						<port>${jboss.deploy.port}</port>
+						<username>${jboss.deploy.username}</username>
+						<password>${jboss.deploy.password}</password>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>${file.encoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

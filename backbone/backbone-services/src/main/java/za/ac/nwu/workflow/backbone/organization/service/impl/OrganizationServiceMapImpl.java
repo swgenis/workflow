@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
+import za.ac.nwu.backbone.qualifiers.MapService;
 import za.ac.nwu.workflow.backbone.organization.Group;
 import za.ac.nwu.workflow.backbone.organization.OrgUnit;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
@@ -24,7 +24,7 @@ import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
  * @author SW Genis
  * 
  */
-@Default
+@MapService
 @Singleton
 public class OrganizationServiceMapImpl implements OrganizationService {
 

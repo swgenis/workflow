@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package za.ac.nwu.workflow;
+package za.ac.nwu.workflow.backbone.workflow.service.jbpm;
 
 import org.kie.internal.identity.IdentityProvider;
 

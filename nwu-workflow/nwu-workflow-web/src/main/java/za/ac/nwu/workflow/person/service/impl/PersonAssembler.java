@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.person.service.impl;
+package za.ac.nwu.workflow.person.service.impl;
 
 import org.kuali.rice.kim.api.identity.entity.EntityDefault;
 

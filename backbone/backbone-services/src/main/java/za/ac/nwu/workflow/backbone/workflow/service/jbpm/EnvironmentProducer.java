@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package za.ac.nwu.workflow;
+package za.ac.nwu.workflow.backbone.workflow.service.jbpm;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
@@ -30,6 +30,8 @@ import org.jbpm.services.cdi.Kjar;
 import org.jbpm.services.task.audit.JPATaskLifeCycleEventListener;
 import org.kie.api.task.TaskLifeCycleEventListener;
 import org.kie.api.task.UserGroupCallback;
+
+import za.ac.nwu.backbone.qualifiers.BackboneQualifier;
 
 @ApplicationScoped
 public class EnvironmentProducer {

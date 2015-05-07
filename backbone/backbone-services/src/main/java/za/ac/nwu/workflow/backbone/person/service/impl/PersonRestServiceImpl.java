@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonRestService;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
-import za.ac.nwu.workflow.backbone.producers.Chosen;
 
 /**
  * 
@@ -27,7 +26,6 @@ public class PersonRestServiceImpl implements PersonRestService {
     private static final Logger logger = LoggerFactory.getLogger(PersonRestServiceImpl.class);
 
     @Inject
-    @Chosen
     private PersonService personService;
 
     @GET

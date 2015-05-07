@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
+import za.ac.nwu.backbone.qualifiers.MapService;
 import za.ac.nwu.workflow.backbone.person.Person;
 import za.ac.nwu.workflow.backbone.person.service.PersonService;
 
@@ -20,8 +20,8 @@ import za.ac.nwu.workflow.backbone.person.service.PersonService;
  * @author SW Genis
  *
  */
-@Default
 @Singleton
+@MapService
 public class PersonServiceMapImpl implements PersonService {
 
     private Map<String, Person> persons = new HashMap<String, Person>();

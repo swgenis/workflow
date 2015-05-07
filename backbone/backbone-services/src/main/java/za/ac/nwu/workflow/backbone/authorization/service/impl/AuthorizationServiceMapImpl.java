@@ -1,17 +1,14 @@
 package za.ac.nwu.workflow.backbone.authorization.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
+import za.ac.nwu.backbone.qualifiers.MapService;
 import za.ac.nwu.workflow.backbone.authorization.User;
 import za.ac.nwu.workflow.backbone.authorization.service.AuthorizationService;
-import za.ac.nwu.workflow.backbone.organization.Group;
 
 /**
  * 
@@ -21,7 +18,7 @@ import za.ac.nwu.workflow.backbone.organization.Group;
  * @author SW Genis
  *
  */
-@Default
+@MapService
 @Singleton
 public class AuthorizationServiceMapImpl implements AuthorizationService {
 
