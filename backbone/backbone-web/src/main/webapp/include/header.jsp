@@ -28,6 +28,8 @@
 	
 	<!-- Include our scripts -->
 	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.app.js"></script>
+	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.directives.js"></script>
+	
 </head>
 <body ng-app="nwu-backbone">
 	<!-- Fixed navbar -->
@@ -41,14 +43,14 @@
 		</div>
 		<div class="navbar-collapse collapse no-transition">
 			<ul class="nav navbar-nav">
-				<li><a href="/backbone/html/home.html"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
+				<li><a href="/backbone/jsp/home.jsp"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Processes <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/backbone/html/leave/leave.html">Leave</a></li>
+						<li><a href="/backbone/jsp/leave/leave.jsp">Leave</a></li>
 					</ul>
 				</li>
-				<li><a href="/backbone/html/taskList.html"><span class="glyphicon glyphicon-home">&nbsp;</span>Task List</a></li>
+				<li><a href="/backbone/jsp/taskList.jsp"><span class="glyphicon glyphicon-home">&nbsp;</span>Task List</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

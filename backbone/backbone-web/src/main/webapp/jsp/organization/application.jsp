@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-	<meta content="user-scalable=no, initial-scale=1.0, maximum-scale=1, height=device-height, width=device-width" name="viewport" />
-	<title>NWU Backbone</title>
-	<!-- link rel="shortcut icon" href="${pageContext.request.contextPath}/css/images/favicon.ico" -->
-	
-	<script src="//code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"	type="text/javascript"></script>
-	
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	
-	
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<!-- Include our scripts -->
-	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.app.js"></script>
-	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.directives.js"></script>
 	<script type="text/javascript" src="/backbone/resources/js/leave/leave-application.app.js"></script>
 	<script type="text/javascript" src="/backbone/resources/js/leave/leave.rest.js"></script>
-</head>
+
 <body ng-app="nwu-backbone">
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -154,16 +128,4 @@
 		
 	</div>
 
-	<nav class="navbar navbar-default navbar-fixed-bottom"
-		role="navigation">
-		<div class="container">
-			<div class="container">
-				<p class="text-muted credit"></p>
-				<div class="pull-right">Version x.y.z</div>
-				Created by <a href="http://www.opencollab.co.za">OPENCOLLAB</a>.
-				<p></p>
-			</div>
-		</div>
-	</nav>
-</body>
-</html>
+<jsp:include page="../include/footer.jsp"></jsp:include>

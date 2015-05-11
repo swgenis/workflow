@@ -5,7 +5,7 @@
 	version="3.0">
 
 	<welcome-file-list>
-		<welcome-file>html/home.html</welcome-file>
+		<welcome-file>jsp/home.jsp</welcome-file>
 	</welcome-file-list>
 
 	<!-- Activate Rest Services -->
