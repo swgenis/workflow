@@ -24,7 +24,7 @@ public class WorkflowServiceFactory extends ServiceFactory {
     @Specializes
     public PersonService producePersonService() {
 	if (devmode) {
-	    return producePersonService();
+	    return super.producePersonService();
 	} else {
 	    //TODO: Investigate Instance<PersonService> with instance.select().
 	    return workflowPersonService;
