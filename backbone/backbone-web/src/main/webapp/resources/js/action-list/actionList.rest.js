@@ -29,7 +29,4 @@
 		},BackboneRestServiceBase);
 		
 	}]);
-	
-	
-	
 })(angular)
