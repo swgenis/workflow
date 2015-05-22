@@ -4,9 +4,9 @@
 	angular.module("nwu-backbone", [])
 	
 	/**
-	 * Factory for the Common Backbone Services
+	 * Base for all rest services
 	 */
-	.factory("BackboneServices", 
+	.factory("BackboneRestServiceBase", 
 	["$http", "$q",
 	 function($http, $q){
 		return {
@@ -36,14 +36,25 @@
 					deferred.reject(data);
 				});
 				return deferred.promise;
-			},
+			}
+		}
+		
+	}])
+	
+	/**
+	 * Factory for the Common Backbone Services
+	 */
+	.factory("BackboneServices", 
+	["BackboneRestServiceBase",
+	 function(BackboneRestServiceBase){
+		return angular.extend({
 			/**
 			 * Function to find a person
 			 */
 			'findPerson' : function(personLookupId){
 				return this._callService('GET', 'person/lookup', null, {'personLookupId': personLookupId});
 			}
-		}
+		},BackboneRestServiceBase);
 		
 	}]);
 	
