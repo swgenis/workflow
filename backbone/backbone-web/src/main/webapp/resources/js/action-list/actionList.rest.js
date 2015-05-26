@@ -2,29 +2,17 @@
 	angular.module("nwu-backbone")
 	
 	/**
-	 * Rest Services for leave application
+	 * Action list rest services
 	 */
-	.factory("TaskListRestServices", 
+	.factory("ActionistRestServices", 
 	["BackboneRestServiceBase",
 	function(BackboneRestServiceBase){
 		return angular.extend({
 			/**
-			 * Get the tasks for a user
+			 * Get the tasks for a user that requires action
 			 */
 			'getTasks' : function(username){
 				return this._callService('GET', 'task/list',null, {'user' : username});
-			},
-			/**
-			 * Get the tasks for a user
-			 */
-			'approveTask' : function(username, taskId){
-				return this._callService('GET', 'task/approve',null, {'user' : username, 'taskId' : taskId});
-			},
-			/**
-			 * Get the tasks for a user
-			 */
-			'denyTask' : function(username, taskId){
-				return this._callService('GET', 'task/approve',null, {'user' : username, 'taskId' : taskId});
 			}
 		},BackboneRestServiceBase);
 		

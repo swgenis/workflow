@@ -1,29 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"></jsp:include>
 
-	<script type="text/javascript" src="/backbone/resources/js/task-list/taskList.app.js"></script>
-	<script type="text/javascript" src="/backbone/resources/js/task-list/taskList.rest.js"></script>
-	
 	<!-- Main content view -->
 	<div ng-controller="ActionListCtrl" style="margin-top: 60px; margin-bottom: 60px">
-		<h1>Tasklist</h1>
-		
-			<div>
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="nwuid" class="sr-only">NWU ID</label>
-						<input type="text" class="form-control" id="nwuid" placeholder="NWU ID" ng-model="username">
-					</div>
-					<button type="submit" class="btn btn-default" ng-click="searchTasks()">Search</button>
-				</form>
-			</div>
+		<h1>Action List</h1>
 			<div>
 				<table class="table table-bordered">
-					<caption>Bookings</caption>
+					<caption>Tasks</caption>
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Status</th>
+							<th>Details</th>
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -41,5 +28,6 @@
 			</div>
 			
 	</div>
-
+	<script type="text/javascript" src="/backbone/resources/js/action-list/actionList.app.js"></script>
+	<script type="text/javascript" src="/backbone/resources/js/action-list/actionList.rest.js"></script>
 <jsp:include page="../include/footer.jsp"></jsp:include>

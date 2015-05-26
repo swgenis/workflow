@@ -6,9 +6,10 @@
 	 */
 	.controller("ActionListCtrl", 
 	["$scope", "TaskListRestServices", 
-	function($scope, TaskListRestServices){
+	function($scope, ActionistRestServices){
 		$scope.tasks = null;
 		
+		ActionistRestServices.getTasks()
 		
 	}]);
 	
