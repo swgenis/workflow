@@ -5,11 +5,13 @@
 	 * Controller for the task list
 	 */
 	.controller("ActionListCtrl", 
-	["$scope", "TaskListRestServices", 
-	function($scope, ActionistRestServices){
+	["$scope", "TaskRestService", 
+	function($scope, TaskRestService){
 		$scope.tasks = null;
 		
-		ActionistRestServices.getTasks()
+		TaskRestService.getTasks().then(function(tasks){
+			$scope.tasks = tasks;
+		})
 		
 	}]);
 	

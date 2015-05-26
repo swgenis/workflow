@@ -4,8 +4,8 @@
 	 * Directive to lookup a person
 	 */
 	.directive("personLookup", 
-	["BackboneServices",
-	 function(BackboneServices){
+	["PersonRestService",
+	 function(PersonRestService){
 		return {
 			'restrict': 'E',
 			'scope': {
@@ -25,7 +25,7 @@
 					scope.userdetails = null;
 					scope.error = null;
 					
-					BackboneServices.findPerson(scope.nwuuid)
+					PersonRestService.search(scope.nwuuid)
 					.then(
 					// Success handler
 					function(userdetails){

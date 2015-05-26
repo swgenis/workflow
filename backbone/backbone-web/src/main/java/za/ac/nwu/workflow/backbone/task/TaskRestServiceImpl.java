@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 
 import org.jbpm.services.api.RuntimeDataService;
 import org.jbpm.services.api.UserTaskService;
@@ -35,15 +37,27 @@ public class TaskRestServiceImpl {
     private RuntimeDataService runtimeDataService;
 
     /**
-     * Simply selects the home view to render by returning its name.
+     * Get all the tasks for the current user session
      */
     @GET
     @Path("/list")
     @Produces({ "application/json" })
-    public List<TaskSummary> taskList(@QueryParam("user") String user) {
-	logger.info("Displaying the task list for " + user);
-	return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
+    public List<TaskSummary> taskListForActiveUser(@Context SecurityContext context) {
+	    String user = context.getUserPrincipal().getName();
+		logger.info("Displaying the task list for " + user);
+		return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
     }
+    
+//    /**
+//     * Simply selects the home view to render by returning its name.
+//     */
+//    @GET
+//    @Path("/list")
+//    @Produces({ "application/json" })
+//    public List<TaskSummary> taskList(@QueryParam("user") String user) {
+//	logger.info("Displaying the task list for " + user);
+//	return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
+//    }
 
     @GET
     @Path("/approve")

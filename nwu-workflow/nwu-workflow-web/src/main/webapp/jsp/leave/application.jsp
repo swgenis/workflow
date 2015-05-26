@@ -60,7 +60,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="leaveEntry in leaveEntries">
+						<tr ng-repeat="leaveEntry in leaveEntries" class="ng-cloak">
 							<td>{{leaveEntry.typeKey}}</td>
 							<td>{{leaveEntry.startDate}}</td>
 							<td>{{leaveEntry.endDate}}</td>

@@ -15,7 +15,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="task in tasks">
+						<tr ng-repeat="task in tasks" class="ng-cloak">
 							<td>{{task.id}}</td>
 							<td>{{task.status}}</td>
 							<td>
@@ -29,5 +29,4 @@
 			
 	</div>
 	<script type="text/javascript" src="/backbone/resources/js/action-list/actionList.app.js"></script>
-	<script type="text/javascript" src="/backbone/resources/js/action-list/actionList.rest.js"></script>
 <jsp:include page="../include/footer.jsp"></jsp:include>

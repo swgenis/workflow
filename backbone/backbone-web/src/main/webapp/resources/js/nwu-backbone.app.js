@@ -42,17 +42,72 @@
 	}])
 	
 	/**
-	 * Factory for the Common Backbone Services
+	 * Rest service client for the PersonRestService
 	 */
-	.factory("BackboneServices", 
+	.factory("PersonRestService", 
 	["BackboneRestServiceBase",
 	 function(BackboneRestServiceBase){
 		return angular.extend({
 			/**
 			 * Function to find a person
 			 */
-			'findPerson' : function(personLookupId){
+			'lookup' : function(name, surname){
+				return this._callService('GET', 'person/search', null, {'name': name, 'surname': surname});
+			},
+			'search' : function(personLookupId){
 				return this._callService('GET', 'person/lookup', null, {'personLookupId': personLookupId});
+			}
+		},BackboneRestServiceBase);
+		
+	}])
+	/**
+	 * Rest service client for the TaskRestService
+	 */
+	.factory("TaskRestService", 
+	["BackboneRestServiceBase",
+	function(BackboneRestServiceBase){
+		return angular.extend({
+			/**
+			 * Lists tasks for a user
+			 */
+			'list' : function(username){
+				return this._callService('GET', 'task/list');
+				
+			},
+			/**
+			 * Get the tasks for a user
+			 */
+			'approve' : function(username, taskId){
+				return this._callService('GET', 'task/approve',null, {'user' : username, 'taskId' : taskId});
+			},
+			/**
+			 * Get the tasks for a user
+			 */
+			'deny' : function(username, taskId){
+				return this._callService('GET', 'task/approve',null, {'user' : username, 'taskId' : taskId});
+			},
+			/**
+			 * Get a task with the specified id
+			 */
+			'get' : function(taskId){
+				return this._callService('GET', 'task/' + taskId);
+			}
+		},BackboneRestServiceBase);
+		
+	}])
+	/**
+	 * Rest service client for the TypeRestService
+	 */
+	.factory("TypeRestService", 
+	["BackboneRestServiceBase",
+	function(BackboneRestServiceBase){
+		return angular.extend({
+			'search' : function(category){
+				return this._callService('GET', 'type/category/' + category);
+				
+			},
+			'approve' : function(key){
+				return this._callService('GET', 'type/' + key);
 			}
 		},BackboneRestServiceBase);
 		
