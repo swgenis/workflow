@@ -2,6 +2,7 @@
 <backbone>
 	<deployments>
 		<deployment>
+			<key>nwu.workflow.backbone.leave-application</key>
 			<group>nwu.workflow.backbone</group>
 			<artifact>leave-application</artifact>
 			<version>1.0-SNAPSHOT</version>

@@ -8,12 +8,13 @@
 	["$scope", "TaskRestService", 
 	function($scope, TaskRestService){
 		$scope.tasks = null;
+		$scope.username = null;
 		
 		/**
 		 * Get tasks for the entered username
 		 */
 		$scope.searchTasks = function(){
-			TaskRestService.getTasks($scope.username).then(function(tasks){
+			TaskRestService.list($scope.username).then(function(tasks){
 				$scope.tasks = tasks;
 			});
 		};

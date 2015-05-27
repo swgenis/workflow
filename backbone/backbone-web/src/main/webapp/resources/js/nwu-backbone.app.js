@@ -71,8 +71,12 @@
 			 * Lists tasks for a user
 			 */
 			'list' : function(username){
-				return this._callService('GET', 'task/list');
-				
+				if(username == null){
+					return this._callService('GET', 'task/list');
+				}
+				else{
+					return this._callService('GET', 'task/list',null, {'user':username});
+				}
 			},
 			/**
 			 * Get the tasks for a user

@@ -21,7 +21,6 @@ import java.io.InputStream;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -34,6 +33,7 @@ import org.kie.internal.runtime.cdi.BootOnLoad;
 
 import za.ac.nwu.workflow.backbone.Backbone;
 import za.ac.nwu.workflow.backbone.Deployment;
+import za.ac.nwu.workflow.backbone.Deployments;
 import za.ac.nwu.workflow.backbone.data.DataLoaderCallback;
 import za.ac.nwu.workflow.backbone.data.JsonDataLoader;
 import za.ac.nwu.workflow.backbone.type.Type;
@@ -48,71 +48,73 @@ import za.ac.nwu.workflow.backbone.type.service.TypeService;
 @BootOnLoad
 public class StartupBean {
 
-    @Inject
-    @Kjar
-    DeploymentService deploymentService;
+	@Inject
+	@Kjar
+	DeploymentService deploymentService;
 
-    @Inject
-    private TypeService typeService;
+	@Inject
+	private TypeService typeService;
 
-    private JsonDataLoader<Type> typeDataLoader;
+	private JsonDataLoader<Type> typeDataLoader;
 
-    @PostConstruct
-    public void init() {
-	try {
+	@PostConstruct
+	public void init() {
+		try {
 
-	    // Read the main configuration file.
-	    InputStream is = StartupBean.class.getClassLoader().getResourceAsStream("backbone.xml");
-	    JAXBContext jaxbContext = JAXBContext.newInstance(Backbone.class);
+			// Read the main configuration file.
+			InputStream is = StartupBean.class.getClassLoader().getResourceAsStream("backbone.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Backbone.class);
 
-	    // Unmarshall xml to java object.
-	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-	    Backbone backbone = (Backbone) jaxbUnmarshaller.unmarshal(is);
+			// Unmarshall xml to java object.
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			Backbone backbone = (Backbone) jaxbUnmarshaller.unmarshal(is);
 
-	    // Deploy.
-	    for (Deployment deployment : backbone.getDeployments()) {
-		
-		// Deploy the deployment unit.
-		DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(deployment.getGroupId(),
-			deployment.getArtifactId(), deployment.getVersion());
-		deploymentService.deploy(deploymentUnit);
+			// Deploy.
+			for (Deployment deployment : backbone.getDeployments()) {
 
-		// Load types from source file.
-		if (deployment.getTypeSourceFile() != null) {
-		    try {
-			getTypeDataLoader().loadData(deployment.getTypeSourceFile());
-		    } catch (Exception e) {
-			throw new RuntimeException("Unable to load types for source file "
-				+ deployment.getTypeSourceFile(), e);
-		    }
+				// Deploy the deployment unit.
+				DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(deployment.getGroupId(),
+						deployment.getArtifactId(), deployment.getVersion());
+				deploymentService.deploy(deploymentUnit);
+
+				// Load types from source file.
+				if (deployment.getTypeSourceFile() != null) {
+					try {
+						getTypeDataLoader().loadData(deployment.getTypeSourceFile());
+					} catch (Exception e) {
+						throw new RuntimeException("Unable to load types for source file "
+								+ deployment.getTypeSourceFile(), e);
+					}
+				}
+				
+				Deployments.get().addDeployments(backbone.getDeployments());
+
+			}
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
 		}
 
-	    }
-
-	} catch (JAXBException e) {
-	    e.printStackTrace();
 	}
 
-    }
+	private JsonDataLoader<Type> getTypeDataLoader() {
+		if (typeDataLoader == null) {
+			typeDataLoader = new JsonDataLoader<Type>(Type.class);
+			typeDataLoader.setCallback(new DataLoaderCallback<Type>() {
 
-    private JsonDataLoader<Type> getTypeDataLoader() {
-	if (typeDataLoader == null) {
-	    typeDataLoader = new JsonDataLoader<Type>(Type.class);
-	    typeDataLoader.setCallback(new DataLoaderCallback<Type>() {
+				@Override
+				public void loadElement(Type t) {
+					try {
+						typeService.insertType(t);
+					} catch (Exception e) {
+						throw new RuntimeException("Unable to load types for sub deployment.", e);
+					}
 
-		@Override
-		public void loadElement(Type t) {
-		    try {
-			typeService.insertType(t);
-		    } catch (Exception e) {
-			throw new RuntimeException("Unable to load types for sub deployment.", e);
-		    }
+				}
+			});
 
 		}
-	    });
-
+		return typeDataLoader;
 	}
-	return typeDataLoader;
-    }
 
 }

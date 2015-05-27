@@ -15,6 +15,7 @@ import javax.ws.rs.core.SecurityContext;
 
 import org.jbpm.services.api.RuntimeDataService;
 import org.jbpm.services.api.UserTaskService;
+import org.jbpm.services.api.model.UserTaskInstanceDesc;
 import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
@@ -39,11 +40,22 @@ public class TaskRestServiceImpl {
     /**
      * Get all the tasks for the current user session
      */
-    @GET
+	@GET
     @Path("/list")
     @Produces({ "application/json" })
-    public List<TaskSummary> taskListForActiveUser(@Context SecurityContext context) {
-	    String user = context.getUserPrincipal().getName();
+    public List<TaskSummary> taskListForActiveUser(@Context SecurityContext context, @QueryParam("user") String user) {
+		
+		// If now user is specified, we use the logged in user
+		if(user == null){
+			user = context.getUserPrincipal().getName();
+		}
+	    
+	    List<TaskSummary> j = runtimeDataService.getTasksAssignedAsPotentialOwner("jiri", null);
+	    if(j.size() > 0){
+	    	TaskSummary ts = j.get(0);
+	    	Map vars = runtimeDataService.getProcessById(ts.getProcessId()).getProcessVariables();
+	    	Object o = vars.get("leaveApplication");
+	    }
 		logger.info("Displaying the task list for " + user);
 		return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
     }
