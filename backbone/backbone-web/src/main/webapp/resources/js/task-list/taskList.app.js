@@ -24,7 +24,7 @@
 		 * Function to approve a task
 		 */
 		$scope.approveTask = function(task){
-			TaskRestService.approveTask($scope.username, task.id).then(function(){
+			TaskRestService.approve($scope.username, task.id).then(function(){
 				// Once done, refresh the task list
 				$scope.searchTasks();
 			});
@@ -34,7 +34,7 @@
 		 * Function to deny a task
 		 */
 		$scope.denyTask = function(task){
-			TaskRestService.denyTask($scope.username, task.id).then(function(){
+			TaskRestService.deny($scope.username, task.id).then(function(){
 				// Once done, refresh the task list
 				$scope.searchTasks();
 			});

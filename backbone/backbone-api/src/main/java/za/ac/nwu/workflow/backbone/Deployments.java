@@ -17,9 +17,9 @@ public class Deployments {
 	private static Deployments singleton;
 	
 	/**
-	 * Map containing all deployments
+	 * Map containing all deployments by id
 	 */
-	private Map<String, Deployment> deploymentsMap = new HashMap<String, Deployment>();
+	private Map<String, Deployment> deploymentsIdMap = new HashMap<String, Deployment>(); 
 	
 	private Deployments(){}
 	
@@ -42,26 +42,19 @@ public class Deployments {
 		// Safety check
 		if(deployments != null && deployments.size() > 0){
 			for(Deployment deployment : deployments){
-				deploymentsMap.put(deployment.getDeploymentKey(), deployment);
+				deploymentsIdMap.put(deployment.getDeploymentId(), deployment);
 			}
 		}
 	}
 	
+	
 	/**
-	 * Get a deployment for the specified deployment key
-	 * @param deploymentKey Key of the deployment
+	 * Get a deployment for the specified deployment id
+	 * @param deploymentId Id of the deployment
 	 * @return The instance of the deployment
 	 */
-	public Deployment getForKey(String deploymentKey){
-		return deploymentsMap.get(deploymentKey);
-	}
-	
-	public String getDeploymentIdForKey(String deploymentKey){
-		Deployment deployment = getForKey(deploymentKey);
-		if(deployment == null){
-			throw new IllegalArgumentException("No deployment found for key: " + deploymentKey);
-		}
-		return deployment.getDeploymentId();
+	public Deployment getForId(String deploymentId){
+		return deploymentsIdMap.get(deploymentId);
 	}
 	
 }

@@ -45,7 +45,7 @@ public class TaskRestServiceImpl {
     @Produces({ "application/json" })
     public List<TaskSummary> taskListForActiveUser(@Context SecurityContext context, @QueryParam("user") String user) {
 		
-		// If now user is specified, we use the logged in user
+		// If no user is specified, we use the logged in user
 		if(user == null){
 			user = context.getUserPrincipal().getName();
 		}
@@ -53,6 +53,7 @@ public class TaskRestServiceImpl {
 	    List<TaskSummary> j = runtimeDataService.getTasksAssignedAsPotentialOwner("jiri", null);
 	    if(j.size() > 0){
 	    	TaskSummary ts = j.get(0);
+	    	String deploymentId = ts.getDeploymentId();
 	    	Map vars = runtimeDataService.getProcessById(ts.getProcessId()).getProcessVariables();
 	    	Object o = vars.get("leaveApplication");
 	    }

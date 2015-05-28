@@ -21,7 +21,6 @@ import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import za.ac.nwu.workflow.backbone.Deployments;
 import za.ac.nwu.workflow.backbone.Message;
 import za.ac.nwu.workflow.backbone.organization.OrgUnitMember;
 import za.ac.nwu.workflow.backbone.organization.service.OrganizationService;
@@ -114,8 +113,7 @@ public class LeaveRestServiceImpl {
 	params.put("leaveApplication", leaveApplication);
 	params.put("manager", getManagerForApplicant(leaveApplication.getApplicantId()));
 
-	String deploymentId = Deployments.get().getDeploymentIdForKey(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_KEY);
-	long processInstanceId = workflowService.startProcess(deploymentId, LeaveServiceConstants.LEAVE_APPLICATION_PROCESS_ID, params);
+	long processInstanceId = workflowService.startProcess(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, LeaveServiceConstants.LEAVE_APPLICATION_PROCESS_ID, params);
 	logger.info("Succesfully started process with id: " + processInstanceId);
 
 	return new Message("You have succesfully applied for leave");
@@ -148,14 +146,12 @@ public class LeaveRestServiceImpl {
 	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, outParams),
 		new StartTaskCommand(taskId, user));
 	
-	String deploymentId = Deployments.get().getDeploymentIdForKey(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_KEY);
-	userTaskService.execute(deploymentId, compositeCommand);
+	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 
     @GET
     @Path("/deny")
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Message denyLeave(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is denying task " + taskId);
@@ -168,8 +164,7 @@ public class LeaveRestServiceImpl {
 	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, null),
 		new StartTaskCommand(taskId, user));
 	
-	String deploymentId = Deployments.get().getDeploymentIdForKey(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_KEY);
-	userTaskService.execute(deploymentId, compositeCommand);
+	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 
