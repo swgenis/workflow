@@ -23,6 +23,9 @@ public class Deployment {
     @XmlElement(name = "type-source")
     private String typeSourceFile;
     
+    @XmlElement(name = "interpreter")
+    private String interpreterClass;
+    
     @XmlTransient
     private String deploymentId;
     
@@ -85,6 +88,16 @@ public class Deployment {
 	public void setDeploymentKey(String deploymentKey) {
 		this.deploymentKey = deploymentKey;
 	}
+
+	public String getInterpreterClass() {
+		return interpreterClass;
+	}
+
+	public void setInterpreterClass(String interpreterClass) {
+		this.interpreterClass = interpreterClass;
+	}
+	
+	
     
 
 }

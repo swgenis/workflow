@@ -18,5 +18,7 @@ public interface WorkflowService {
      * @return
      */
     public Long startProcess(String deploymentId, String processId, Map<String, Object> params);
+    
+    public Map<String, Object> getProcessParams(String deploymentId, Long processId);
 
 }

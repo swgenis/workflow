@@ -6,6 +6,12 @@
 			<artifact>leave-application</artifact>
 			<version>1.0-SNAPSHOT</version>
 			<type-source>leave-type.json</type-source>
+			<!-- 
+				Because we only have one process per deployment we can map the interpreter directly to the deployment
+				If we start using multiple processes per deployment, this interpreter will have to move down another 
+				level: to the process
+			 -->
+			<interpreter>za.ac.nwu.workflow.leave.LeaveTaskInterpreter</interpreter>
 		</deployment>
 	</deployments>
 </backbone>
