@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Action List</div>
+	<div class="panel-body">
+		<table class="table table-bordered"  ng-if="tasks.length > 0">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Details</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="task in tasks" class="ng-cloak">
+					<td>{{task.taskId}}</td>
+					<td>{{task.status}} - {{task.description}}</td>
+					<td>
+						<button class="btn btn-primary" type="button" ng-click="view(task)">View</button>
+					</td>
+				<tr>
+			</tbody>
+		</table>
+		<div ng-if="tasks == null || tasks.length == 0" class="text-info">
+			You currently have no tasks that require action
+		</div>
+	</div>
+</div>

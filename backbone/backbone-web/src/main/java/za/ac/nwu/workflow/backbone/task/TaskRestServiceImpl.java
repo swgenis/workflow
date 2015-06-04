@@ -1,5 +1,6 @@
 package za.ac.nwu.workflow.backbone.task;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,22 +44,31 @@ public class TaskRestServiceImpl {
 	@GET
     @Path("/list")
     @Produces({ "application/json" })
-    public List<TaskSummary> taskListForActiveUser(@Context SecurityContext context, @QueryParam("user") String user) {
+    public List<BackboneTaskSummary> taskListForActiveUser(@Context SecurityContext context, @QueryParam("user") String user) {
 		
 		// If no user is specified, we use the logged in user
 		if(user == null){
 			user = context.getUserPrincipal().getName();
 		}
-	    
-	    List<TaskSummary> j = runtimeDataService.getTasksAssignedAsPotentialOwner("jiri", null);
-	    if(j.size() > 0){
-	    	TaskSummary ts = j.get(0);
-	    	String deploymentId = ts.getDeploymentId();
+		List<TaskSummary> taskList = runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
+		List<BackboneTaskSummary> bbTasks = new ArrayList<BackboneTaskSummary>(taskList.size());
+		for(TaskSummary ts : taskList){
+			BackboneTaskSummary bts = new BackboneTaskSummary();
+			
 	    	Map vars = runtimeDataService.getProcessById(ts.getProcessId()).getProcessVariables();
-	    	Object o = vars.get("leaveApplication");
-	    }
+	    	Object ob = vars.get("leaveApplication");
+//	    	BackboneTask o = (BackboneTask)ob;
+	    	
+//	    	bts.setDescription(o.getDescription());
+	    	bts.setDescription("TODO! Bob, 3 dae verlof");
+	    	bts.setStatus(ts.getStatus().name());
+	    	bts.setTaskId(ts.getId());
+	    	
+			bbTasks.add(bts);
+		}
+		
 		logger.info("Displaying the task list for " + user);
-		return runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
+		return bbTasks;
     }
     
 //    /**

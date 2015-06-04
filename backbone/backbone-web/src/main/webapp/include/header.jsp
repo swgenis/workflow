@@ -6,7 +6,9 @@
 	<meta content="user-scalable=no, initial-scale=1.0, maximum-scale=1, height=device-height, width=device-width" name="viewport" />
 	<title>NWU Backbone</title>
 	<!-- link rel="shortcut icon" href="${pageContext.request.contextPath}/css/images/favicon.ico" -->
-	
+	<script>
+		var contextPath = "${pageContext.request.contextPath}";
+	</script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"	type="text/javascript"></script>
 	

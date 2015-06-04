@@ -11,8 +11,13 @@
 	 function($http, $q){
 		return {
 			'_callService' : function(method, url, sendingData, params){
-				var contextPath = "/backbone/rest/"; // TODO get this from application
-				
+				var restPath;
+				if(contextPath === "/" || contextPath === ""){
+					restPath = "/rest/";
+				}
+				else{
+					restPath = contextPath + "/rest/"; // TODO get this from application
+				}
 				var deferred = $q.defer();
 
 				// TODO implement CSRF
@@ -26,7 +31,7 @@
 				
 				$http({
 					'method': method,
-					'url': contextPath + url,
+					'url': restPath + url,
 					'data' : sendingData,
 					'params': params,
 					'headers' : headers

@@ -4,6 +4,8 @@
 <div>
 	<h1>NWU Backbone</h1>
 	<p>Select an option from the navigation menu to start</p>
+	
+	<action-list></action-list>
 </div>
 
 <jsp:include page="../include/footer.jsp"></jsp:include>

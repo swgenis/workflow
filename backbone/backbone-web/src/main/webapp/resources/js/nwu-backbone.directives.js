@@ -55,6 +55,24 @@
 				};
 			}
 		}
+	}])
+	/**
+	 * Directive to show an action list
+	 */
+	.directive("actionList", 
+	["TaskRestService",
+	 function(TaskRestService){
+		return {
+			'restrict': 'E',
+			'scope': { },
+			'templateUrl': '/backbone/html/directives/actionList.html',
+			'link' : function(scope, element, attr){
+				
+				TaskRestService.list().then(function(tasks){
+					scope.tasks = tasks;
+				});
+			}
+		}
 	}]);
 	
 })(angular);

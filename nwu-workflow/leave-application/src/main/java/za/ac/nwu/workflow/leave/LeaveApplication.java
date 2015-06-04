@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import za.ac.nwu.workflow.backbone.Entity;
+import za.ac.nwu.workflow.backbone.task.BackboneTask;
 import za.ac.nwu.workflow.backbone.workflow.service.BackboneState;
 
 /**
@@ -11,7 +12,7 @@ import za.ac.nwu.workflow.backbone.workflow.service.BackboneState;
  * @author SW Genis
  * 
  */
-public class LeaveApplication extends Entity implements Serializable {
+public class LeaveApplication extends Entity implements Serializable, BackboneTask {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,5 +45,10 @@ public class LeaveApplication extends Entity implements Serializable {
     public void setState(BackboneState state) {
 	this.state = state;
     }
+
+	@Override
+	public String getDescription() {
+		return "Leave's description";
+	}
 
 }
