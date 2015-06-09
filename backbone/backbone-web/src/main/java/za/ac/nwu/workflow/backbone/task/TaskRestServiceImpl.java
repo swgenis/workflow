@@ -14,18 +14,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
-import org.jbpm.process.instance.ProcessInstance;
-import org.jbpm.services.api.DeploymentNotFoundException;
 import org.jbpm.services.api.RuntimeDataService;
 import org.jbpm.services.api.UserTaskService;
-import org.jbpm.services.api.model.DeployedUnit;
-import org.jbpm.services.api.model.UserTaskInstanceDesc;
-import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.manager.RuntimeEngine;
-import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
-import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,6 +58,7 @@ public class TaskRestServiceImpl {
 		List<TaskSummary> taskList = runtimeDataService.getTasksAssignedAsPotentialOwner(user, null);
 		List<BackboneTaskSummary> bbTasks = new ArrayList<BackboneTaskSummary>(taskList.size());
 		for(TaskSummary ts : taskList){
+			Deployment deployment = Deployments.get().getForId(ts.getDeploymentId());
 			BackboneTaskSummary bts = new BackboneTaskSummary();
 
 			// Get the variables set when the task was started
@@ -73,7 +66,7 @@ public class TaskRestServiceImpl {
 
 			// Get the specific object that represents the task form
 			Object ob = vars.get("leaveApplication"); // TODO this field name should become fixed for all tasks
-			Deployment deployment = Deployments.get().getForId(ts.getDeploymentId());
+			
 
 			// Find the interpreter that will provide a nicer message about the task
 			try {
@@ -84,6 +77,7 @@ public class TaskRestServiceImpl {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			bts.setViewUrl(String.format(deployment.getUrlView(), Long.toString(ts.getId())));
 			bts.setStatus(ts.getStatus().name());
 			bts.setTaskId(ts.getId());
 			bbTasks.add(bts);

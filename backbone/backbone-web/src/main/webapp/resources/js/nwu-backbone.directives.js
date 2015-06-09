@@ -60,8 +60,8 @@
 	 * Directive to show an action list
 	 */
 	.directive("actionList", 
-	["TaskRestService",
-	 function(TaskRestService){
+	["TaskRestService","$location",
+	 function(TaskRestService, $location){
 		return {
 			'restrict': 'E',
 			'scope': { },
@@ -71,6 +71,13 @@
 				TaskRestService.list().then(function(tasks){
 					scope.tasks = tasks;
 				});
+				
+				/**
+				 * Change the window location to view the selected task.
+				 */
+				scope.viewTask = function(task){
+					window.location = contextPath + task.viewUrl;
+				};
 			}
 		}
 	}]);

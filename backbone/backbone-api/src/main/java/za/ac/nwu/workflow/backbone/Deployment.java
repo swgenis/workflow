@@ -34,6 +34,12 @@ public class Deployment {
      */
     @XmlElement(name = "key")
     private String deploymentKey;
+    
+    /**
+     * URL to view a task created by this deployment
+     */
+    @XmlElement(name = "url-view")
+    private String urlView;
 
     public String getGroupId() {
 	return groupId;
@@ -96,8 +102,14 @@ public class Deployment {
 	public void setInterpreterClass(String interpreterClass) {
 		this.interpreterClass = interpreterClass;
 	}
+
+	public String getUrlView() {
+		return urlView;
+	}
+
+	public void setUrlView(String urlView) {
+		this.urlView = urlView;
+	}
 	
-	
-    
 
 }

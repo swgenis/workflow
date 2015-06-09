@@ -5,12 +5,15 @@
 	 * Controller for leave application
 	 */
 	.controller("LeaveApplicationCtrl", 
-	["$scope", "LeaveRestServices", 
-	function($scope, LeaveRestServices){
+	["$scope","$location", "LeaveRestServices", 
+	function($scope, $location, LeaveRestServices){
 		
 		$scope.leaveEntries = [];
 		$scope.submitFail = false;
 		$scope.submitSuccess = false;
+		
+		var appLid = $location.search().aid;
+		var aaction = $location.search().a;
 		
 		// Get the leave types
 		LeaveRestServices.getLeaveTypes().then(function(leaveTypes){

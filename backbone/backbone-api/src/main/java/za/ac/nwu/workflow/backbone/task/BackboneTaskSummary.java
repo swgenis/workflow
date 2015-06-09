@@ -7,6 +7,8 @@ public class BackboneTaskSummary {
 	private String description;
 	
 	private String status;
+	
+	private String viewUrl;
 
 	public Long getTaskId() {
 		return taskId;
@@ -30,6 +32,14 @@ public class BackboneTaskSummary {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getViewUrl() {
+		return viewUrl;
+	}
+
+	public void setViewUrl(String viewUrl) {
+		this.viewUrl = viewUrl;
 	}
 	
 	
