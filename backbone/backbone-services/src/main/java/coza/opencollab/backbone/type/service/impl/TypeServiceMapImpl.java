@@ -16,11 +16,12 @@ import coza.opencollab.backbone.type.service.TypeService;
 
 /**
  * 
- * This class is a singleton to force the application server not to create more than
- * one instance of the service. A non-map based service should not be a singleton.
+ * This class is a singleton to force the application server not to create more
+ * than one instance of the service. A non-map based service should not be a
+ * singleton.
  * 
  * @author SW Genis
- *
+ * 
  */
 @MapService
 @Singleton
@@ -40,7 +41,7 @@ public class TypeServiceMapImpl implements TypeService {
 		} catch (Exception e) {
 		    throw new RuntimeException("Unable to load initial type information.", e);
 		}
-		
+
 	    }
 	});
     }

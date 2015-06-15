@@ -63,7 +63,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="leaveEntry in leaveEntries" class="ng-cloak">
-						<td>{{leaveEntry.typeKey}}</td>
+						<td>{{leaveEntry.typeKey | typeLabel}}</td>
 						<td>{{leaveEntry.startDate}}</td>
 						<td>{{leaveEntry.endDate}}</td>
 						<td>x (TODO)</td>
@@ -72,7 +72,7 @@
 					<tr>
 						<td>
 							<select class="form-control" id="leavetype" ng-model="newEntry.typeKey">
-								<option ng-repeat="leaveType in leaveTypes" value="{{leaveType.id}}">{{leaveType.description}}</option>
+								<option ng-repeat="leaveType in leaveTypes" value="{{leaveType.key}}">{{leaveType.description}}</option>
 							</select>
 						</td>
 						<td><input type="text" ng-model="newEntry.startDate"/></td>
@@ -109,8 +109,8 @@
 <!-- Include our scripts -->
 <script type="text/javascript">
 	// Pass the Java params to javascript
-	var applicationId = "${applicationId}";
-	var action = "${action}";
+	var applicationId = "<%= request.getParameter("aid") %>";
+	var action = "<%= request.getParameter("a") %>";
 </script>
 <script type="text/javascript" src="/backbone/resources/js/leave/leave-application.app.js"></script>
 <script type="text/javascript" src="/backbone/resources/js/leave/leave.rest.js"></script>

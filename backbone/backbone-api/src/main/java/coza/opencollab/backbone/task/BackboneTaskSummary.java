@@ -9,6 +9,11 @@ public class BackboneTaskSummary {
 	private String status;
 	
 	private String viewUrl;
+	
+	/**
+	 * Data object representing the task
+	 */
+	private Object data;
 
 	public Long getTaskId() {
 		return taskId;
@@ -40,6 +45,14 @@ public class BackboneTaskSummary {
 
 	public void setViewUrl(String viewUrl) {
 		this.viewUrl = viewUrl;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
 	}
 	
 	

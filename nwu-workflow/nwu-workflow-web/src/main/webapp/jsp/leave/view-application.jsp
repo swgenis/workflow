@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-    String applicationId = request.getParameter("aid");
-	String action = request.getParameter("a");
-%>
-
-
 <jsp:include page="../../include/header.jsp"></jsp:include>
 
 <!-- Main content view -->
-<div ng-controller="LeaveApplicationCtrl" style="margin-top: 60px; margin-bottom: 60px">
+<div ng-controller="LeaveViewCtrl" style="margin-top: 60px; margin-bottom: 60px">
 	<h1>HC113 - AANSOEKVORM OM VERLOF</h1>
-	<person-lookup person="person"></person-lookup>
 	<form class="form-horizontal">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">NWU ID</label>
@@ -62,43 +55,31 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="leaveEntry in leaveEntries" class="ng-cloak">
-						<td>{{leaveEntry.typeKey}}</td>
-						<td>{{leaveEntry.startDate}}</td>
-						<td>{{leaveEntry.endDate}}</td>
-						<td>x (TODO)</td>
+					<tr ng-repeat="period in taskSummary.data.leavePeriods" class="ng-cloak">
+						<td>{{period.typeKey | typeLabel}}</td>
+						<td>{{period.startDate | date:'yyyy-MM-dd'}}</td>
+						<td>{{period.endDate | date:'yyyy-MM-dd'}}</td>
+						<td>{{period.startDate |days:period.endDate}}</td>
 						<td>&nbsp;<!-- <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> --></td>
-					<tr>
-					<tr>
-						<td>
-							<select class="form-control" id="leavetype" ng-model="newEntry.typeKey">
-								<option ng-repeat="leaveType in leaveTypes" value="{{leaveType.id}}">{{leaveType.description}}</option>
-							</select>
-						</td>
-						<td><input type="text" ng-model="newEntry.startDate"/></td>
-						<td><input type="text" ng-model="newEntry.endDate"/></td>
-						<td>&nbsp;</td>
-						<td><button class="btn btn-primary btn-sm" type="submit" ng-click="addLeaveRecord()">Add</button></td>
 					<tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="form-group">
+		<div class="form-group" ng-if="taskSummary.data.address">
 			<label for="address" class="col-sm-2 control-label">Adres Tydens Verlof</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" rows="3" id="address"></textarea>
+				<p>{{taskSummary.data.address}}</p>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" ng-if="taskSummary.data.reason">
 			<label for="reason" class="col-sm-2 control-label">Rede</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" rows="3" id="reason"></textarea>
+				<p>{{taskSummary.data.reason}}</p>
 			</div>
 		</div>
 		<div>
-			<div class="alert alert-success" role="alert" ng-if="submitSuccess">Your leave has been submitted</div>
-			<div class="alert alert-info" role="alert" ng-if="submitFail">Failed to submit leave</div>
-			<input class="btn btn-default" type="submit" value="Dien in" ng-click="submitLeave()">
+			<input class="btn btn-default" type="submit" value="Approve" ng-click="approve();">
+			<input class="btn btn-default" type="submit" value="Decline" ng-click="decline();">
 		</div>
 		
 	</form>
@@ -109,10 +90,9 @@
 <!-- Include our scripts -->
 <script type="text/javascript">
 	// Pass the Java params to javascript
-	var applicationId = "${applicationId}";
-	var action = "${action}";
+	var applicationId = "<%= request.getParameter("aid") %>";
 </script>
-<script type="text/javascript" src="/backbone/resources/js/leave/leave-application.app.js"></script>
+<script type="text/javascript" src="/backbone/resources/js/leave/leave-view.app.js"></script>
 <script type="text/javascript" src="/backbone/resources/js/leave/leave.rest.js"></script>
 
 <jsp:include page="../../include/footer.jsp"></jsp:include>

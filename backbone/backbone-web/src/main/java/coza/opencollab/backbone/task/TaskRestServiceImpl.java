@@ -16,6 +16,7 @@ import javax.ws.rs.core.SecurityContext;
 
 import org.jbpm.services.api.RuntimeDataService;
 import org.jbpm.services.api.UserTaskService;
+import org.jbpm.services.api.model.UserTaskInstanceDesc;
 import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
@@ -42,7 +43,7 @@ public class TaskRestServiceImpl {
 
     @Inject
     private WorkflowService workflowService;
-    
+
     @Inject
     private ConfigurationService configurationService;
 
@@ -87,12 +88,47 @@ public class TaskRestServiceImpl {
 	    }
 	    bts.setViewUrl(String.format(deployment.getUrlView(), Long.toString(ts.getId())));
 	    bts.setStatus(ts.getStatus().name());
-	    bts.setTaskId(ts.getId());
+	    bts.setTaskId(ts.getProcessInstanceId());
+	    bts.setData(ob);
 	    bbTasks.add(bts);
 	}
 
 	logger.info("Displaying the task list for " + user);
 	return bbTasks;
+    }
+
+    @GET
+    @Path("/taskSummary/{taskId}")
+    @Produces({ "application/json" })
+    public BackboneTaskSummary taskSummary(@Context SecurityContext context, @PathParam("taskId") Long taskId) {
+
+	UserTaskInstanceDesc ti = runtimeDataService.getTaskById(taskId);
+
+	Deployment deployment = configurationService.getDeployment(ti.getDeploymentId());
+	BackboneTaskSummary bts = new BackboneTaskSummary();
+
+	// Get the variables set when the task was started
+	Map<String, Object> vars = workflowService.getProcessParams(ti.getDeploymentId(), ti.getProcessInstanceId());
+
+	// Get the specific object that represents the task form
+	Object ob = vars.get("leaveApplication"); // TODO this field name should
+						  // become fixed for all tasks
+
+	// Find the interpreter that will provide a nicer message about the task
+	try {
+	    // Instantiate an instance of the interpreter for the task
+	    BackboneTaskInterpreter interpreter = (BackboneTaskInterpreter) Class.forName(
+		    deployment.getInterpreterClass()).newInstance();
+	    bts.setDescription(interpreter.shortDescription(ob, "en"));
+	} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	bts.setViewUrl(String.format(deployment.getUrlView(), Long.toString(ti.getTaskId())));
+	bts.setStatus(ti.getStatus());
+	bts.setTaskId(taskId);
+	bts.setData(ob);
+	return bts;
     }
 
     // /**

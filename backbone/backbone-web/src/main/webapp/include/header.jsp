@@ -9,8 +9,8 @@
 	<script>
 		var contextPath = "${pageContext.request.contextPath}";
 	</script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
-	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"	type="text/javascript"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js" ></script>
+	<script	type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="/backbone/resources/backbone.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/backbone.css">
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,6 +27,9 @@
 	    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	
+	<!-- Additional libraries -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/moment.min.js"></script>
 	
 	<!-- Include our scripts -->
 	<script type="text/javascript" src="/backbone/resources/js/backbone.app.js"></script>
@@ -45,14 +48,14 @@
 		</div>
 		<div class="navbar-collapse collapse no-transition">
 			<ul class="nav navbar-nav">
-				<li><a href="/backbone/jsp/home.jsp"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/home.jsp"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Processes <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="/backbone/jsp/leave/leave.jsp">Leave</a></li>
+						<li><a href="${pageContext.request.contextPath}/jsp/leave/leave.jsp">Leave</a></li>
 					</ul>
 				</li>
-				<li><a href="/backbone/login/logout.jsp"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>
+				<li><a href="${pageContext.request.contextPath}/login/logout.jsp"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>
 			</ul>
 		</div>		
 		<!--/.nav-collapse -->

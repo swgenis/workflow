@@ -25,7 +25,7 @@
 					scope.userdetails = null;
 					scope.error = null;
 					
-					PersonRestService.search(scope.uid)
+					PersonRestService.lookup(scope.uid)
 					.then(
 					// Success handler
 					function(userdetails){
