@@ -2,10 +2,11 @@
 <backbone>
 	<deployments>
 		<deployment>
-			<group>nwu.workflow.backbone</group>
+			<group>nwu.workflow</group>
 			<artifact>leave-application</artifact>
 			<version>1.0-SNAPSHOT</version>
 			<type-source>leave-type.json</type-source>
+			<enable-workflow>true</enable-workflow>
 			<!-- 
 				Because we only have one process per deployment we can map the interpreter directly to the deployment
 				If we start using multiple processes per deployment, this interpreter will have to move down another 
@@ -14,6 +15,11 @@
 			<interpreter>za.ac.nwu.workflow.leave.LeaveTaskInterpreter</interpreter>
 			<!-- URL to view a task related to this process -->
 			<url-view>/jsp/leave/view-application.jsp?aid=%s</url-view>
+		</deployment>
+		<deployment>
+			<group>nwu.workflow</group>
+			<artifact>pay-advice</artifact>
+			<version>1.0-SNAPSHOT</version>
 		</deployment>
 	</deployments>
 </backbone>

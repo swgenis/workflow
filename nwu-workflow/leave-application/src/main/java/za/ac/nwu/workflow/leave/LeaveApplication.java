@@ -3,8 +3,8 @@ package za.ac.nwu.workflow.leave;
 import java.io.Serializable;
 import java.util.List;
 
-import za.ac.nwu.workflow.backbone.Entity;
-import za.ac.nwu.workflow.backbone.workflow.service.BackboneState;
+import coza.opencollab.backbone.Entity;
+import coza.opencollab.backbone.workflow.WorkflowState;
 
 /**
  * 
@@ -19,7 +19,7 @@ public class LeaveApplication extends Entity implements Serializable {
 
     private List<LeavePeriod> leavePeriods;
 
-    private BackboneState state;
+    private WorkflowState state;
 
     public String getApplicantId() {
 	return applicantId;
@@ -37,11 +37,11 @@ public class LeaveApplication extends Entity implements Serializable {
 	this.leavePeriods = leavePeriods;
     }
 
-    public BackboneState getState() {
+    public WorkflowState getState() {
 	return state;
     }
 
-    public void setState(BackboneState state) {
+    public void setState(WorkflowState state) {
 	this.state = state;
     }
 

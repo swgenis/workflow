@@ -2,7 +2,7 @@
 <jsp:include page="../include/header.jsp"></jsp:include>
 
 <div>
-	<h1>NWU Backbone</h1>
+	<h1>Backbone</h1>
 	<p>Select an option from the navigation menu to start</p>
 	
 	<action-list></action-list>

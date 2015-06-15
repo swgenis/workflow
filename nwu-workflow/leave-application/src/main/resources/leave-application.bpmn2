@@ -1,189 +1,257 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn20="http://www.omg.org/bpmn20" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="_SdtTIaSvEeSo-c9jw0XTwA" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
-  <bpmn2:itemDefinition id="ItemDefinition_2" structureRef="za.ac.nwu.workflow.leave.LeaveApplication"/>
-  <bpmn2:itemDefinition id="_ItemDefinition_2406" structureRef="java.lang.String"/>
-  <bpmn2:itemDefinition id="_ItemDefinition_2409" structureRef="java.util.List"/>
-  <bpmn2:itemDefinition id="ItemDefinition_1" structureRef="StringDataType"/>
-  <bpmn2:itemDefinition id="ItemDefinition_3" structureRef="ObjectDataType"/>
-  <bpmn2:itemDefinition id="_ItemDefinition_3139" structureRef="za.ac.nwu.workflow.leave.service.LeaveService"/>
-  <bpmn2:itemDefinition id="ItemDefinition_4" structureRef="LeaveApplication"/>
-  <bpmn2:itemDefinition id="_String" structureRef="String"/>
-  <bpmn2:message id="_Message_12" itemRef="_ItemDefinition_2406" name="LeaveApplication_getApplicantId_Result"/>
-  <bpmn2:message id="_Message_13" itemRef="_ItemDefinition_2406" name="LeaveApplication_setApplicantId_applicantId"/>
-  <bpmn2:message id="_Message_14" itemRef="_ItemDefinition_2409" name="LeaveApplication_getLeavePeriods_Result"/>
-  <bpmn2:message id="_Message_15" itemRef="_ItemDefinition_2409" name="LeaveApplication_setLeavePeriods_leavePeriods"/>
-  <bpmn2:message id="submitLeaveApplication" itemRef="ItemDefinition_2" name="Message 1"/>
-  <bpmn2:interface id="Interface_1" implementationRef="za.ac.nwu.workflow.leave.service.LeaveService" name="za.ac.nwu.workflow.leave.service.LeaveService">
-    <bpmn2:operation id="_Operation_19" name="insertLeaveApplication">
-      <bpmn2:inMessageRef>submitLeaveApplication</bpmn2:inMessageRef>
-    </bpmn2:operation>
-  </bpmn2:interface>
-  <bpmn2:process id="ac.za.nwu.workflow.leave-application" drools:version="1.0" drools:packageName="za.ac.nwu.workflow" drools:adHoc="false" name="leave-application" isExecutable="true">
-    <bpmn2:extensionElements>
-      <drools:import name="za.ac.nwu.workflow.leave.LeaveApplication"/>
-      <drools:import name="java.lang.String"/>
-      <drools:import name="java.util.List"/>
-      <drools:import name="za.ac.nwu.workflow.leave.service.LeaveService"/>
-    </bpmn2:extensionElements>
-    <bpmn2:property id="leaveApplication" itemSubjectRef="ItemDefinition_2"/>
-    <bpmn2:property id="manager" itemSubjectRef="_String"/>
-    <bpmn2:startEvent id="processStartEvent" drools:bgcolor="#9acd32" drools:selectable="true" name="">
-      <bpmn2:outgoing>bpmn20:_8B361E87-3FC3-4739-8668-B4EFBD514D07</bpmn2:outgoing>
-    </bpmn2:startEvent>
-    <bpmn2:userTask id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" drools:selectable="true" drools:scriptFormat="http://www.java.com/java" name="Manager Approval">
-      <bpmn2:incoming>bpmn20:_8B361E87-3FC3-4739-8668-B4EFBD514D07</bpmn2:incoming>
-      <bpmn2:outgoing>bpmn20:SequenceFlow_4</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_SduhQKSvEeSo-c9jw0XTwA">
-        <bpmn2:dataInput id="DataInput_18" name="GroupId"/>
-        <bpmn2:dataInput id="DataInput_58" itemSubjectRef="ItemDefinition_2" name="leaveApplicationIn"/>
-        <bpmn2:dataInput id="DataInput_9" itemSubjectRef="_String" name="manager"/>
-        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="ItemDefinition_2" name="leaveApplicationOut"/>
-        <bpmn2:inputSet id="_SduhQaSvEeSo-c9jw0XTwA">
-          <bpmn2:dataInputRefs>DataInput_18</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>DataInput_58</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>DataInput_9</bpmn2:dataInputRefs>
-        </bpmn2:inputSet>
-        <bpmn2:outputSet id="_SduhQqSvEeSo-c9jw0XTwA">
-          <bpmn2:dataOutputRefs>DataOutput_1</bpmn2:dataOutputRefs>
-        </bpmn2:outputSet>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="DataInputAssociation_18">
-        <bpmn2:targetRef>DataInput_18</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="DataInputAssociation_58">
-        <bpmn2:sourceRef>leaveApplication</bpmn2:sourceRef>
-        <bpmn2:targetRef>DataInput_58</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="DataInputAssociation_9">
-        <bpmn2:sourceRef>manager</bpmn2:sourceRef>
-        <bpmn2:targetRef>DataInput_9</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
-        <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
-        <bpmn2:targetRef>leaveApplication</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-      <bpmn2:potentialOwner id="PotentialOwner_1">
-        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_1">
-          <bpmn2:formalExpression id="FormalExpression_41">#{manager}</bpmn2:formalExpression>
-        </bpmn2:resourceAssignmentExpression>
-      </bpmn2:potentialOwner>
-    </bpmn2:userTask>
-    <bpmn2:sequenceFlow id="_8B361E87-3FC3-4739-8668-B4EFBD514D07" drools:priority="1" drools:bgcolor="#000000" drools:selectable="true" name="" sourceRef="processStartEvent" targetRef="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A"/>
-    <bpmn2:endEvent id="_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9" drools:bgcolor="#ff6347" drools:selectable="true" name="">
-      <bpmn2:incoming>bpmn20:_FBD2681F-004D-4ED9-BF33-C6E0C57D04C1</bpmn2:incoming>
-      <bpmn2:terminateEventDefinition id="_SdvIUKSvEeSo-c9jw0XTwA"/>
-    </bpmn2:endEvent>
-    <bpmn2:scriptTask id="_72FA701E-2C78-4C44-AA5A-50E427DC5083" drools:selectable="true" name="Script" scriptFormat="http://www.java.com/java">
-      <bpmn2:incoming>bpmn20:SequenceFlow_5</bpmn2:incoming>
-      <bpmn2:outgoing>bpmn20:_FBD2681F-004D-4ED9-BF33-C6E0C57D04C1</bpmn2:outgoing>
-      <bpmn2:script>System.out.println(&quot;Leave Application finalised&quot;);</bpmn2:script>
-    </bpmn2:scriptTask>
-    <bpmn2:sequenceFlow id="_FBD2681F-004D-4ED9-BF33-C6E0C57D04C1" drools:priority="1" drools:bgcolor="#000000" drools:selectable="true" name="" sourceRef="_72FA701E-2C78-4C44-AA5A-50E427DC5083" targetRef="_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_4" drools:priority="1" name="" sourceRef="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" targetRef="UserTask_1"/>
-    <bpmn2:userTask id="UserTask_1" drools:selectable="true" drools:scriptFormat="http://www.java.com/java" name="Approval HR">
-      <bpmn2:incoming>bpmn20:SequenceFlow_4</bpmn2:incoming>
-      <bpmn2:outgoing>bpmn20:SequenceFlow_3</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="InputOutputSpecification_1">
-        <bpmn2:dataInput id="DataInput_2" name="GroupId"/>
-        <bpmn2:dataInput id="DataInput_3" itemSubjectRef="ItemDefinition_2" name="leaveApplicationIn"/>
-        <bpmn2:dataOutput id="DataOutput_2" itemSubjectRef="ItemDefinition_2" name="leaveApplicationOut"/>
-        <bpmn2:inputSet id="InputSet_1">
-          <bpmn2:dataInputRefs>DataInput_2</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>DataInput_3</bpmn2:dataInputRefs>
-        </bpmn2:inputSet>
-        <bpmn2:outputSet id="OutputSet_2">
-          <bpmn2:dataOutputRefs>DataOutput_2</bpmn2:dataOutputRefs>
-        </bpmn2:outputSet>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="DataInputAssociation_2">
-        <bpmn2:targetRef>DataInput_2</bpmn2:targetRef>
-        <bpmn2:assignment id="Assignment_1">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">HR</bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2">DataInput_18</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="DataInputAssociation_3">
-        <bpmn2:sourceRef>leaveApplication</bpmn2:sourceRef>
-        <bpmn2:targetRef>DataInput_3</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataOutputAssociation id="DataOutputAssociation_2">
-        <bpmn2:sourceRef>DataOutput_2</bpmn2:sourceRef>
-        <bpmn2:targetRef>leaveApplication</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-    </bpmn2:userTask>
-    <bpmn2:task id="Task_1" drools:taskName="submitLeaveApplication" drools:displayName="Submit Leave Application" drools:icon="task.png" name="Submit Leave Application">
-      <bpmn2:incoming>bpmn20:SequenceFlow_3</bpmn2:incoming>
-      <bpmn2:outgoing>bpmn20:SequenceFlow_5</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_InputOutputSpecification_2">
-        <bpmn2:dataInput id="_DataInput_2" itemSubjectRef="ItemDefinition_2" name="leaveApplicationIn"/>
-        <bpmn2:dataOutput id="DataOutput_3" itemSubjectRef="ItemDefinition_2" name="leaveApplicationOut"/>
-        <bpmn2:inputSet id="_InputSet_3" name="New Input Set">
-          <bpmn2:dataInputRefs>_DataInput_2</bpmn2:dataInputRefs>
-        </bpmn2:inputSet>
-        <bpmn2:outputSet id="OutputSet_3" name="Output Set 3">
-          <bpmn2:dataOutputRefs>DataOutput_3</bpmn2:dataOutputRefs>
-        </bpmn2:outputSet>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_DataInputAssociation_2">
-        <bpmn2:sourceRef>leaveApplication</bpmn2:sourceRef>
-        <bpmn2:targetRef>_DataInput_2</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataOutputAssociation id="DataOutputAssociation_3">
-        <bpmn2:sourceRef>DataOutput_3</bpmn2:sourceRef>
-        <bpmn2:targetRef>leaveApplication</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-    </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_3" drools:priority="1" name="" sourceRef="UserTask_1" targetRef="Task_1"/>
-    <bpmn2:sequenceFlow id="SequenceFlow_5" drools:priority="1" name="" sourceRef="Task_1" targetRef="_72FA701E-2C78-4C44-AA5A-50E427DC5083"/>
-  </bpmn2:process>
-  <bpmndi:BPMNDiagram id="_SdvIUaSvEeSo-c9jw0XTwA" name="leave-application">
-    <bpmndi:BPMNPlane id="_SdvIUqSvEeSo-c9jw0XTwA" bpmnElement="ac.za.nwu.workflow.leave-application">
-      <bpmndi:BPMNShape id="_SdvIU6SvEeSo-c9jw0XTwA" bpmnElement="processStartEvent">
-        <dc:Bounds height="30.0" width="30.0" x="60.0" y="160.0"/>
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="ItemDefinition_4" structureRef="LeaveApplication" />
+  <itemDefinition id="ItemDefinition_3" structureRef="ObjectDataType" />
+  <itemDefinition id="ItemDefinition_2" structureRef="za.ac.nwu.workflow.leave.LeaveApplication" />
+  <itemDefinition id="ItemDefinition_1" structureRef="StringDataType" />
+  <itemDefinition id="_String" structureRef="String" />
+  <itemDefinition id="_ItemDefinition_2406" structureRef="java.lang.String" />
+  <itemDefinition id="_ItemDefinition_3139" structureRef="za.ac.nwu.workflow.leave.service.LeaveService" />
+  <itemDefinition id="_ItemDefinition_2409" structureRef="java.util.List" />
+  <process processType="Private" isExecutable="true" id="ac.za.nwu.workflow.leave-application" name="leave-application" tns:packageName="za.ac.nwu.workflow" tns:version="1.0" >
+
+    <extensionElements>
+     <tns:import name="za.ac.nwu.workflow.leave.LeaveApplication" />
+     <tns:import name="java.lang.String" />
+     <tns:import name="java.util.List" />
+     <tns:import name="za.ac.nwu.workflow.leave.service.LeaveService" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="leaveApplication" itemSubjectRef="ItemDefinition_2"/>
+    <property id="manager" itemSubjectRef="_String"/>
+
+    <!-- nodes -->
+    <startEvent id="processStartEvent" name=""  isInterrupting="true">
+    </startEvent>
+    <userTask id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" name="Manager Approval" >
+      <ioSpecification>
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_leaveApplicationInInput" name="leaveApplicationIn" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_managerInput" name="manager" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CreatedByInput" name="CreatedBy" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CommentInput" name="Comment" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_SkippableInput" name="Skippable" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_LocaleInput" name="Locale" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_TaskNameInput" name="TaskName" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_GroupIdInput" name="GroupId" />
+        <dataInput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_PriorityInput" name="Priority" />
+        <dataOutput id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_leaveApplicationOutOutput" name="leaveApplicationOut" />
+        <inputSet>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_leaveApplicationInInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_managerInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CreatedByInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CommentInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_SkippableInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_LocaleInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_leaveApplicationOutOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>leaveApplication</sourceRef>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_leaveApplicationInInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>manager</sourceRef>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_managerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CreatedByInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CreatedByInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_SkippableInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_SkippableInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_LocaleInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">en-UK</from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_LocaleInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_D3E3ED83-35FC-4403-97BC-D330A64CAD6A_leaveApplicationOutOutput</sourceRef>
+        <targetRef>leaveApplication</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{manager}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9" name="" >
+        <terminateEventDefinition />
+    </endEvent>
+    <scriptTask id="_72FA701E-2C78-4C44-AA5A-50E427DC5083" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Leave Application finalised");</script>
+    </scriptTask>
+    <userTask id="UserTask_1" name="Approval HR" >
+      <ioSpecification>
+        <dataInput id="UserTask_1_leaveApplicationInInput" name="leaveApplicationIn" />
+        <dataInput id="UserTask_1_GroupIdInput" name="GroupId" />
+        <dataInput id="UserTask_1_NodeNameInput" name="NodeName" />
+        <dataOutput id="UserTask_1_leaveApplicationOutOutput" name="leaveApplicationOut" />
+        <inputSet>
+          <dataInputRefs>UserTask_1_leaveApplicationInInput</dataInputRefs>
+          <dataInputRefs>UserTask_1_GroupIdInput</dataInputRefs>
+          <dataInputRefs>UserTask_1_NodeNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>UserTask_1_leaveApplicationOutOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>leaveApplication</sourceRef>
+        <targetRef>UserTask_1_leaveApplicationInInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>UserTask_1_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">UserTask_1_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>UserTask_1_NodeNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Approval HR</from>
+          <to xsi:type="tFormalExpression">UserTask_1_NodeNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>UserTask_1_leaveApplicationOutOutput</sourceRef>
+        <targetRef>leaveApplication</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+    <task id="Task_1" name="Submit Leave Application" tns:taskName="submitLeaveApplication" >
+      <ioSpecification>
+        <dataInput id="Task_1_leaveApplicationInInput" name="leaveApplicationIn" />
+        <dataOutput id="Task_1_leaveApplicationOutOutput" name="leaveApplicationOut" />
+        <inputSet>
+          <dataInputRefs>Task_1_leaveApplicationInInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>Task_1_leaveApplicationOutOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>leaveApplication</sourceRef>
+        <targetRef>Task_1_leaveApplicationInInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>Task_1_leaveApplicationOutOutput</sourceRef>
+        <targetRef>leaveApplication</targetRef>
+      </dataOutputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="processStartEvent-_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" sourceRef="processStartEvent" targetRef="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" />
+    <sequenceFlow id="_72FA701E-2C78-4C44-AA5A-50E427DC5083-_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9" sourceRef="_72FA701E-2C78-4C44-AA5A-50E427DC5083" targetRef="_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9" />
+    <sequenceFlow id="Task_1-_72FA701E-2C78-4C44-AA5A-50E427DC5083" sourceRef="Task_1" targetRef="_72FA701E-2C78-4C44-AA5A-50E427DC5083" />
+    <sequenceFlow id="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A-UserTask_1" sourceRef="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" targetRef="UserTask_1" />
+    <sequenceFlow id="UserTask_1-Task_1" sourceRef="UserTask_1" targetRef="Task_1" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="ac.za.nwu.workflow.leave-application" >
+      <bpmndi:BPMNShape bpmnElement="processStartEvent" >
+        <dc:Bounds x="51" y="151" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_SdvIVKSvEeSo-c9jw0XTwA" bpmnElement="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A">
-        <dc:Bounds height="80.0" width="100.0" x="180.0" y="135.0"/>
+      <bpmndi:BPMNShape bpmnElement="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" >
+        <dc:Bounds x="180" y="135" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_SdvIW6SvEeSo-c9jw0XTwA" bpmnElement="_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9">
-        <dc:Bounds height="28.0" width="28.0" x="820.0" y="161.0"/>
+      <bpmndi:BPMNShape bpmnElement="_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9" >
+        <dc:Bounds x="810" y="151" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_SdvIWKSvEeSo-c9jw0XTwA" bpmnElement="_72FA701E-2C78-4C44-AA5A-50E427DC5083">
-        <dc:Bounds height="80.0" width="100.0" x="660.0" y="136.0"/>
+      <bpmndi:BPMNShape bpmnElement="_72FA701E-2C78-4C44-AA5A-50E427DC5083" >
+        <dc:Bounds x="660" y="136" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_UserTask_1" bpmnElement="UserTask_1">
-        <dc:Bounds height="80.0" width="100.0" x="340.0" y="136.0"/>
+      <bpmndi:BPMNShape bpmnElement="UserTask_1" >
+        <dc:Bounds x="340" y="136" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_Task_1" bpmnElement="Task_1">
-        <dc:Bounds height="76.0" width="136.0" x="480.0" y="137.0"/>
+      <bpmndi:BPMNShape bpmnElement="Task_1" >
+        <dc:Bounds x="480" y="137" width="136" height="76" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_SdvIVaSvEeSo-c9jw0XTwA" bpmnElement="_8B361E87-3FC3-4739-8668-B4EFBD514D07" sourceElement="_SdvIU6SvEeSo-c9jw0XTwA" targetElement="_SdvIVKSvEeSo-c9jw0XTwA">
-        <di:waypoint xsi:type="dc:Point" x="75.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="230.0" y="175.0"/>
+      <bpmndi:BPMNEdge bpmnElement="processStartEvent-_D3E3ED83-35FC-4403-97BC-D330A64CAD6A" >
+        <di:waypoint x="75" y="175" />
+        <di:waypoint x="230" y="175" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="_SdvIWqSvEeSo-c9jw0XTwA" bpmnElement="_FBD2681F-004D-4ED9-BF33-C6E0C57D04C1" sourceElement="_SdvIWKSvEeSo-c9jw0XTwA" targetElement="_SdvIW6SvEeSo-c9jw0XTwA">
-        <di:waypoint xsi:type="dc:Point" x="760.0" y="176.0"/>
-        <di:waypoint xsi:type="dc:Point" x="787.0" y="176.0"/>
-        <di:waypoint xsi:type="dc:Point" x="787.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="820.0" y="175.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_72FA701E-2C78-4C44-AA5A-50E427DC5083-_B93AF186-975E-4E0A-BE6D-1A3EC4D51AE9" >
+        <di:waypoint x="710" y="176" />
+        <di:waypoint x="787" y="176" />
+        <di:waypoint x="787" y="175" />
+        <di:waypoint x="834" y="175" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="_SdvIVKSvEeSo-c9jw0XTwA" targetElement="BPMNShape_UserTask_1">
-        <di:waypoint xsi:type="dc:Point" x="280.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="307.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="307.0" y="176.0"/>
-        <di:waypoint xsi:type="dc:Point" x="340.0" y="176.0"/>
+      <bpmndi:BPMNEdge bpmnElement="Task_1-_72FA701E-2C78-4C44-AA5A-50E427DC5083" >
+        <di:waypoint x="548" y="175" />
+        <di:waypoint x="635" y="175" />
+        <di:waypoint x="635" y="176" />
+        <di:waypoint x="710" y="176" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_UserTask_1" targetElement="BPMNShape_Task_1">
-        <di:waypoint xsi:type="dc:Point" x="440.0" y="176.0"/>
-        <di:waypoint xsi:type="dc:Point" x="458.0" y="176.0"/>
-        <di:waypoint xsi:type="dc:Point" x="458.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="480.0" y="175.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_D3E3ED83-35FC-4403-97BC-D330A64CAD6A-UserTask_1" >
+        <di:waypoint x="230" y="175" />
+        <di:waypoint x="307" y="175" />
+        <di:waypoint x="307" y="176" />
+        <di:waypoint x="390" y="176" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_Task_1" targetElement="_SdvIWKSvEeSo-c9jw0XTwA">
-        <di:waypoint xsi:type="dc:Point" x="616.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="175.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="176.0"/>
-        <di:waypoint xsi:type="dc:Point" x="660.0" y="176.0"/>
+      <bpmndi:BPMNEdge bpmnElement="UserTask_1-Task_1" >
+        <di:waypoint x="390" y="176" />
+        <di:waypoint x="458" y="176" />
+        <di:waypoint x="458" y="175" />
+        <di:waypoint x="548" y="175" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-</bpmn2:definitions>
+
+</definitions>

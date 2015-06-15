@@ -2,7 +2,7 @@ package za.ac.nwu.workflow.person.service.impl;
 
 import org.kuali.rice.kim.api.identity.entity.EntityDefault;
 
-import za.ac.nwu.workflow.backbone.person.Person;
+import coza.opencollab.backbone.person.Person;
 
 public class PersonAssembler {
     

@@ -10,12 +10,12 @@ import org.kuali.rice.kim.api.identity.entity.EntityDefault;
 import org.kuali.rice.par.impl.identity.EmbeddedIdentityServiceImpl;
 import org.kuali.rice.par.impl.identity.repository.PartyRepositoryImpl;
 
-import za.ac.nwu.workflow.WorkflowService;
-import za.ac.nwu.workflow.backbone.person.Person;
-import za.ac.nwu.workflow.backbone.person.service.PersonService;
+import coza.opencollab.backbone.person.Person;
+import coza.opencollab.backbone.person.service.PersonService;
+import za.ac.nwu.workflow.NWUWorkflowService;
 import za.ac.nwu.workflow.backbone.producers.ConfigurationProperty;
 
-@WorkflowService
+@NWUWorkflowService
 public class PersonServiceKimImpl implements PersonService {
 
     private EmbeddedIdentityServiceImpl identityService;
@@ -24,19 +24,19 @@ public class PersonServiceKimImpl implements PersonService {
     private PersonAssembler assembler;
 
     @Inject
-    @ConfigurationProperty(value = "datasource.url")
+    @ConfigurationProperty(value = "kim.datasource.url")
     private String url;
     
     @Inject
-    @ConfigurationProperty(value = "datasource.username")
+    @ConfigurationProperty(value = "kim.datasource.username")
     private String username;
     
     @Inject
-    @ConfigurationProperty(value = "datasource.password")
+    @ConfigurationProperty(value = "kim.datasource.password")
     private String password;
     
     @Inject
-    @ConfigurationProperty(value = "datasource.driverClassName")
+    @ConfigurationProperty(value = "kim.datasource.driverClassName")
     private String driverClassName;
 
     @PostConstruct

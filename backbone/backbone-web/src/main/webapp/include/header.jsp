@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	<meta content="user-scalable=no, initial-scale=1.0, maximum-scale=1, height=device-height, width=device-width" name="viewport" />
-	<title>NWU Backbone</title>
+	<title>Backbone</title>
 	<!-- link rel="shortcut icon" href="${pageContext.request.contextPath}/css/images/favicon.ico" -->
 	<script>
 		var contextPath = "${pageContext.request.contextPath}";
@@ -29,18 +29,18 @@
 	<![endif]-->
 	
 	<!-- Include our scripts -->
-	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.app.js"></script>
-	<script type="text/javascript" src="/backbone/resources/js/nwu-backbone.directives.js"></script>
+	<script type="text/javascript" src="/backbone/resources/js/backbone.app.js"></script>
+	<script type="text/javascript" src="/backbone/resources/js/backbone.directives.js"></script>
 	
 </head>
-<body ng-app="nwu-backbone">
+<body ng-app="backbone">
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" style="padding: 3px 3px 1px 6px;" type="button">
 				<span class="glyphicon glyphicon-th glyphicon-inverse" style="font-size: 1.5em;"></span>
 			</button>
-			<a class="navbar-brand" href="#"><i>NWU Backbone</i>
+			<a class="navbar-brand" href="#"><i>Backbone</i>
 			</a>
 		</div>
 		<div class="navbar-collapse collapse no-transition">
@@ -52,11 +52,11 @@
 						<li><a href="/backbone/jsp/leave/leave.jsp">Leave</a></li>
 					</ul>
 				</li>
-				<li><a href="/backbone/jsp/taskList.jsp"><span class="glyphicon glyphicon-home">&nbsp;</span>Task List</a></li>
+				<li><a href="/backbone/login/logout.jsp"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>
 			</ul>
-		</div>
+		</div>		
 		<!--/.nav-collapse -->
 	</nav>
 	
 	<!-- Main content view -->
-	<div class="container"  style="margin-top: 60px; margin-bottom: 60px">
+	<div class="container"  style="margin-top: 60px; margin-bottom: 60px"></div>

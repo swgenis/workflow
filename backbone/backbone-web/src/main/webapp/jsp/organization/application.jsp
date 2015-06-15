@@ -5,14 +5,14 @@
 	<script type="text/javascript" src="/backbone/resources/js/leave/leave-application.app.js"></script>
 	<script type="text/javascript" src="/backbone/resources/js/leave/leave.rest.js"></script>
 
-<body ng-app="nwu-backbone">
+<body ng-app="backbone">
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" style="padding: 3px 3px 1px 6px;" type="button">
 				<span class="glyphicon glyphicon-th glyphicon-inverse" style="font-size: 1.5em;"></span>
 			</button>
-			<a class="navbar-brand" href="#"><i>NWU Backbone</i>
+			<a class="navbar-brand" href="#"><i>Backbone</i>
 			</a>
 		</div>
 		<div class="navbar-collapse collapse no-transition">
@@ -36,7 +36,7 @@
 		<person-lookup person="person"></person-lookup>
 		<form class="form-horizontal">
 			<div class="form-group">
-				<label class="col-sm-2 control-label">NWU ID</label>
+				<label class="col-sm-2 control-label">ID</label>
 				<div class="col-sm-10">
 					<p class="form-control-static">{{person.id}}</p>
 				</div>

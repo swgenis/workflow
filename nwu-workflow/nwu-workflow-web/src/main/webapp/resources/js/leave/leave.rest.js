@@ -1,6 +1,6 @@
 (function(angular){
 	
-	angular.module("nwu-backbone")
+	angular.module("backbone")
 	
 	/**
 	 * Rest Services for leave application

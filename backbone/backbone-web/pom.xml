@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>nwu.workflow.backbone</groupId>
+		<groupId>coza.opencollab.backbone</groupId>
 		<artifactId>backbone</artifactId>
 		<version>1.0</version>
 	</parent>
@@ -13,17 +13,17 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Backbone Web for NWU workflow apps</name>
+	<name>Backbone Web</name>
 
 	<dependencies>
 
 		<dependency>
-			<groupId>nwu.workflow.backbone</groupId>
+			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>nwu.workflow.backbone</groupId>
+			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-services</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>

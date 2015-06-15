@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>nwu.workflow.backbone</groupId>
+	<groupId>coza.opencollab.backbone</groupId>
 	<artifactId>backbone</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
-	<name>Backbone Modules for NWU workflow apps</name>
+	<name>Backbone Modules</name>
 
 	<modules>
 		<module>backbone-api</module>

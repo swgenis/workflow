@@ -8,8 +8,8 @@
 			<div>
 				<form class="form-inline">
 					<div class="form-group">
-						<label for="nwuid" class="sr-only">NWU ID</label>
-						<input type="text" class="form-control" id="nwuid" placeholder="NWU ID" ng-model="username">
+						<label for="id" class="sr-only">ID</label>
+						<input type="text" class="form-control" id="id" placeholder="ID" ng-model="username">
 					</div>
 					<button type="submit" class="btn btn-default" ng-click="searchTasks()">Search</button>
 				</form>

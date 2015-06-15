@@ -1,5 +1,5 @@
 (function(angular){
-	angular.module("nwu-backbone")
+	angular.module("backbone")
 	
 	/**
 	 * Controller for leave application
