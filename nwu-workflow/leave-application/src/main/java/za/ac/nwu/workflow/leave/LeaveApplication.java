@@ -18,6 +18,11 @@ public class LeaveApplication extends Entity implements Serializable {
     private String applicantId;
 
     private List<LeavePeriod> leavePeriods;
+    
+    /**
+     * Address during leave
+     */
+    private String address;
 
     private BackboneState state;
 

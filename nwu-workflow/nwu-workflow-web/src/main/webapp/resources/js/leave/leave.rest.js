@@ -42,9 +42,10 @@
 			/**
 			 * Get the types of leave a person can take
 			 */
-			'getLeaveTypes' : function(personLookupId){
+			'getLeaveTypes' : function(){
 				return this._callService('GET', 'leave/types.json');
 			}
+			
 		},BackboneRestServiceBase);
 		
 	}]);
