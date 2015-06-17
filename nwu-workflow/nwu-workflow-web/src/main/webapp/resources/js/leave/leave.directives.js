@@ -1,5 +1,5 @@
 (function(angular){
-	angular.module("nwu-backbone")
+	angular.module("backbone")
 	/**
 	 * Filter to show the number of days between 2 dates
 	 */

@@ -3,7 +3,7 @@
 
 <!-- Main content view -->
 <div ng-controller="LeaveViewCtrl" style="margin-top: 60px; margin-bottom: 60px">
-	<h1>HC113 - AANSOEKVORM OM VERLOF</h1>
+	<h1>Leave Application</h1>
 	<form class="form-horizontal">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">NWU ID</label>

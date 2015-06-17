@@ -62,4 +62,4 @@
 	</nav>
 	
 	<!-- Main content view -->
-	<div class="container"  style="margin-top: 60px; margin-bottom: 60px"></div>
+	<div class="container"  style="margin-top: 60px; margin-bottom: 60px">
