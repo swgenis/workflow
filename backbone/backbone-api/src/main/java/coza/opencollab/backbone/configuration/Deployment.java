@@ -3,7 +3,6 @@ package coza.opencollab.backbone.configuration;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * 
@@ -27,27 +26,21 @@ public class Deployment {
 
     @XmlElement(name = "type-source")
     private String typeSourceFile;
+    
+    @XmlElement(name = "url-launch")
+    private String launchUrl;
 
     @XmlElement(name = "enable-workflow")
     private boolean workflowEnabled;
 
     @XmlElement(name = "interpreter")
     private String interpreterClass;
-
-    @XmlTransient
-    private String deploymentId;
-
-    /**
-     * A key that uniquely identifies the deployment
-     */
-    @XmlElement(name = "key")
-    private String deploymentKey;
-
+    
     /**
      * URL to view a task created by this deployment
      */
     @XmlElement(name = "url-view")
-    private String urlView;
+    private String viewOnlyUrl;
 
     public String getGroupId() {
 	return groupId;
@@ -103,19 +96,8 @@ public class Deployment {
      * @return
      */
     public String getDeploymentId() {
-	if (deploymentId == null) {
-	    deploymentId = new StringBuilder().append(groupId).append(":").append(artifactId).append(":")
+	return new StringBuilder().append(groupId).append(":").append(artifactId).append(":")
 		    .append(version).toString();
-	}
-	return deploymentId;
-    }
-
-    public String getDeploymentKey() {
-	return deploymentKey;
-    }
-
-    public void setDeploymentKey(String deploymentKey) {
-	this.deploymentKey = deploymentKey;
     }
 
     public String getInterpreterClass() {
@@ -126,12 +108,12 @@ public class Deployment {
 	this.interpreterClass = interpreterClass;
     }
 
-    public String getUrlView() {
-	return urlView;
+    public String getViewOnlyUrl() {
+	return viewOnlyUrl;
     }
 
-    public void setUrlView(String urlView) {
-	this.urlView = urlView;
+    public void setViewOnlyUrl(String viewOnlyUrl) {
+	this.viewOnlyUrl = viewOnlyUrl;
     }
 
 }

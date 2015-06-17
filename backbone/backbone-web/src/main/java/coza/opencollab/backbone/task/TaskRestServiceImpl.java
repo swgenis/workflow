@@ -70,26 +70,23 @@ public class TaskRestServiceImpl {
 	    Map<String, Object> vars = workflowService
 		    .getProcessParams(ts.getDeploymentId(), ts.getProcessInstanceId());
 
-	    // Get the specific object that represents the task form
-	    Object ob = vars.get("leaveApplication"); // TODO this field name
-						      // should become fixed for
-						      // all tasks
-
 	    // Find the interpreter that will provide a nicer message about the
 	    // task
 	    try {
 		// Instantiate an instance of the interpreter for the task
 		BackboneTaskInterpreter interpreter = (BackboneTaskInterpreter) Class.forName(
 			deployment.getInterpreterClass()).newInstance();
+		// Get the specific object that represents the task form
+		Object ob = interpreter.getFormObject(vars);
 		bts.setDescription(interpreter.shortDescription(ob, "en"));
+		bts.setData(ob);
 	    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
-	    bts.setViewUrl(String.format(deployment.getUrlView(), Long.toString(ts.getId())));
+	    bts.setViewUrl(String.format(deployment.getViewOnlyUrl(), Long.toString(ts.getId())));
 	    bts.setStatus(ts.getStatus().name());
 	    bts.setTaskId(ts.getProcessInstanceId());
-	    bts.setData(ob);
 	    bbTasks.add(bts);
 	}
 
@@ -110,24 +107,22 @@ public class TaskRestServiceImpl {
 	// Get the variables set when the task was started
 	Map<String, Object> vars = workflowService.getProcessParams(ti.getDeploymentId(), ti.getProcessInstanceId());
 
-	// Get the specific object that represents the task form
-	Object ob = vars.get("leaveApplication"); // TODO this field name should
-						  // become fixed for all tasks
-
 	// Find the interpreter that will provide a nicer message about the task
 	try {
 	    // Instantiate an instance of the interpreter for the task
 	    BackboneTaskInterpreter interpreter = (BackboneTaskInterpreter) Class.forName(
 		    deployment.getInterpreterClass()).newInstance();
+	    // Get the specific object that represents the task form
+	    Object ob = interpreter.getFormObject(vars);
 	    bts.setDescription(interpreter.shortDescription(ob, "en"));
+	    bts.setData(ob);
 	} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	bts.setViewUrl(String.format(deployment.getUrlView(), Long.toString(ti.getTaskId())));
+	bts.setViewUrl(String.format(deployment.getViewOnlyUrl(), Long.toString(ti.getTaskId())));
 	bts.setStatus(ti.getStatus());
 	bts.setTaskId(taskId);
-	bts.setData(ob);
 	return bts;
     }
 

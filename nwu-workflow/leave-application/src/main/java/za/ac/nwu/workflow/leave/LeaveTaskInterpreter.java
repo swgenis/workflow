@@ -1,6 +1,7 @@
 package za.ac.nwu.workflow.leave;
 
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -8,6 +9,11 @@ import org.joda.time.Days;
 import coza.opencollab.backbone.task.BackboneTaskInterpreter;
 
 public class LeaveTaskInterpreter implements BackboneTaskInterpreter<LeaveApplication> {
+    
+    @Override
+    public LeaveApplication getFormObject(Map<String, Object> parms) {
+	return (LeaveApplication) parms.get("leaveApplication");
+    }
 
     @Override
     public String shortDescription(LeaveApplication task, String language) {

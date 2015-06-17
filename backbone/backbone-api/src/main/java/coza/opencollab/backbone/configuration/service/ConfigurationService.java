@@ -4,6 +4,11 @@ import java.util.List;
 
 import coza.opencollab.backbone.configuration.Deployment;
 
+/**
+ * 
+ * @author SW Genis
+ *
+ */
 public interface ConfigurationService {
 
     public void register(Deployment deployment);

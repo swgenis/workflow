@@ -6,6 +6,7 @@
 			<artifact>leave-application</artifact>
 			<version>1.0-SNAPSHOT</version>
 			<type-source>leave-type.json</type-source>
+			<url-launch>/jsp/leave/leave.jsp</url-launch>
 			<enable-workflow>true</enable-workflow>
 			<!-- 
 				Because we only have one process per deployment we can map the interpreter directly to the deployment
@@ -20,6 +21,7 @@
 			<group>nwu.workflow</group>
 			<artifact>pay-advice</artifact>
 			<version>1.0-SNAPSHOT</version>
+			<url-launch>/jsp/pay/pay.jsp</url-launch>
 		</deployment>
 	</deployments>
 </backbone>

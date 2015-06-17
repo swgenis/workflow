@@ -1,8 +1,12 @@
 package coza.opencollab.backbone.task;
 
-public interface BackboneTaskInterpreter <T> {
+import java.util.Map;
 
-	public String shortDescription(T task, String language);
-	
-	public String longDescription(T task, String language);
+public interface BackboneTaskInterpreter<T> {
+
+    public T getFormObject(Map<String, Object> parms);
+
+    public String shortDescription(T task, String language);
+
+    public String longDescription(T task, String language);
 }
