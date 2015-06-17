@@ -134,14 +134,24 @@
 	["BackboneRestServiceBase",
 	function(BackboneRestServiceBase){
 		return angular.extend({
-			'getCategories' : function(){
-				return this._callService('GET', 'config/categories/');
+			'getProcesses' : function(){
+				return this._callService('GET', 'config/processes/');
 				
-			},
-			'getDeploymentsByCategory' : function(category){
-				return this._callService('GET', 'config/categories/' + category + '/deployments');
 			}
 		},BackboneRestServiceBase);
+		
+	}])
+	/**
+	 * Controller for the task list
+	 */
+	.controller("ConfigCtrl", 
+	["$scope", "ConfigRestService", 
+	function($scope, ConfigRestService){
+		$scope.processes = null;
+		
+		ConfigRestService.getProcesses().then(function(processes){
+			$scope.processes = processes;
+		});
 		
 	}])
 	/**

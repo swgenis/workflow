@@ -21,4 +21,16 @@
     "category":"orgunitmember.type.category",
     "description":"Staff",
     "active":"true"
+},
+{
+    "key":"process.type.hr", 
+    "category":"process.type.category",
+    "description":"Human Resources",
+    "active":"true"
+},
+{
+    "key":"process.type.it", 
+    "category":"process.type.category",
+    "description":"Information Technology",
+    "active":"true"
 }]

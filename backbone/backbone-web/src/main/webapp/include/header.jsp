@@ -46,13 +46,13 @@
 			<a class="navbar-brand" href="#"><i>Backbone</i>
 			</a>
 		</div>
-		<div class="navbar-collapse collapse no-transition">
+		<div ng-controller="ConfigCtrl" class="navbar-collapse collapse no-transition">
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/jsp/home.jsp"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Processes <b class="caret"></b></a>
+				<li ng-repeat="process in processes" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>{{process.name}}<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/jsp/leave/leave.jsp">Leave</a></li>
+						<li ng-repeat="subProcess in process.subProcesses"><a href="${pageContext.request.contextPath}{{subProcess.url}}">{{subProcess.name}}</a></li>
 					</ul>
 				</li>
 				<li><a href="${pageContext.request.contextPath}/login/logout.jsp"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>

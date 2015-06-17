@@ -9,7 +9,7 @@
 
 <!-- Main content view -->
 <div ng-controller="LeaveApplicationCtrl" style="margin-top: 60px; margin-bottom: 60px">
-	<h1>HC113 - AANSOEKVORM OM VERLOF</h1>
+	<h1>Leave Application</h1>
 	<person-lookup person="person"></person-lookup>
 	<form class="form-horizontal">
 		<div class="form-group">

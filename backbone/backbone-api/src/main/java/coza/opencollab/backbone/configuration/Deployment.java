@@ -11,6 +11,9 @@ import javax.xml.bind.annotation.XmlElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Deployment {
+    
+    @XmlElement(name = "name")
+    private String name;
 
     @XmlElement(name = "group")
     private String groupId;
@@ -40,7 +43,15 @@ public class Deployment {
      * URL to view a task created by this deployment
      */
     @XmlElement(name = "url-view")
-    private String viewOnlyUrl;
+    private String viewOnlyUrl;    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getGroupId() {
 	return groupId;
@@ -80,6 +91,14 @@ public class Deployment {
 
     public void setTypeSourceFile(String typeSourceFile) {
 	this.typeSourceFile = typeSourceFile;
+    }    
+
+    public String getLaunchUrl() {
+        return launchUrl;
+    }
+
+    public void setLaunchUrl(String launchUrl) {
+        this.launchUrl = launchUrl;
     }
 
     public boolean isWorkflowEnabled() {
