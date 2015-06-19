@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.producers;
+package coza.opencollab.backbone.config;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Singleton;
+
+import coza.opencollab.backbone.ConfigurationProperty;
 
 @Singleton
 public class ConfigurationPropertyProducer {

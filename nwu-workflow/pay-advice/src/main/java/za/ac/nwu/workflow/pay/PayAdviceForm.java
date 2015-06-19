@@ -1,7 +1,6 @@
-package za.ac.nwu.workflow.leave;
+package za.ac.nwu.workflow.pay;
 
 import java.io.Serializable;
-import java.util.List;
 
 import coza.opencollab.backbone.Entity;
 import coza.opencollab.backbone.workflow.WorkflowState;
@@ -11,18 +10,11 @@ import coza.opencollab.backbone.workflow.WorkflowState;
  * @author SW Genis
  * 
  */
-public class LeaveApplication extends Entity implements Serializable {
+public class PayAdviceForm extends Entity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private String applicantId;
-
-    private List<LeavePeriod> leavePeriods;
-
-    /**
-     * Address during leave
-     */
-    private String address;
 
     private WorkflowState state;
 
@@ -32,22 +24,6 @@ public class LeaveApplication extends Entity implements Serializable {
 
     public void setApplicantId(String applicantId) {
 	this.applicantId = applicantId;
-    }
-
-    public List<LeavePeriod> getLeavePeriods() {
-	return leavePeriods;
-    }
-
-    public void setLeavePeriods(List<LeavePeriod> leavePeriods) {
-	this.leavePeriods = leavePeriods;
-    }
-
-    public String getAddress() {
-	return address;
-    }
-
-    public void setAddress(String address) {
-	this.address = address;
     }
 
     public WorkflowState getState() {

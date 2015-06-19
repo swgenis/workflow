@@ -3,7 +3,6 @@ package coza.opencollab.backbone.type.service.impl;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,7 +25,6 @@ public class TypeRestServiceImpl implements TypeRestService {
 
     @GET
     @Path("/category/{category}")
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public List<Type> search(@PathParam("category") String category) throws Exception {
 	logger.info("Retrieving types for " + category);
@@ -35,7 +33,6 @@ public class TypeRestServiceImpl implements TypeRestService {
 
     @GET
     @Path("/{key}")
-    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Type getType(@PathParam("key") String key) {
 	logger.info("Retrieving type: " + key);

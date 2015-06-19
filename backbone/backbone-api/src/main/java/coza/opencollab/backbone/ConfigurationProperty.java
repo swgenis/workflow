@@ -1,4 +1,4 @@
-package za.ac.nwu.workflow.backbone.producers;
+package coza.opencollab.backbone;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

@@ -95,10 +95,11 @@
 				<textarea class="form-control" rows="3" id="reason"></textarea>
 			</div>
 		</div>
+		
 		<div>
 			<div class="alert alert-success" role="alert" ng-if="submitSuccess">Your leave has been submitted</div>
-			<div class="alert alert-info" role="alert" ng-if="submitFail">Failed to submit leave</div>
-			<input class="btn btn-default" type="submit" value="Dien in" ng-click="submitLeave()">
+			<div class="alert alert-danger" role="alert" ng-if="submitFail">Failed to submit leave</div>
+			<input class="btn btn-primary" type="submit" value="Submit" ng-click="submitLeave()">
 		</div>
 		
 	</form>

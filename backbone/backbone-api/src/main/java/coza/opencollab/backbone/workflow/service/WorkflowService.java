@@ -20,5 +20,9 @@ public interface WorkflowService {
     public Long startProcess(String deploymentId, String processId, Map<String, Object> params);
     
     public Map<String, Object> getProcessParams(String deploymentId, Long processId);
+    
+    public Map<String, Object> getTaskParams(Long taskId);
+    
+    public void performUserTask(String deploymentId, Long taskId, String user, Map<String, Object> outParams);
 
 }

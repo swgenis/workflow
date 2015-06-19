@@ -12,14 +12,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import org.jbpm.services.api.RuntimeDataService;
-import org.jbpm.services.api.UserTaskService;
-import org.jbpm.services.task.commands.CompleteTaskCommand;
-import org.jbpm.services.task.commands.CompositeCommand;
-import org.jbpm.services.task.commands.StartTaskCommand;
 import org.kie.api.task.model.TaskSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import za.ac.nwu.workflow.leave.LeaveApplication;
+import za.ac.nwu.workflow.leave.LeaveRecord;
+import za.ac.nwu.workflow.leave.service.LeaveService;
+import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
 import coza.opencollab.backbone.Message;
 import coza.opencollab.backbone.organization.OrgUnitMember;
 import coza.opencollab.backbone.organization.service.OrganizationService;
@@ -28,10 +28,6 @@ import coza.opencollab.backbone.type.Type;
 import coza.opencollab.backbone.type.service.TypeService;
 import coza.opencollab.backbone.workflow.WorkflowState;
 import coza.opencollab.backbone.workflow.service.WorkflowService;
-import za.ac.nwu.workflow.leave.LeaveApplication;
-import za.ac.nwu.workflow.leave.LeaveRecord;
-import za.ac.nwu.workflow.leave.service.LeaveService;
-import za.ac.nwu.workflow.leave.service.LeaveServiceConstants;
 
 /**
  * Handles requests for the application home page.
@@ -52,9 +48,6 @@ public class LeaveRestServiceImpl {
     
     @Inject
     private WorkflowService workflowService;
-
-    @Inject
-    private UserTaskService userTaskService;
     
     @Inject
     private RuntimeDataService runtimeDataService;
@@ -139,13 +132,10 @@ public class LeaveRestServiceImpl {
     @Produces({ "application/json" })
     public Message approveLeave(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is approving task " + taskId);
-	Map<String, Object> inParams = userTaskService.getTaskInputContentByTaskId(taskId);
+	Map<String, Object> inParams = workflowService.getTaskParams(taskId);
 	Map<String, Object> outParams = new HashMap<String, Object>();
 	outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
-	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, outParams),
-		new StartTaskCommand(taskId, user));
-	
-	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
+	workflowService.performUserTask(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, taskId, user, outParams);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 
@@ -154,16 +144,13 @@ public class LeaveRestServiceImpl {
     @Produces({ "application/json" })
     public Message denyLeave(@QueryParam("taskId") long taskId, @QueryParam("user") String user) {
 	logger.info("User " + user + " is denying task " + taskId);
-	Map<String, Object> inParams = userTaskService.getTaskInputContentByTaskId(taskId);
+	Map<String, Object> inParams = workflowService.getTaskParams(taskId);
 	LeaveApplication leaveApplication = (LeaveApplication) inParams.get("leaveApplicationIn");
 	leaveApplication.setState(WorkflowState.DENIED);
 	
 	Map<String, Object> outParams = new HashMap<String, Object>();
 	outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
-	CompositeCommand compositeCommand = new CompositeCommand(new CompleteTaskCommand(taskId, user, null),
-		new StartTaskCommand(taskId, user));
-	
-	userTaskService.execute(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, compositeCommand);
+	workflowService.performUserTask(LeaveServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, taskId, user, outParams);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 

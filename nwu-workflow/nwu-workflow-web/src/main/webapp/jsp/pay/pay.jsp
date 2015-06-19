@@ -8,7 +8,7 @@
 <jsp:include page="../../include/header.jsp"></jsp:include>
 
 <!-- Main content view -->
-<div ng-controller="LeaveApplicationCtrl" style="margin-top: 60px; margin-bottom: 60px">
+<div ng-controller="PayAdviceCtrl" style="margin-top: 60px; margin-bottom: 60px">
 	<h1>Pay Advice</h1>
 	<person-lookup person="person"></person-lookup>
 	<form class="form-horizontal">
@@ -47,7 +47,13 @@
 			</div>
 		</div>
 		
-		<hr />
+		<div>
+			<div class="alert alert-success" role="alert" ng-if="submitSuccess">Your leave has been submitted</div>
+			<div class="alert alert-danger" role="alert" ng-if="submitFail">Failed to submit leave</div>
+			<input class="btn btn-primary" type="submit" value="Submit" ng-click="submitLeave()">
+			<input class="btn btn-default" type="submit" value="Email" ng-click="submitLeave()">
+			<input class="btn btn-default" type="submit" value="PDF" ng-click="submitLeave()">
+		</div>
 		
 	</form>
 	

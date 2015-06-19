@@ -5,9 +5,10 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.Specializes;
 import javax.inject.Inject;
 
+import za.ac.nwu.workflow.NWUWorkflowService;
+import coza.opencollab.backbone.ConfigurationProperty;
 import coza.opencollab.backbone.person.service.PersonService;
 import coza.opencollab.backbone.service.ServiceFactory;
-import za.ac.nwu.workflow.NWUWorkflowService;
 
 @ApplicationScoped
 public class NWUWorkflowServiceFactory extends ServiceFactory {
