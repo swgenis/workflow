@@ -12,7 +12,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import za.ac.nwu.workflow.leave.LeaveApplication;
+import com.google.common.collect.ImmutableSet;
+
 import za.ac.nwu.workflow.leave.LeaveRecord;
 import za.ac.nwu.workflow.leave.service.impl.LeaveMockDataLoader;
 import za.ac.nwu.workflow.leave.service.impl.LeaveServiceMapImpl;
@@ -57,6 +58,5 @@ public class LeaveServiceTest {
 
     @Test
     public void testSearchApplication() {
-
     }
 }

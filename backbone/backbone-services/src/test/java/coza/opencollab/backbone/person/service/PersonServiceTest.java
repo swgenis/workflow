@@ -19,11 +19,13 @@ import coza.opencollab.backbone.person.Person;
 import coza.opencollab.backbone.person.service.PersonService;
 import coza.opencollab.backbone.person.service.impl.PersonMockDataLoader;
 import coza.opencollab.backbone.person.service.impl.PersonServiceMapImpl;
+import coza.opencollab.backbone.qualifiers.MapService;
 
 @RunWith(Arquillian.class)
 public class PersonServiceTest {
 
     @Inject
+    @MapService
     private PersonService personService;
 
     @Deployment

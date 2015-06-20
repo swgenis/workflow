@@ -1,0 +1,160 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>nwu.workflow</groupId>
+	<artifactId>nwu-workflow</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>NWU PGSMS project</name>
+
+	<modules>
+		<module>pgsms-web</module>
+		<module>pgsms-applications</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<backbone.version>1.0</backbone.version>
+		
+		<!-- Build settings -->
+		<maven.min.version>3.0.4</maven.min.version>
+		<project.jdk.min.version>1.7</project.jdk.min.version>
+		<project.jdk.source.version>1.7</project.jdk.source.version>
+		<project.jdk.target.version>1.7</project.jdk.target.version>
+
+		<!-- Java -->
+		<javax.j2ee.version>7.0</javax.j2ee.version>
+
+		<!-- 3rd party libs -->
+		<jbpm.version>6.2.0.Final</jbpm.version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.slf4j-version>1.7.2</org.slf4j-version>
+		<log4j.version>1.2.16</log4j.version>
+		<jackson.version>2.2.2</jackson.version>
+
+		<!-- Test Libs -->
+		<junit.version>4.7</junit.version>
+		<arquillian.version>1.1.0.Final</arquillian.version>
+
+		<!-- jboss deploy -->
+		<jboss.deploy.hostname>localhost</jboss.deploy.hostname>
+		<jboss.deploy.port>9999</jboss.deploy.port>
+		<jboss.deploy.username></jboss.deploy.username>
+		<jboss.deploy.password></jboss.deploy.password>
+		<jboss.deploy.domain.server-group></jboss.deploy.domain.server-group>
+		<version.jboss.maven.plugin>7.5.Final</version.jboss.maven.plugin>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-api</artifactId>
+				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-services</artifactId>
+				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-web</artifactId>
+				<version>${backbone.version}</version>
+				<type>war</type>
+			</dependency>
+
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javax.j2ee.version}</version>
+			</dependency>
+
+			<!-- JBoss dependencies -->
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-services-api</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+
+			<!-- Logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j-version}</version>
+			</dependency>
+
+			<!-- Test dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.junit</groupId>
+				<artifactId>arquillian-junit-container</artifactId>
+				<version>${arquillian.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.protocol</groupId>
+				<artifactId>arquillian-protocol-servlet</artifactId>
+				<version>${arquillian.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.container</groupId>
+				<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+				<version>1.0.0.CR3</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.weld</groupId>
+				<artifactId>weld-core</artifactId>
+				<version>1.1.5.Final</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jboss.as.plugins</groupId>
+					<artifactId>jboss-as-maven-plugin</artifactId>
+					<version>${version.jboss.maven.plugin}</version>
+					<configuration>
+						<hostname>${jboss.deploy.hostname}</hostname>
+						<port>${jboss.deploy.port}</port>
+						<username>${jboss.deploy.username}</username>
+						<password>${jboss.deploy.password}</password>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${project.jdk.min.version}</source>
+					<target>${project.jdk.min.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

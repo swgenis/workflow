@@ -27,14 +27,17 @@ import coza.opencollab.backbone.authorization.service.AuthorizationService;
 import coza.opencollab.backbone.organization.Group;
 import coza.opencollab.backbone.organization.service.OrganizationService;
 import coza.opencollab.backbone.qualifiers.BackboneQualifier;
+import coza.opencollab.backbone.qualifiers.MapService;
 
 @BackboneQualifier
 public class BackboneUserGroupCallback implements UserGroupCallback {
 
     @Inject
+    @MapService
     private AuthorizationService authorizationService;
     
     @Inject
+    @MapService
     private OrganizationService organizationService;
 
     public boolean existsUser(String userId) {

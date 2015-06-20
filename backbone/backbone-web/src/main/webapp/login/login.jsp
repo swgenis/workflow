@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../include/header.jsp"></jsp:include>
-
 
 <form class="form-signin" role="form" style="max-width: 400px; margin: auto" action='j_security_check' method='post'>
   
@@ -10,6 +8,3 @@
 	<p>(Use name "me" and password "me".)</p>
 	<button class="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
 </form>
-
-
-<jsp:include page="../include/footer.jsp"></jsp:include>

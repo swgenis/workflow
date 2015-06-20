@@ -10,9 +10,7 @@
 	</parent>
 
 	<artifactId>backbone-web</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-
 	<name>Backbone Web</name>
 
 	<dependencies>
@@ -20,12 +18,10 @@
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-api</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-services</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- jBPM 6 dependencies -->

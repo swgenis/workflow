@@ -30,7 +30,7 @@ import coza.opencollab.backbone.qualifiers.MapService;
 
 @MapService
 @Singleton
-public class MessageServiceImpl implements MessageService {
+public class MessageServiceMapImpl implements MessageService {
 
     @Override
     public MessageTemplate getMessageTemplate(String templateId) {

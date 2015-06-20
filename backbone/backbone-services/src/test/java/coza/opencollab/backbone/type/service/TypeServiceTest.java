@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import coza.opencollab.backbone.organization.service.OrganizationServiceConstants;
+import coza.opencollab.backbone.qualifiers.MapService;
 import coza.opencollab.backbone.type.Type;
 import coza.opencollab.backbone.type.service.TypeService;
 import coza.opencollab.backbone.type.service.impl.TypeServiceMapImpl;
@@ -23,6 +24,7 @@ import coza.opencollab.backbone.type.service.impl.TypeServiceMapImpl;
 public class TypeServiceTest {
 
     @Inject
+    @MapService
     private TypeService typeService;
 
     @Deployment

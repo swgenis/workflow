@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>nwu.workflow</groupId>
-	<artifactId>nwu-workflow</artifactId>
+	<groupId>za.ac.nwu.shawa</groupId>
+	<artifactId>shawa</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
@@ -14,15 +14,16 @@
 		<module>leave-application</module>
 		<module>pay-advice</module>
 	</modules>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<backbone.version>1.0</backbone.version>
+		
 		<!-- Build settings -->
 		<maven.min.version>3.0.4</maven.min.version>
 		<project.jdk.min.version>1.7</project.jdk.min.version>
 		<project.jdk.source.version>1.7</project.jdk.source.version>
 		<project.jdk.target.version>1.7</project.jdk.target.version>
-
 
 		<!-- Java -->
 		<javax.j2ee.version>7.0</javax.j2ee.version>
@@ -49,10 +50,35 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-api</artifactId>
+				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-services</artifactId>
+				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-web</artifactId>
+				<version>${backbone.version}</version>
+				<type>war</type>
+			</dependency>
+
 			<dependency>
 				<groupId>javax</groupId>
 				<artifactId>javaee-api</artifactId>
 				<version>${javax.j2ee.version}</version>
+			</dependency>
+
+			<!-- JBoss dependencies -->
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-services-api</artifactId>
+				<version>${jbpm.version}</version>
 			</dependency>
 
 			<!-- Logging -->

@@ -1,0 +1,54 @@
+[{
+	"key":"leave.type.annual", 
+    "category":"leave.type.category",
+    "description":"Annual",
+    "active":"true"
+},
+{
+    "key":"leave.type.accumulated", 
+    "category":"leave.type.category",
+    "description":"Accumulated",
+    "active":"true"
+},
+{
+    "key":"leave.type.familyResponsibility", 
+    "category":"leave.type.category",
+    "description":"Family Responsibility",
+    "active":"true"
+},
+{
+    "key":"leave.type.sick", 
+    "category":"leave.type.category",
+    "description":"Sick",
+    "active":"true"
+},
+{
+    "key":"leave.type.injuryOnDuty", 
+    "category":"leave.type.category",
+    "description":"Injury on Duty",
+    "active":"true"
+},
+{
+    "key":"leave.type.study", 
+    "category":"leave.type.category",
+    "description":"Study",
+    "active":"true"
+},
+{
+    "key":"leave.type.maternity", 
+    "category":"leave.type.category",
+    "description":"Maternity",
+    "active":"true"
+},
+{
+    "key":"leave.type.unpaid", 
+    "category":"leave.type.category",
+    "description":"Unpaid",
+    "active":"true"
+},
+{
+    "key":"leave.type.special", 
+    "category":"leave.type.category",
+    "description":"Special",
+    "active":"true"
+}]
