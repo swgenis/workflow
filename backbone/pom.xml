@@ -11,13 +11,15 @@
 
 	<modules>
 		<module>backbone-api</module>
+		<module>backbone-identity</module>
+		<module>backbone-organization</module>
 		<module>backbone-services</module>
 		<module>backbone-web</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<backbone.version>1.0-SNAPSHOT</backbone.version>
+		<backbone.version>1.0</backbone.version>
 
 		<!-- Build settings -->
 		<maven.min.version>3.0.4</maven.min.version>
@@ -65,6 +67,16 @@
 			<dependency>
 				<groupId>coza.opencollab.backbone</groupId>
 				<artifactId>backbone-api</artifactId>
+				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-identity</artifactId>
+				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-organization</artifactId>
 				<version>${backbone.version}</version>
 			</dependency>
 			<dependency>

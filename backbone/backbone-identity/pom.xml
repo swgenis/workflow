@@ -9,7 +9,8 @@
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>backbone-services</artifactId>
+	<artifactId>backbone-identity</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>Backbone Services</name>
@@ -19,14 +20,6 @@
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>coza.opencollab.backbone</groupId>
-			<artifactId>backbone-identity</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>coza.opencollab.backbone</groupId>
-			<artifactId>backbone-organization</artifactId>
 		</dependency>
 
 		<!-- Java ee -->
