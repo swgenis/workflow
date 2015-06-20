@@ -17,6 +17,10 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.kzac</groupId>
+			<artifactId>kzac-api</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-api</artifactId>
 		</dependency>

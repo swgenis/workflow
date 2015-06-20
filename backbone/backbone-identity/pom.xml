@@ -10,13 +10,16 @@
 	</parent>
 
 	<artifactId>backbone-identity</artifactId>
-	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>Backbone Services</name>
+	<name>Backbone Identity</name>
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.kzac</groupId>
+			<artifactId>kzac-api</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-api</artifactId>

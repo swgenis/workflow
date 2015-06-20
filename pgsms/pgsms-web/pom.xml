@@ -4,15 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>nwu.workflow</groupId>
-		<artifactId>nwu-workflow</artifactId>
+		<groupId>za.ac.nwu.pgsms</groupId>
+		<artifactId>pgsms</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>nwu-workflow-web</artifactId>
+	<artifactId>pgsms-web</artifactId>
 	<packaging>war</packaging>
 
-	<name>NWU workflow web app</name>
+	<name>NWU PGSMS web app</name>
 
 	<dependencies>
 

@@ -2,26 +2,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>coza.opencollab.backbone</groupId>
-	<artifactId>backbone</artifactId>
+	<groupId>org.kzac</groupId>
+	<artifactId>kzac</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
-	<name>Backbone Modules</name>
+	<name>Kuali South Africa Community</name>
 
 	<modules>
-		<module>backbone-api</module>
-		<module>backbone-identity</module>
-		<module>backbone-organization</module>
-		<module>backbone-services</module>
-		<module>backbone-web</module>
+		<module>kzac-api</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<!-- Main versions -->
-		<kzac.version>1.0</kzac.version>
 		<backbone.version>1.0</backbone.version>
 
 		<!-- Build settings -->
@@ -44,14 +37,6 @@
 		<junit.version>4.7</junit.version>
 		<arquillian.version>1.1.0.Final</arquillian.version>
 
-		<!-- jboss deploy -->
-		<jboss.deploy.hostname>localhost</jboss.deploy.hostname>
-		<jboss.deploy.port>9999</jboss.deploy.port>
-		<jboss.deploy.username></jboss.deploy.username>
-		<jboss.deploy.password></jboss.deploy.password>
-		<jboss.deploy.domain.server-group></jboss.deploy.domain.server-group>
-		<version.jboss.maven.plugin>7.5.Final</version.jboss.maven.plugin>
-
 		<!-- plugin versions -->
 		<plugin.enforcer.version>1.3.1</plugin.enforcer.version>
 		<plugin.clean.version>2.6.1</plugin.clean.version>
@@ -66,31 +51,10 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
-			<dependency>
-				<groupId>org.kzac</groupId>
-				<artifactId>kzac-api</artifactId>
-				<version>${kzac.version}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>coza.opencollab.backbone</groupId>
 				<artifactId>backbone-api</artifactId>
-				<version>${backbone.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>coza.opencollab.backbone</groupId>
-				<artifactId>backbone-identity</artifactId>
-				<version>${backbone.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>coza.opencollab.backbone</groupId>
-				<artifactId>backbone-organization</artifactId>
-				<version>${backbone.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>coza.opencollab.backbone</groupId>
-				<artifactId>backbone-services</artifactId>
 				<version>${backbone.version}</version>
 			</dependency>
 
@@ -104,54 +68,6 @@
 				<groupId>javax</groupId>
 				<artifactId>javaee-api</artifactId>
 				<version>${javax.j2ee.version}</version>
-			</dependency>
-
-			<!-- JBoss dependencies -->
-			<dependency>
-				<groupId>org.jbpm</groupId>
-				<artifactId>jbpm-bom</artifactId>
-				<version>${jbpm.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-
-			<!-- Logging -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${org.slf4j-version}</version>
-			</dependency>
-
-			<!-- Test dependencies -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.junit</groupId>
-				<artifactId>arquillian-junit-container</artifactId>
-				<version>${arquillian.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.protocol</groupId>
-				<artifactId>arquillian-protocol-servlet</artifactId>
-				<version>${arquillian.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.container</groupId>
-				<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-				<version>1.0.0.CR3</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.weld</groupId>
-				<artifactId>weld-core</artifactId>
-				<version>1.1.5.Final</version>
-				<scope>test</scope>
 			</dependency>
 
 		</dependencies>

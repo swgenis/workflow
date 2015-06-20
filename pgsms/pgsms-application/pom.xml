@@ -5,15 +5,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>nwu.workflow</groupId>
-		<artifactId>nwu-workflow</artifactId>
+		<groupId>za.ac.nwu.pgsms</groupId>
+		<artifactId>pgsms</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>pay-advice</artifactId>
+	<artifactId>pgsms-applications</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Pay Advice Artifact</name>
+	<name>PGSMS Application</name>
 
 	<dependencies>
 		<dependency>
