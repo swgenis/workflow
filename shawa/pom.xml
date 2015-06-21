@@ -65,6 +65,11 @@
 				<groupId>coza.opencollab.backbone</groupId>
 				<artifactId>backbone-web</artifactId>
 				<version>${backbone.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>coza.opencollab.backbone</groupId>
+				<artifactId>backbone-web</artifactId>
+				<version>${backbone.version}</version>
 				<type>war</type>
 			</dependency>
 

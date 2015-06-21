@@ -5,7 +5,7 @@
 			<name>Leave Applications</name>
 			<group>nwu.workflow</group>
 			<artifact>leave-application</artifact>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 			<type-source>leave-type.json</type-source>
 			<category>process.type.hr</category>
 			<url-launch>/jsp/leave/leave.jsp</url-launch>
@@ -23,7 +23,7 @@
 			<name>Pay Advice</name>
 			<group>nwu.workflow</group>
 			<artifact>pay-advice</artifact>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 			<category>process.type.hr</category>
 			<url-launch>/jsp/pay/pay.jsp</url-launch>
 		</deployment>

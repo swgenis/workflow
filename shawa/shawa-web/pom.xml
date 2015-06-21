@@ -28,6 +28,10 @@
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>coza.opencollab.backbone</groupId>
+			<artifactId>backbone-web</artifactId>
 			<type>war</type>
 		</dependency>
 		

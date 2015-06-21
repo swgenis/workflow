@@ -10,12 +10,12 @@ import org.kuali.rice.kim.api.identity.entity.EntityDefault;
 import org.kuali.rice.par.impl.identity.EmbeddedIdentityServiceImpl;
 import org.kuali.rice.par.impl.identity.repository.PartyRepositoryImpl;
 
-import za.ac.nwu.workflow.NWUWorkflowService;
+import za.ac.nwu.workflow.ShawaService;
 import coza.opencollab.backbone.ConfigurationProperty;
 import coza.opencollab.backbone.person.Person;
 import coza.opencollab.backbone.person.service.PersonService;
 
-@NWUWorkflowService
+@ShawaService
 public class PersonServiceKimImpl implements PersonService {
 
     private EmbeddedIdentityServiceImpl identityService;
