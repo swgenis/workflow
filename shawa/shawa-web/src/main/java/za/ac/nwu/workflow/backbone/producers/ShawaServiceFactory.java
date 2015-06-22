@@ -1,5 +1,6 @@
 package za.ac.nwu.workflow.backbone.producers;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.Specializes;
@@ -7,11 +8,11 @@ import javax.inject.Inject;
 
 import za.ac.nwu.workflow.ShawaService;
 import coza.opencollab.backbone.ConfigurationProperty;
+import coza.opencollab.backbone.ServiceFactory;
 import coza.opencollab.backbone.person.service.PersonService;
-import coza.opencollab.backbone.service.ServiceFactory;
 
 @ApplicationScoped
-public class ShawaBackboneServiceFactory extends ServiceFactory {
+public class ShawaServiceFactory extends ServiceFactory {
 
     @Inject
     @ConfigurationProperty(value = "backbone.mode")
@@ -20,6 +21,10 @@ public class ShawaBackboneServiceFactory extends ServiceFactory {
     @Inject
     @ShawaService 
     PersonService workflowPersonService;
+    
+    @PostConstruct
+    public void init() {
+    }
 
     @Produces
     @Specializes

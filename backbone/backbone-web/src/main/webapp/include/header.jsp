@@ -44,8 +44,8 @@
 
 <!-- Include our scripts -->
 <script type="text/javascript"
-	src="/backbone/resources/js/backbone.app.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/backbone.app.js"></script>
 <script type="text/javascript"
-	src="/backbone/resources/js/backbone.directives.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/backbone.directives.js"></script>
 
 </head>

@@ -12,7 +12,7 @@
 	<artifactId>shawa-web</artifactId>
 	<packaging>war</packaging>
 
-	<name>NWU workflow web app</name>
+	<name>NWU Shawa web app</name>
 
 	<dependencies>
 
@@ -28,23 +28,19 @@
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>coza.opencollab.backbone</groupId>
-			<artifactId>backbone-web</artifactId>
 			<type>war</type>
 		</dependency>
 		
 		<!-- Workflow dependencies -->
 		<dependency>
-			<groupId>nwu.workflow</groupId>
+			<groupId>za.ac.nwu.shawa</groupId>
 			<artifactId>leave-application</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>nwu.workflow</groupId>
+			<groupId>za.ac.nwu.shawa</groupId>
 			<artifactId>pay-advice</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 
 		<!-- Java ee -->
@@ -69,7 +65,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>nwu-workflow</finalName>
+		<finalName>shawa</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

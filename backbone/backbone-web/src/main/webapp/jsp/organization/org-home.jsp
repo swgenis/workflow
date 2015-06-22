@@ -5,9 +5,9 @@
 <html>
 <jsp:include page="/include/header.jsp"></jsp:include>
 <script type="text/javascript"
-	src="/backbone/resources/js/organization/organization.app.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/organization/organization.app.js"></script>
 <script type="text/javascript"
-	src="/backbone/resources/js/organization/organization.rest.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/organization/organization.rest.js"></script>
 <jsp:include page="/include/navbar.jsp"></jsp:include>
 
 <body ng-app="backbone">
@@ -18,7 +18,7 @@
 		<h1>Organizational Management</h1>
 
 		<div class="list-group">
-			<a href="/backbone/jsp/org/search-org.jsp" class="list-group-item">
+			<a href=""${pageContext.request.contextPath}/jsp/org/search-org.jsp" class="list-group-item">
 				<h4 class="list-group-item-heading">Search</h4>
 				<p class="list-group-item-text">Click here to search for
 					Organizational Units.</p>

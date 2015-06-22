@@ -7,10 +7,10 @@
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
-	<name>NWU workflow project</name>
+	<name>NWU Shawa project</name>
 
 	<modules>
-		<module>nwu-workflow-web</module>
+		<module>shawa-web</module>
 		<module>leave-application</module>
 		<module>pay-advice</module>
 	</modules>
@@ -59,11 +59,6 @@
 			<dependency>
 				<groupId>coza.opencollab.backbone</groupId>
 				<artifactId>backbone-services</artifactId>
-				<version>${backbone.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>coza.opencollab.backbone</groupId>
-				<artifactId>backbone-web</artifactId>
 				<version>${backbone.version}</version>
 			</dependency>
 			<dependency>

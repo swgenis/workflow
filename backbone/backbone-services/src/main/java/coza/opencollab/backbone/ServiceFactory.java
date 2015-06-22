@@ -1,4 +1,4 @@
-package coza.opencollab.backbone.service;
+package coza.opencollab.backbone;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

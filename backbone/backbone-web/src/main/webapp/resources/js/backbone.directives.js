@@ -11,7 +11,7 @@
 			'scope': {
 				'person': "=person"
 			},
-			'templateUrl': '/backbone/html/directives/personLookup.html',
+			'templateUrl': contextPath + '/html/directives/personLookup.html',
 			'link' : function(scope, element, attr){
 				scope.data = null;
 				scope.error = null;
@@ -65,7 +65,7 @@
 		return {
 			'restrict': 'E',
 			'scope': { },
-			'templateUrl': '/backbone/html/directives/actionList.html',
+			'templateUrl': contextPath + '/html/directives/actionList.html',
 			'link' : function(scope, element, attr){
 				
 				TaskRestService.list().then(function(tasks){
@@ -78,6 +78,25 @@
 				scope.viewTask = function(task){
 					window.location = contextPath + task.viewUrl;
 				};
+			}
+		}
+	}])
+	/**
+	 * Directive to show an action list
+	 */
+	.directive("userInfo", 
+	["ConfigRestService","$location",
+	 function(ConfigRestService, $location){
+		return {
+			'restrict': 'E',
+			'scope': { },
+			'templateUrl': contextPath + '/html/directives/personInfo.html',
+			'link' : function(scope, element, attr){
+				
+				ConfigRestService.getPrincipal().then(function(principal){
+					scope.principal = principal;
+				});
+
 			}
 		}
 	}]);

@@ -19,7 +19,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<!-- Main versions -->
 		<kzac.version>1.0</kzac.version>
 		<backbone.version>1.0</backbone.version>
@@ -66,7 +66,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<dependency>
 				<groupId>org.kzac</groupId>
 				<artifactId>kzac-api</artifactId>
@@ -246,7 +246,8 @@
 								</requireJavaVersion>
 								<requirePluginVersions>
 									<message>
-										Build reproducibility: It is a best practice to explicitly specify
+										Build reproducibility: It is a best practice to
+										explicitly specify
 										plugin versions!
 									</message>
 								</requirePluginVersions>

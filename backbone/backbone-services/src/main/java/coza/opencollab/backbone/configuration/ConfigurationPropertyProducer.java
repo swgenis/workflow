@@ -1,4 +1,4 @@
-package coza.opencollab.backbone.config;
+package coza.opencollab.backbone.configuration;
 
 import java.io.IOException;
 import java.io.InputStream;

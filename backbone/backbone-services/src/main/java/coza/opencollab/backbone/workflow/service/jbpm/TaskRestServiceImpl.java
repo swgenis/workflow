@@ -1,4 +1,4 @@
-package coza.opencollab.backbone.task;
+package coza.opencollab.backbone.workflow.service.jbpm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +25,8 @@ import org.slf4j.LoggerFactory;
 import coza.opencollab.backbone.Message;
 import coza.opencollab.backbone.configuration.Deployment;
 import coza.opencollab.backbone.configuration.service.ConfigurationService;
+import coza.opencollab.backbone.task.BackboneTaskInterpreter;
+import coza.opencollab.backbone.task.BackboneTaskSummary;
 import coza.opencollab.backbone.workflow.service.WorkflowService;
 
 /**
