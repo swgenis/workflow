@@ -31,13 +31,12 @@ import org.jbpm.services.api.model.DeploymentUnit;
 import org.jbpm.services.cdi.Kjar;
 import org.kie.internal.runtime.cdi.BootOnLoad;
 
+import coza.opencollab.backbone.configuration.Application;
 import coza.opencollab.backbone.configuration.Backbone;
 import coza.opencollab.backbone.configuration.Deployment;
 import coza.opencollab.backbone.configuration.service.ConfigurationService;
-import coza.opencollab.backbone.data.DataLoaderCallback;
 import coza.opencollab.backbone.data.JsonDataLoader;
 import coza.opencollab.backbone.type.Type;
-import coza.opencollab.backbone.type.service.TypeService;
 
 /**
  * 
@@ -53,11 +52,9 @@ public class StartupBean {
     DeploymentService deploymentService;
 
     @Inject
-    private TypeService typeService;
-    
-    @Inject 
     private ConfigurationService configurationService;
 
+    @Inject
     private JsonDataLoader<Type> typeDataLoader;
 
     @PostConstruct
@@ -72,54 +69,43 @@ public class StartupBean {
 	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 	    Backbone backbone = (Backbone) jaxbUnmarshaller.unmarshal(is);
 
-	    // Deploy.
-	    for (Deployment deployment : backbone.getDeployments()) {
+	    registerApplications(backbone);
 
-		// Deploy the deployment unit if workflow is enabled.
-		if(deployment.isWorkflowEnabled()){		    
-		    DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(deployment.getGroupId(),
-			    deployment.getArtifactId(), deployment.getVersion());
-		    deploymentService.deploy(deploymentUnit);
-		}
+	    registerDeployments(backbone);
 
-		// Load types from source file.
-		if (deployment.getTypeSourceFile() != null) {
-		    try {
-			getTypeDataLoader().loadData(deployment.getTypeSourceFile());
-		    } catch (Exception e) {
-			throw new RuntimeException("Unable to load types for source file "
-				+ deployment.getTypeSourceFile(), e);
-		    }
-		}
-
-		configurationService.register(deployment);
-
-	    }
+	    // Load default Backbone types
+	    typeDataLoader.loadData("type.json");
 
 	} catch (JAXBException e) {
-	    e.printStackTrace();
+	    throw new RuntimeException("Unable to initialize backbone", e);
 	}
 
     }
 
-    private JsonDataLoader<Type> getTypeDataLoader() {
-	if (typeDataLoader == null) {
-	    typeDataLoader = new JsonDataLoader<Type>(Type.class);
-	    typeDataLoader.setCallback(new DataLoaderCallback<Type>() {
+    private void registerApplications(Backbone backbone) {
+	for (Application application : backbone.getApplications()) {
 
-		@Override
-		public void loadElement(Type t) {
-		    try {
-			typeService.insertType(t);
-		    } catch (Exception e) {
-			throw new RuntimeException("Unable to load types for sub deployment.", e);
-		    }
+	    // Load types from source file.
+	    if (application.getTypeSourceFile() != null) {
+		typeDataLoader.loadData(application.getTypeSourceFile());
+	    }
 
-		}
-	    });
+	    configurationService.register(application);
 
 	}
-	return typeDataLoader;
+    }
+
+    private void registerDeployments(Backbone backbone) {
+	for (Deployment deployment : backbone.getDeployments()) {
+
+	    // Deploy the deployment unit if workflow is enabled.
+	    DeploymentUnit deploymentUnit = new KModuleDeploymentUnit(deployment.getGroupId(),
+		    deployment.getArtifactId(), deployment.getVersion());
+	    deploymentService.deploy(deploymentUnit);
+
+	    configurationService.register(deployment);
+
+	}
     }
 
 }

@@ -1,30 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
+<html>
+<jsp:include page="/include/header.jsp"></jsp:include>
 <script type="text/javascript"
-	src="/backbone/resources/js/leave/leave-application.app.js"></script>
+	src="/backbone/resources/js/identity/identity.app.js"></script>
 <script type="text/javascript"
-	src="/backbone/resources/js/leave/leave.rest.js"></script>
+	src="/backbone/resources/js/identity/identity.rest.js"></script>
+<jsp:include page="/include/navbar.jsp"></jsp:include>
 
-<!-- Main content view -->
-<div ng-controller="LeaveApplicationCtrl"
-	style="margin-top: 60px; margin-bottom: 60px">
-	<h1>Leave</h1>
+<body ng-app="backbone">
 
-	<div class="list-group">
-		<a href="/backbone/jsp/leave/application.jsp" class="list-group-item">
-			<h4 class="list-group-item-heading">Apply</h4>
-			<p class="list-group-item-text">Click here to apply for new
-				leave.</p>
-		</a> <a href="/backbone/jsp/leave/search-task.jsp" class="list-group-item">
-			<h4 class="list-group-item-heading">Leave Applications</h4>
-			<p class="list-group-item-text">Click here to search for leave
-				applications in progress.</p>
-		</a> <a href="/backbone/jsp/leave/search-leave.jsp"
-			class="list-group-item">
-			<h4 class="list-group-item-heading">Finalized Leave</h4>
-			<p class="list-group-item-text">Click here to search for
-				finalized leave applications.</p>
-		</a>
+	<!-- Main content view -->
+	<div class="container" ng-controller="IdentityCtrl"
+		style="margin-top: 60px; margin-bottom: 60px">
+		<h1>Identity Management</h1>
+
+		<div class="list-group">
+			<a href="/backbone/jsp/identity/search-person.jsp"
+				class="list-group-item">
+				<h4 class="list-group-item-heading">Search</h4>
+				<p class="list-group-item-text">Click here to search for
+					persons.</p>
+			</a>
+		</div>
 	</div>
-</div>
+	
+	<jsp:include page="/include/footer.jsp"></jsp:include>
+	
+</body>
+</html>

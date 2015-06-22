@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import com.google.common.collect.Lists;
 
+import coza.opencollab.backbone.configuration.Application;
 import coza.opencollab.backbone.configuration.Deployment;
 import coza.opencollab.backbone.configuration.service.ConfigurationService;
 import coza.opencollab.backbone.qualifiers.MapService;
@@ -22,7 +23,21 @@ public class ConfigurationServiceMapImpl implements ConfigurationService {
     /**
      * Map containing all deployments by id
      */
+    private Map<String, Application> applications = new HashMap<String, Application>();
     private Map<String, Deployment> deployments = new HashMap<String, Deployment>();
+    
+    @Override
+    public void register(Application application) {
+	// Safety check
+	if (application != null) {
+	    applications.put(application.getName(), application);
+	}
+    }
+
+    @Override
+    public Application getAppliction(String id) {
+	return applications.get(id);
+    }
 
     @Override
     public void register(Deployment deployment) {
@@ -38,23 +53,23 @@ public class ConfigurationServiceMapImpl implements ConfigurationService {
     }
 
     @Override
-    public List<String> getDeploymentCategories() {
+    public List<String> getApplicationCategories() {
 	Set<String> categories = new HashSet<String>();
-	for(Deployment deployment : deployments.values()){
+	for(Application deployment : applications.values()){
 	    categories.add(deployment.getCategory());
 	}
 	return Lists.newArrayList(categories);
     }
 
     @Override
-    public List<Deployment> getDeploymentsByCategory(String category) {
-	List<Deployment> returnDeployments = new ArrayList<Deployment>();
-	for(Deployment deployment : deployments.values()){
-	    if(deployment.getCategory().equals(category)){
-		returnDeployments.add(deployment);
+    public List<Application> getApplicationsByCategory(String category) {
+	List<Application> returnApps = new ArrayList<Application>();
+	for(Application application : applications.values()){
+	    if(application.getCategory().equals(category)){
+		returnApps.add(application);
 	    }
 	}
-	return returnDeployments;
+	return returnApps;
     }
 
 }

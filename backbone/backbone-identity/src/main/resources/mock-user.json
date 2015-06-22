@@ -1,0 +1,25 @@
+[{
+	"id":"jiri", 
+    "personId":"jiri",
+    "active":"true"
+},
+{
+    "id":"mary", 
+    "personId":"mary",
+    "active":"true"
+},
+{
+    "id":"bob", 
+    "personId":"bob",
+    "active":"true"
+},
+{
+    "id":"carol", 
+    "personId":"carol",
+    "active":"true"
+},
+{
+    "id":"john", 
+    "personId":"john",
+    "active":"true"
+}]

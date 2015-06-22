@@ -1,0 +1,30 @@
+[{
+	"id":"jiri", 
+    "name":"Jiri",
+    "surname":"McJiri",
+    "active":"true"
+},
+{
+    "id":"mary", 
+    "name":"Mary",
+    "surname":"McMary",
+    "active":"true"
+},
+{
+    "id":"bob", 
+    "name":"Bob",
+    "surname":"Bobson",
+    "active":"true"
+},
+{
+    "id":"carol", 
+    "name":"Carol",
+    "surname":"Carolson",
+    "active":"true"
+},
+{
+    "id":"john", 
+    "name":"John",
+    "surname":"Johnson",
+    "active":"true"
+}]

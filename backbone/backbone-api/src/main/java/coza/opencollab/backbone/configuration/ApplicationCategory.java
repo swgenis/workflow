@@ -3,13 +3,13 @@ package coza.opencollab.backbone.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessCategory {
+public class ApplicationCategory {
 
     private String name;
 
     private List<SubProcess> subProcesses;
 
-    public ProcessCategory(String name) {
+    public ApplicationCategory(String name) {
 	super();
 	this.name = name;
     }

@@ -17,11 +17,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "backbone")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Backbone {
+    
+    @XmlElementWrapper
+    @XmlElement(name = "application")
+    private List<Application> applications;
 
     @XmlElementWrapper
     @XmlElement(name = "deployment")
     private List<Deployment> deployments;
 
+    public List<Application> getApplications() {
+	if (applications == null) {
+	    applications = new ArrayList<Application>();
+        }
+	return applications;
+    }
+    
     public List<Deployment> getDeployments() {
 	if (deployments == null) {
 	    deployments = new ArrayList<Deployment>();

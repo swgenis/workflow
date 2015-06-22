@@ -2,6 +2,7 @@ package coza.opencollab.backbone.configuration.service;
 
 import java.util.List;
 
+import coza.opencollab.backbone.configuration.Application;
 import coza.opencollab.backbone.configuration.Deployment;
 
 /**
@@ -10,6 +11,10 @@ import coza.opencollab.backbone.configuration.Deployment;
  *
  */
 public interface ConfigurationService {
+    
+    public void register(Application application);
+    
+    public Application getAppliction(String id);
 
     public void register(Deployment deployment);
 
@@ -21,8 +26,8 @@ public interface ConfigurationService {
      */
     public Deployment getDeployment(String id);
 
-    public List<String> getDeploymentCategories();
+    public List<String> getApplicationCategories();
     
-    public List<Deployment> getDeploymentsByCategory(String category);
+    public List<Application> getApplicationsByCategory(String category);    
 
 }

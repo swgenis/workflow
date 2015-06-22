@@ -2,7 +2,7 @@ package coza.opencollab.backbone.organization.service.impl;
 
 import java.util.Arrays;
 
-import coza.opencollab.backbone.authorization.service.impl.AuthorizationMockDataLoader;
+import coza.opencollab.backbone.authorization.service.AuthorizationMockDataLoader;
 import coza.opencollab.backbone.organization.Group;
 import coza.opencollab.backbone.organization.OrgUnit;
 import coza.opencollab.backbone.organization.OrgUnitMember;

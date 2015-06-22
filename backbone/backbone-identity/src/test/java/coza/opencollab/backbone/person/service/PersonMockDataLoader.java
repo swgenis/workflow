@@ -1,7 +1,5 @@
-package coza.opencollab.backbone.person.service.impl;
+package coza.opencollab.backbone.person.service;
 
-import coza.opencollab.backbone.person.Person;
-import coza.opencollab.backbone.person.service.PersonService;
 
 /**
  * 
@@ -26,27 +24,5 @@ public class PersonMockDataLoader {
     public static final String PERSON5_ID = "mary";
     public static final String PERSON5_NAME = "Mary";
     public static final String PERSON5_SURNAME = "McMary";
-
-    private PersonService personService;
-
-    public PersonMockDataLoader(PersonService personService) {
-	this.personService = personService;
-    }
-
-    public void loadData() throws Exception {
-	addPerson(PERSON1_ID, PERSON1_NAME, PERSON1_SURNAME);
-	addPerson(PERSON2_ID, PERSON2_NAME, PERSON2_SURNAME);
-	addPerson(PERSON3_ID, PERSON3_NAME, PERSON3_SURNAME);
-	addPerson(PERSON4_ID, PERSON4_NAME, PERSON4_SURNAME);
-	addPerson(PERSON5_ID, PERSON5_NAME, PERSON5_SURNAME);
-    }
-
-    private void addPerson(String id, String name, String surname) throws Exception {
-	Person person = new Person();
-	person.setId(id);
-	person.setName(name);
-	person.setSurname(surname);
-	personService.insertPerson(person);
-    }
 
 }

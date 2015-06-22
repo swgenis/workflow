@@ -137,6 +137,10 @@
 			'getProcesses' : function(){
 				return this._callService('GET', 'config/processes/');
 				
+			},
+			'getPrincipal' : function(){
+				return this._callService('GET', 'config/principal/');
+				
 			}
 		},BackboneRestServiceBase);
 		
@@ -148,9 +152,14 @@
 	["$scope", "ConfigRestService", 
 	function($scope, ConfigRestService){
 		$scope.processes = null;
+		$scope.principal = null;
 		
 		ConfigRestService.getProcesses().then(function(processes){
 			$scope.processes = processes;
+		});
+		
+		ConfigRestService.getPrincipal().then(function(principal){
+			$scope.principal = principal;
 		});
 		
 	}])

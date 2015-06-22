@@ -11,9 +11,6 @@ import javax.xml.bind.annotation.XmlElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Deployment {
-    
-    @XmlElement(name = "name")
-    private String name;
 
     @XmlElement(name = "group")
     private String groupId;
@@ -23,19 +20,7 @@ public class Deployment {
 
     @XmlElement(name = "version")
     private String version;
-
-    @XmlElement(name = "category")
-    private String category;
-
-    @XmlElement(name = "type-source")
-    private String typeSourceFile;
     
-    @XmlElement(name = "url-launch")
-    private String launchUrl;
-
-    @XmlElement(name = "enable-workflow")
-    private boolean workflowEnabled;
-
     @XmlElement(name = "interpreter")
     private String interpreterClass;
     
@@ -43,15 +28,7 @@ public class Deployment {
      * URL to view a task created by this deployment
      */
     @XmlElement(name = "url-view")
-    private String viewOnlyUrl;    
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String viewOnlyUrl; 
 
     public String getGroupId() {
 	return groupId;
@@ -75,38 +52,6 @@ public class Deployment {
 
     public void setVersion(String version) {
 	this.version = version;
-    }
-
-    public String getCategory() {
-	return category;
-    }
-
-    public void setCategory(String category) {
-	this.category = category;
-    }
-
-    public String getTypeSourceFile() {
-	return typeSourceFile;
-    }
-
-    public void setTypeSourceFile(String typeSourceFile) {
-	this.typeSourceFile = typeSourceFile;
-    }    
-
-    public String getLaunchUrl() {
-        return launchUrl;
-    }
-
-    public void setLaunchUrl(String launchUrl) {
-        this.launchUrl = launchUrl;
-    }
-
-    public boolean isWorkflowEnabled() {
-	return workflowEnabled;
-    }
-
-    public void setWorkflowEnabled(boolean workflowEnabled) {
-	this.workflowEnabled = workflowEnabled;
     }
 
     /**

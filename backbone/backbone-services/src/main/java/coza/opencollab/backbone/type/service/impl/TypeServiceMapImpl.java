@@ -5,11 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 
-import coza.opencollab.backbone.data.DataLoaderCallback;
-import coza.opencollab.backbone.data.JsonDataLoader;
 import coza.opencollab.backbone.qualifiers.MapService;
 import coza.opencollab.backbone.type.Type;
 import coza.opencollab.backbone.type.service.TypeService;
@@ -28,23 +25,6 @@ import coza.opencollab.backbone.type.service.TypeService;
 public class TypeServiceMapImpl implements TypeService {
 
     private Map<String, Type> types = new HashMap<String, Type>();
-
-    @PostConstruct
-    public void initialize() throws Exception {
-	JsonDataLoader<Type> dataLoader = new JsonDataLoader<Type>(Type.class);
-	dataLoader.loadData("type.json", new DataLoaderCallback<Type>() {
-
-	    @Override
-	    public void loadElement(Type type) {
-		try {
-		    TypeServiceMapImpl.this.insertType(type);
-		} catch (Exception e) {
-		    throw new RuntimeException("Unable to load initial type information.", e);
-		}
-
-	    }
-	});
-    }
 
     @Override
     public Type getTypeByKey(String key) {

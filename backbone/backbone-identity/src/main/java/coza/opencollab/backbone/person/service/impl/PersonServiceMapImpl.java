@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 
 import coza.opencollab.backbone.person.Person;
@@ -25,16 +24,6 @@ import coza.opencollab.backbone.qualifiers.MapService;
 public class PersonServiceMapImpl implements PersonService {
 
     private Map<String, Person> persons = new HashMap<String, Person>();
-
-    @PostConstruct
-    public void initialize() throws Exception {
-	PersonMockDataLoader dataLoader = new PersonMockDataLoader(this);
-	try {
-	    dataLoader.loadData();
-	} catch (Exception e) {
-	    throw new Exception("Unable to load data for PersonServiceMapImpl", e);
-	}
-    }
 
     @Override
     public Person getPersonById(String key) {

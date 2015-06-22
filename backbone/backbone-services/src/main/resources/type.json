@@ -23,14 +23,20 @@
     "active":"true"
 },
 {
-    "key":"process.type.hr", 
-    "category":"process.type.category",
+    "key":"application.type.hr", 
+    "category":"application.type.category",
     "description":"Human Resources",
     "active":"true"
 },
 {
-    "key":"process.type.it", 
-    "category":"process.type.category",
+    "key":"application.type.it", 
+    "category":"application.type.category",
     "description":"Information Technology",
+    "active":"true"
+},
+{
+    "key":"application.type.backbone", 
+    "category":"application.type.category",
+    "description":"Backbone Modules",
     "active":"true"
 }]

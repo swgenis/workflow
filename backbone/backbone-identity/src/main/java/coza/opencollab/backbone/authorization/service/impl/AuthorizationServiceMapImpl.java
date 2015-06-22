@@ -3,7 +3,6 @@ package coza.opencollab.backbone.authorization.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 
 import coza.opencollab.backbone.authorization.User;
@@ -23,16 +22,6 @@ import coza.opencollab.backbone.qualifiers.MapService;
 public class AuthorizationServiceMapImpl implements AuthorizationService {
 
     private Map<String, User> users = new HashMap<String, User>();
-
-    @PostConstruct
-    public void initialize() throws Exception {
-	AuthorizationMockDataLoader dataLoader = new AuthorizationMockDataLoader(this);
-	try {
-	    dataLoader.loadData();
-	} catch (Exception e) {
-	    throw new Exception("Unable to load data for AuthorizationServiceMapImpl", e);
-	}
-    }
 
     @Override
     public User getUserById(String userId) {

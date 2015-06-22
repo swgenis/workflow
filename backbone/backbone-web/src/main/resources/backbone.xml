@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
-	<deployments>
-		<deployment>
+	<applications>
+		<application>
 			<name>Identity</name>
-			<group>coza.opencollab.backbone</group>
-			<artifact>backbone-identity</artifact>
-			<version>1.0</version>
-			<category>process.type.identity</category>
-			<url-launch>/jsp/identity/identity.jsp</url-launch>
-		</deployment>
-		<deployment>
+			<category>application.type.backbone</category>
+			<url>/jsp/identity/identity.jsp</url>
+		</application>
+		<application>
 			<name>Organization</name>
-			<group>coza.opencollab.backbone</group>
-			<artifact>backbone-organization</artifact>
-			<version>1.0</version>
-			<category>process.type.organization</category>
-			<url-launch>/jsp/organization/org-home.jsp</url-launch>
-		</deployment>
-	</deployments>
+			<category>application.type.backbone</category>
+			<url>/jsp/organization/org-home.jsp</url>
+		</application>
+	</applications>
 </backbone>

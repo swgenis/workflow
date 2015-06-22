@@ -1,5 +1,6 @@
 package coza.opencollab.backbone.data;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -21,21 +22,29 @@ public class JsonDataLoader<T> {
 	this.targetClass = targetClass;
     }
 
-    public void loadData(String file) throws Exception {
+    public void loadData(String file) {
 	loadData(file, callback);
     }
 
-    public void loadData(String file, DataLoaderCallback<T> callback) throws Exception {
+    public void loadData(String file, DataLoaderCallback<T> callback) {
 	InputStream is = JsonDataLoader.class.getClassLoader().getResourceAsStream(file);
 
 	ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
 	JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, targetClass);
-	List<T> elements = mapper.readValue(is, type);
+	List<T> elements;
+	try {
+	    elements = mapper.readValue(is, type);
 
-	// Execute callback
-	for (T element : elements) {
-	    callback.loadElement(element);
+	    // Execute callback
+	    for (T element : elements) {
+		callback.loadElement(element);
+	    }
+	} catch (IOException e) {
+	    throw new RuntimeException("Unable to read elments from source file " + file, e);
+	} catch (Exception e) {
+	    throw new RuntimeException("Unable to load elments ", e);
 	}
+
     }
 
     public DataLoaderCallback<T> getCallback() {
