@@ -45,26 +45,6 @@
 		}
 		
 	}])
-	
-	/**
-	 * Rest service client for the PersonRestService
-	 */
-	.factory("PersonRestService", 
-	["BackboneRestServiceBase",
-	 function(BackboneRestServiceBase){
-		return angular.extend({
-			/**
-			 * Function to find a person
-			 */
-			'search' : function(name, surname){
-				return this._callService('GET', 'person/search', null, {'name': name, 'surname': surname});
-			},
-			'lookup' : function(personLookupId){
-				return this._callService('GET', 'person/lookup', null, {'personLookupId': personLookupId});
-			}
-		},BackboneRestServiceBase);
-		
-	}])
 	/**
 	 * Rest service client for the TaskRestService
 	 */

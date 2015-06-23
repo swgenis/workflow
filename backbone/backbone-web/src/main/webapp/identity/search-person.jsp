@@ -1,40 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
-<!-- Include our scripts -->
-<script type="text/javascript"
-	src="/backbone/resources/js/leave/leave-search.app.js"></script>
-<script type="text/javascript"
-	src="/backbone/resources/js/leave/leave.rest.js"></script>
+<html>
+<jsp:include page="/backbone/header.jsp"></jsp:include>
 
-<!-- Main content view -->
-<div ng-controller="LeaveSearchCtrl"
-	style="margin-top: 60px; margin-bottom: 60px">
-	<h1>Search for leave</h1>
-	<person-lookup person="person"></person-lookup>
+<body ng-app="identity">
 
-	<div>
-		<table class="table table-bordered">
-			<caption>Bookings</caption>
-			<thead>
-				<tr>
-					<th>Type</th>
-					<th>From</th>
-					<th>To</th>
-					<th>Days</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="leaveEntry in leaveEntries">
-					<td>{{leaveEntry.typeKey}}</td>
-					<td>{{leaveEntry.startDate}}</td>
-					<td>{{leaveEntry.endDate}}</td>
-					<td>4 days (TODO)</td>
-					<td>{{leaveEntry.status}}</td>
-				<tr>
-			</tbody>
-		</table>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/identity/js/identity.app.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/identity/js/identity.directives.js"></script>
+	<jsp:include page="../backbone/navbar.jsp"></jsp:include>
+
+	<!-- Main content view -->
+	<div class="container" ng-controller="IdentityCtrl"
+		style="margin-top: 60px; margin-bottom: 60px">
+		<h1>Search for persons</h1>
+		<person-lookup person="person"></person-lookup>
+
+		<div>
+			<table class="table table-bordered">
+				<caption>Search Result</caption>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Surname</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="person in persons">
+						<td>{{person.name}}</td>
+						<td>{{person.surname}}</td>
+					<tr>
+				</tbody>
+			</table>
+		</div>
+
 	</div>
 
-</div>
+	<jsp:include page="/shared/include/footer.jsp"></jsp:include>
+
+</body>
+</html>

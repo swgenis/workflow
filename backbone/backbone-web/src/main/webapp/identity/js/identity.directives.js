@@ -1,5 +1,5 @@
 (function(angular){
-	angular.module("backbone")
+	angular.module("identity")
 	/**
 	 * Directive to lookup a person
 	 */
@@ -11,7 +11,7 @@
 			'scope': {
 				'person': "=person"
 			},
-			'templateUrl': contextPath + '/html/directives/personLookup.html',
+			'templateUrl': contextPath + '/identity/html/personLookup.html',
 			'link' : function(scope, element, attr){
 				scope.data = null;
 				scope.error = null;
@@ -59,38 +59,13 @@
 	/**
 	 * Directive to show an action list
 	 */
-	.directive("actionList", 
-	["TaskRestService","$location",
-	 function(TaskRestService, $location){
-		return {
-			'restrict': 'E',
-			'scope': { },
-			'templateUrl': contextPath + '/html/directives/actionList.html',
-			'link' : function(scope, element, attr){
-				
-				TaskRestService.list().then(function(tasks){
-					scope.tasks = tasks;
-				});
-				
-				/**
-				 * Change the window location to view the selected task.
-				 */
-				scope.viewTask = function(task){
-					window.location = contextPath + task.viewUrl;
-				};
-			}
-		}
-	}])
-	/**
-	 * Directive to show an action list
-	 */
 	.directive("userInfo", 
 	["ConfigRestService","$location",
 	 function(ConfigRestService, $location){
 		return {
 			'restrict': 'E',
 			'scope': { },
-			'templateUrl': contextPath + '/html/directives/personInfo.html',
+			'templateUrl': contextPath + '/identity/html/personInfo.html',
 			'link' : function(scope, element, attr){
 				
 				ConfigRestService.getPrincipal().then(function(principal){

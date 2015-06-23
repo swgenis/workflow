@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html>
-<jsp:include page="/shared/include/header.jsp"></jsp:include>
+<jsp:include page="/backbone/header.jsp"></jsp:include>
 
 <body ng-app="backbone">
 

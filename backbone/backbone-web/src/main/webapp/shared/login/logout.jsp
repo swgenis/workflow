@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true"%>
-<jsp:include page="../include/header.jsp"></jsp:include>
+<jsp:include page="/backbone/header.jsp"></jsp:include>
 User '<%=request.getRemoteUser()%>' has been logged out.
 
 <% session.invalidate(); %>

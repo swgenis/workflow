@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 
 <html>
-<jsp:include page="/shared/include/header.jsp"></jsp:include>
+<jsp:include page="/backbone/header.jsp"></jsp:include>
 
-<body ng-app="backbone">
+<body ng-app="identity">
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/identity/js/identity.app.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/identity/js/identity.rest.js"></script>
+		src="${pageContext.request.contextPath}/identity/js/identity.directives.js"></script>
 	<jsp:include page="../backbone/navbar.jsp"></jsp:include>
 
 	<!-- Main content view -->
@@ -20,7 +20,7 @@
 
 		<div class="list-group">
 			<a
-				href="${pageContext.request.contextPath}/jsp/identity/search-person.jsp"
+				href="${pageContext.request.contextPath}/identity/search-person.jsp"
 				class="list-group-item">
 				<h4 class="list-group-item-heading">Search</h4>
 				<p class="list-group-item-text">Click here to search for
