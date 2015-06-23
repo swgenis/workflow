@@ -1,5 +1,5 @@
 (function(angular){
-	angular.module("leave", ['backbone'])
+	angular.module("leave", ['backbone', 'identity'])
 	
 	/**
 	 * Controller for leave application

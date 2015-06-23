@@ -34,7 +34,7 @@
 			<interpreter>za.ac.nwu.workflow.leave.LeaveTaskInterpreter
 			</interpreter>
 			<!-- URL to view a task related to this process -->
-			<url-view>/jsp/leave/view-application.jsp?aid=%s</url-view>
+			<url-view>/leave/view-application.jsp?aid=%s</url-view>
 		</deployment>
 	</deployments>
 </backbone>

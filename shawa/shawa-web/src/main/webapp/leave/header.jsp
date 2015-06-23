@@ -39,7 +39,8 @@
 <script type="text/javascript">
 	// Pass the Java params to javascript
 	var applicationId = "<%=request.getParameter("aid")%>";
-	var action = "<%=request.getParameter("a")%>";
+	var action = "<%=request.getParameter("a")%>
+	";
 </script>
 
 <!-- Include our scripts -->
