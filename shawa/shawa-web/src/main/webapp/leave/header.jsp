@@ -18,17 +18,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/backbone.css">
 
-<!-- Backbone scripts -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/backbone/js/backbone.app.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/backbone/js/backbone.directives.js"></script>
-
-<!-- Identity scripts -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/identity/js/identity.app.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/identity/js/identity.directives.js"></script>
+<jsp:include page="/backbone/dependencies.jsp"></jsp:include>
+<jsp:include page="/identity/dependencies.jsp"></jsp:include>
 
 <%
     String applicationId = request.getParameter("aid");
@@ -39,8 +30,7 @@
 <script type="text/javascript">
 	// Pass the Java params to javascript
 	var applicationId = "<%=request.getParameter("aid")%>";
-	var action = "<%=request.getParameter("a")%>
-	";
+	var action = "<%=request.getParameter("a")%>";
 </script>
 
 <!-- Include our scripts -->

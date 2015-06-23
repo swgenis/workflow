@@ -167,8 +167,6 @@
 			var endMoment = moment(end);
 			return moment.duration(endMoment.diff(startMoment)).asDays();
 		};
-	});
-	
-	
+	});	
 	
 })(angular)
