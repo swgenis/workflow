@@ -1,5 +1,5 @@
 (function(angular){
-	angular.module("backbone")
+	angular.module("leave", ['backbone'])
 	
 	/**
 	 * Controller for leave application
@@ -88,7 +88,86 @@
 			});
 		};
 		
-	}]);
+	}])
+	/**
+	 * Controller for leave application
+	 */
+	.controller("LeaveSearchCtrl", 
+	["$scope", "LeaveRestServices", 
+	function($scope, LeaveRestServices){
+		
+		$scope.leaveEntries = [];
+		
+		$scope.$watch('person', function(newValue, oldValue) {
+			if(newValue == null || newValue == ""){
+				$scope.leaveEntries = [];
+				return;
+			}
+			
+			LeaveRestServices.searchLeave(newValue.id).then(function(leaveEntries){
+				$scope.leaveEntries = leaveEntries;
+			});
+		});
+		
+	}])
+	/**
+	 * Controller for leave application
+	 */
+	.controller("LeaveViewCtrl", 
+	["$scope","TaskRestService", "PersonRestService","TypeRestService",
+	function($scope, TaskRestService, PersonRestService, TypeRestService){
+		
+		$scope.busy = true;
+
+		/**
+		 * Returns a promise to get the task summary
+		 */
+		function getTaskSummaryPromise(){
+			return TaskRestService.getSummary(applicationId).then(function(taskSummary){
+				$scope.taskSummary = taskSummary;
+				return taskSummary.data.applicantId;
+			});
+		}
+		
+		/**
+		 * Return a promise to get the details of the user
+		 */
+		function getUserDetailsPromise(username){
+			return PersonRestService.lookup(username).then(function(person){
+				$scope.person = person;
+			})
+		}
+		
+		/**
+		 * Return a promise to get the leave types
+		 */
+		function getLeaveTypesPromise(){
+			return LeaveRestServices.getTypes().then(function(types){
+				$scope.leaveTypes = types;
+			});
+		}
+		
+		// Start the chain of actions
+		getTaskSummaryPromise()
+			.then(getUserDetailsPromise)
+			.then(getLeaveTypesPromise)
+			.then(function(){
+				$scope.busy = false; // We are now done
+			});
+		
+		
+		
+	}])
+	/**
+	 * Filter to show the number of days between 2 dates
+	 */
+	.filter('leaveTypeLabel', function() {
+		return function(leaveKey) {
+			var startMoment = moment(start);
+			var endMoment = moment(end);
+			return moment.duration(endMoment.diff(startMoment)).asDays();
+		};
+	});
 	
 	
 	

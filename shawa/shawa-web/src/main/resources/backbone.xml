@@ -4,22 +4,22 @@
 		<application>
 			<name>Identity</name>
 			<category>application.type.backbone</category>
-			<url>/jsp/identity/identity.jsp</url>
+			<url>/identity/identity.jsp</url>
 		</application>
 		<application>
 			<name>Organization</name>
 			<category>application.type.backbone</category>
-			<url>/jsp/organization/org-home.jsp</url>
+			<url>/organization/org-home.jsp</url>
 		</application>
 		<application>
 			<name>Pay Advice</name>
 			<category>application.type.hr</category>
-			<url>/jsp/pay/pay.jsp</url>
+			<url>/pay/pay.jsp</url>
 		</application>
 		<application>
 			<name>Leave Applications</name>
 			<category>application.type.hr</category>
-			<url>/jsp/leave/leave.jsp</url>
+			<url>/leave/leave.jsp</url>
 		</application>
 	</applications>
 	<deployments>

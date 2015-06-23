@@ -3,18 +3,17 @@
 <!DOCTYPE html>
 
 <html>
-<jsp:include
-	page="../../include/header.jsp"></jsp:include>
+<jsp:include page="/backbone/header.jsp"></jsp:include>
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/pay/pay-advice.app.js"></script>
+	src="${pageContext.request.contextPath}/pay/js/pay-advice.app.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/pay/pay.rest.js"></script>
+	src="${pageContext.request.contextPath}/pay/js/pay.rest.js"></script>
 
 <body ng-app="backbone">
 
 	<!-- Main content view -->
-	<div ng-controller="PayAdviceCtrl"
+	<div class="container" ng-controller="PayAdviceCtrl"
 		style="margin-top: 60px; margin-bottom: 60px">
 		<h1>Pay Advice</h1>
 		<person-lookup person="person"></person-lookup>

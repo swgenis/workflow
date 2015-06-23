@@ -1,6 +1,6 @@
 (function(angular){
 	
-	angular.module("backbone")
+	angular.module("leave")
 	
 	/**
 	 * Rest Services for leave application
