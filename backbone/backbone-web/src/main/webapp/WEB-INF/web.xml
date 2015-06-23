@@ -5,7 +5,7 @@
 	version="3.0">
 
 	<welcome-file-list>
-		<welcome-file>jsp/home.jsp</welcome-file>
+		<welcome-file>backbone/home.jsp</welcome-file>
 	</welcome-file-list>
 
 	<!-- Activate Rest Services -->
@@ -18,7 +18,7 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Backbone</web-resource-name>
-			<url-pattern>/jsp/*</url-pattern>
+			<url-pattern>*.jsp</url-pattern>
 			<url-pattern>/rest/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
@@ -30,8 +30,8 @@
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
-			<form-login-page>/login/login.jsp</form-login-page>
-			<form-error-page>/login/loginerror.jsp</form-error-page>
+			<form-login-page>/shared/login/login.jsp</form-login-page>
+			<form-error-page>/shared/login/loginerror.jsp</form-error-page>
 		</form-login-config>
 	</login-config>
 

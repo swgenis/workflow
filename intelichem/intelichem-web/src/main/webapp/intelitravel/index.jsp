@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 
 <html>
-<jsp:include
-	page="../../include/header.jsp"></jsp:include>
+<jsp:include page="/include/header.jsp"></jsp:include>
 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/pay/pay-advice.app.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/pay/pay.rest.js"></script>
+<body ng-app="intelitravel">
 
-<body ng-app="backbone">
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/intelitravel/js/travel.app.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/intelitravel/js/travel.rest.js"></script>
+	<jsp:include page="/include/navbar.jsp"></jsp:include>
 
 	<!-- Main content view -->
-	<div ng-controller="PayAdviceCtrl"
+	<div class="container"  ng-controller="TravelRequestCtrl"
 		style="margin-top: 60px; margin-bottom: 60px">
-		<h1>Pay Advice</h1>
+		<h1>Inteli Travel</h1>
 		<person-lookup person="person"></person-lookup>
 		<form class="form-horizontal">
 
@@ -33,15 +33,14 @@
 				<div class="alert alert-danger" role="alert" ng-if="submitFail">Failed
 					to submit leave</div>
 				<input class="btn btn-primary" type="submit" value="Submit"
-					ng-click="submitLeave()"> <input class="btn btn-default"
-					type="submit" value="Email" ng-click="submitLeave()"> <input
-					class="btn btn-default" type="submit" value="PDF"
 					ng-click="submitLeave()">
 			</div>
 
 		</form>
 
 	</div>
+	
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -37,6 +37,6 @@
 {
     "key":"application.type.backbone", 
     "category":"application.type.category",
-    "description":"Backbone Modules",
+    "description":"Admin",
     "active":"true"
 }]

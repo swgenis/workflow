@@ -4,7 +4,7 @@
 
 <html>
 <jsp:include
-	page="${pageContext.request.contextPath}/include/header.jsp"></jsp:include>
+	page="../../include/header.jsp"></jsp:include>
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/leave/leave-application.app.js"></script>

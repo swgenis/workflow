@@ -3,13 +3,18 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
+	
 	<welcome-file-list>
-		<welcome-file>jsp/home.jsp</welcome-file>
+		<welcome-file>backbone/home.jsp</welcome-file>
 	</welcome-file-list>
+
+	<!-- Activate Rest Services -->
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+
+	<!-- Define a Security Constraint on this Application -->
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Backbone</web-resource-name>
@@ -20,17 +25,22 @@
 			<role-name>user_role</role-name>
 		</auth-constraint>
 	</security-constraint>
+
+	<!-- Define the Login Configuration for this Application -->
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
-			<form-login-page>/login/login.jsp</form-login-page>
-			<form-error-page>/login/loginerror.jsp</form-error-page>
+			<form-login-page>/shared/login/login.jsp</form-login-page>
+			<form-error-page>/shared/login/loginerror.jsp</form-error-page>
 		</form-login-config>
 	</login-config>
+
+	<!-- Security roles referenced by this web application -->
 	<security-role>
 		<description>
       The role a user needs to be allowed to log in to the application
     </description>
 		<role-name>user_role</role-name>
 	</security-role>
+	
 </web-app>

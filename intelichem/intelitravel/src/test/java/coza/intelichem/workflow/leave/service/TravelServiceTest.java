@@ -12,9 +12,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import coza.intelichem.workflow.travel.Itinerary;
-import coza.intelichem.workflow.travel.service.TravelService;
-import coza.intelichem.workflow.travel.service.impl.TravelServiceMapImpl;
+import coza.intelichem.travel.Itinerary;
+import coza.intelichem.travel.service.TravelService;
+import coza.intelichem.travel.service.impl.TravelServiceMapImpl;
 
 @RunWith(Arquillian.class)
 public class TravelServiceTest {
