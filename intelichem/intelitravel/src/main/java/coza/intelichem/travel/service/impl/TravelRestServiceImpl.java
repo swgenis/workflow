@@ -58,10 +58,23 @@ public class TravelRestServiceImpl {
      * @throws Exception
      */
     @GET
-    @Path("/types.json")
+    @Path("/types/seat")
     @Produces({ "application/json" })
-    public List<Type> getLeaveTypes() throws Exception {
-	return typeService.getTypesByCategory(TravelServiceConstants.CATEGORY_LEAVE_TYPES);
+    public List<Type> getSeatPreferenceTypes() throws Exception {
+	return typeService.getTypesByCategory(TravelServiceConstants.CATEGORY_SEAT_PREFERENCE_TYPES);
+    }
+    
+    /**
+     * Gets the types of leave that are available
+     * 
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/types/departure")
+    @Produces({ "application/json" })
+    public List<Type> getDeparturePreferenceTypes() throws Exception {
+	return typeService.getTypesByCategory(TravelServiceConstants.CATEGORY_DEPARTURE_PREFERENCE_TYPES);
     }
     
     /**
@@ -80,17 +93,17 @@ public class TravelRestServiceImpl {
     }
 
     @POST
-    @Path("/apply")
+    @Path("/request")
     @Produces({ "application/json" })
-    public Message apply(TravelRequest leaveApplication) {
+    public Message request(TravelRequest travelRequest) {
 	
-	leaveApplication.setState(WorkflowState.APPLIED);
+	travelRequest.setState(WorkflowState.APPLIED);
 
 	Map<String, Object> params = new HashMap<String, Object>();
-	params.put("leaveApplication", leaveApplication);
-	params.put("manager", getManagerForApplicant(leaveApplication.getApplicantId()));
+	params.put("leaveApplication", travelRequest);
+	params.put("manager", getManagerForApplicant(travelRequest.getApplicantId()));
 
-	long processInstanceId = workflowService.startProcess(TravelServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, TravelServiceConstants.LEAVE_APPLICATION_PROCESS_ID, params);
+	long processInstanceId = workflowService.startProcess(TravelServiceConstants.TRAVEL_APPLICATION_DEPLOYMENT_ID, TravelServiceConstants.TRAVEL_APPLICATION_PROCESS_ID, params);
 	logger.info("Succesfully started process with id: " + processInstanceId);
 
 	return new Message("You have succesfully applied for leave");
@@ -120,7 +133,7 @@ public class TravelRestServiceImpl {
 	Map<String, Object> inParams = workflowService.getTaskParams(taskId);
 	Map<String, Object> outParams = new HashMap<String, Object>();
 	outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
-	workflowService.performUserTask(TravelServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, taskId, user, outParams);
+	workflowService.performUserTask(TravelServiceConstants.TRAVEL_APPLICATION_DEPLOYMENT_ID, taskId, user, outParams);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 
@@ -135,7 +148,7 @@ public class TravelRestServiceImpl {
 	
 	Map<String, Object> outParams = new HashMap<String, Object>();
 	outParams.put("leaveApplicationOut", inParams.get("leaveApplicationIn"));
-	workflowService.performUserTask(TravelServiceConstants.LEAVE_APPLICATION_DEPLOYMENT_ID, taskId, user, outParams);
+	workflowService.performUserTask(TravelServiceConstants.TRAVEL_APPLICATION_DEPLOYMENT_ID, taskId, user, outParams);
 	return new Message("Task (id = " + taskId + ") has been completed by " + user);
     }
 

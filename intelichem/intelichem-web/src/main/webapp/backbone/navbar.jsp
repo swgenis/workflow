@@ -5,15 +5,11 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#"> <img alt="BackBone"
-				src="${pageContext.request.contextPath}/resources/images/OpenCollab-300x60.png">
-			</a>
-		</div>
+		<jsp:include page="/backbone/navbar-brand.jsp"></jsp:include>
 		<div ng-controller="ConfigCtrl"
 			class="navbar-collapse collapse no-transition">
 			<ul class="nav navbar-nav">
-				<li><a href="${pageContext.request.contextPath}/jsp/home.jsp"><span
+				<li><a href="${pageContext.request.contextPath}/backbone/home.jsp"><span
 						class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/intelitravel/index.jsp"><span
@@ -35,7 +31,7 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/login/logout.jsp"><span
+							href="${pageContext.request.contextPath}/shared/login/logout.jsp"><span
 								class="glyphicon glyphicon-log-out">&nbsp;</span>Log Out</a></li>
 					</ul></li>
 			</ul>

@@ -13,7 +13,7 @@
 		</application>
 	</applications>
 	<deployments>
-		<!--deployment>
+		<deployment>
 			<group>coza.intelichem</group>
 			<artifact>intelitravel</artifact>
 			<version>1.0</version>
@@ -21,6 +21,6 @@
 			<interpreter>coza.intelichem.travel.TravelTaskInterpreter
 			</interpreter>
 			<url-view>/jsp/leave/view-application.jsp?aid=%s</url-view>
-		</deployment-->
+		</deployment>
 	</deployments>
 </backbone>

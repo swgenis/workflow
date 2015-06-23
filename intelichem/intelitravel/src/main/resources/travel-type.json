@@ -1,54 +1,48 @@
 [{
-	"key":"leave.type.annual", 
-    "category":"leave.type.category",
+	"key":"travel.seat.preference.type.annual", 
+    "category":"travel.type.seat.preference.category",
     "description":"Annual",
     "active":"true"
 },
 {
-    "key":"leave.type.accumulated", 
-    "category":"leave.type.category",
+    "key":"travel.seat.preference.type", 
+    "category":"travel.type.seat.preference.category",
     "description":"Accumulated",
     "active":"true"
 },
 {
-    "key":"leave.type.familyResponsibility", 
-    "category":"leave.type.category",
+    "key":"travel.seat.preference.type.familyResponsibility", 
+    "category":"travel.type.seat.preference.category",
     "description":"Family Responsibility",
     "active":"true"
 },
 {
-    "key":"leave.type.sick", 
-    "category":"leave.type.category",
+    "key":"travel.seat.preference.type.sick", 
+    "category":"travel.type.seat.preference.category",
     "description":"Sick",
     "active":"true"
 },
 {
-    "key":"leave.type.injuryOnDuty", 
-    "category":"leave.type.category",
+    "key":"travel.departure.preference.type.injuryOnDuty", 
+    "category":"travel.type.departure.preference.category",
     "description":"Injury on Duty",
     "active":"true"
 },
 {
-    "key":"leave.type.study", 
-    "category":"leave.type.category",
+    "key":"travel.departure.preference.type.study", 
+    "category":"travel.type.departure.preference.category",
     "description":"Study",
     "active":"true"
 },
 {
-    "key":"leave.type.maternity", 
-    "category":"leave.type.category",
+    "key":"travel.departure.preference.type.maternity", 
+    "category":"travel.type.departure.preference.category",
     "description":"Maternity",
     "active":"true"
 },
 {
-    "key":"leave.type.unpaid", 
-    "category":"leave.type.category",
+    "key":"travel.departure.preference.type.unpaid", 
+    "category":"travel.type.departure.preference.category",
     "description":"Unpaid",
-    "active":"true"
-},
-{
-    "key":"leave.type.special", 
-    "category":"leave.type.category",
-    "description":"Special",
     "active":"true"
 }]

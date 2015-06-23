@@ -1,5 +1,5 @@
 (function(angular){
-	angular.module("intelitravel")
+	angular.module("intelitravel", ['backbone', 'identity'])
 	
 	/**
 	 * Controller for InteliTravel
@@ -8,22 +8,69 @@
 	["$scope","$location", "TravelRestServices", 
 	function($scope, $location, TravelRestServices){
 		
-		$scope.leaveEntries = [];
+		$scope.flights = [];
 		$scope.submitFail = false;
 		$scope.submitSuccess = false;
 		
 		var appLid = $location.search().aid;
 		var aaction = $location.search().a;
 		
-		// Get the leave types
-		LeaveRestServices.getLeaveTypes().then(function(leaveTypes){
-			$scope.leaveTypes = leaveTypes;
+		// Get the departure time preference
+		TravelRestServices.getSeatPrefTypes().then(function(seatPrefTypes){
+			$scope.seatPrefTypes = seatPrefTypes;
+		});
+		
+		// Get the departure time preference
+		TravelRestServices.getDeparturePrefTypes().then(function(departurePrefTypes){
+			$scope.departurePrefTypes = departurePrefTypes;
 		});
 		
 		/**
-		 * Function to submit the leave
+		 * Function to add a new flight
 		 */
-		$scope.submitLeave = function(){
+		$scope.addFlight = function(){
+			$scope.flights.push({
+				date : $scope.newEntry.date,
+				from : $scope.newEntry.from,
+				to : $scope.newEntry.to,
+				departurePrefType : $scope.newEntry.departurePrefType
+			});
+			// Clear the new entry object
+			$scope.newEntry = {};
+		};
+		
+		/**
+		 * Function to add a new flight
+		 */
+		$scope.removeFlight = function(){
+			$scope.flights.push({
+				date : $scope.newEntry.date,
+				from : $scope.newEntry.from,
+				to : $scope.newEntry.to,
+				departurePrefType : $scope.newEntry.departurePrefType
+			});
+			// Clear the new entry object
+			$scope.newEntry = {};
+		};
+		
+		/**
+		 * Function to add a new flight
+		 */
+		$scope.returnFlight = function(){
+			$scope.flights.push({
+				date : $scope.newEntry.date,
+				from : $scope.newEntry.from,
+				to : $scope.newEntry.to,
+				departurePrefType : $scope.newEntry.departurePrefType
+			});
+			// Clear the new entry object
+			$scope.newEntry = {};
+		};
+		
+		/**
+		 * Function to submit the travel request
+		 */
+		$scope.submitTravelRequest = function(){
 			$scope.submitFail = false;
 			$scope.submitSuccess = false;
 			// Build the object to submit
@@ -33,7 +80,7 @@
 						leavePeriods : $scope.leaveEntries
 					};
 			
-			LeaveRestServices.submitLeave(data).then(
+			TravelRestServices.submitRequest(data).then(
 				// Success handler
 				function(){
 					$scope.submitFail = false;
@@ -47,7 +94,5 @@
 		};
 		
 	}]);
-	
-	
 	
 })(angular)
