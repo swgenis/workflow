@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html>
-<jsp:include page="/include/header.jsp"></jsp:include>
+<jsp:include page="/backbone/header.jsp"></jsp:include>
 
 <body ng-app="intelitravel">
 
@@ -40,7 +40,7 @@
 
 	</div>
 	
-	<jsp:include page="/include/footer.jsp"></jsp:include>
+	<jsp:include page="/shared/include/footer.jsp"></jsp:include>
 
 </body>
 </html>
