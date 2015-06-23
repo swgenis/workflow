@@ -18,5 +18,5 @@ import javax.inject.Qualifier;
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
-public @interface NWUWorkflowService {
+public @interface PGSMSService {
 }

@@ -5,20 +5,20 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.Specializes;
 import javax.inject.Inject;
 
-import za.ac.nwu.workflow.NWUWorkflowService;
+import za.ac.nwu.workflow.PGSMSService;
 import coza.opencollab.backbone.ConfigurationProperty;
+import coza.opencollab.backbone.ServiceFactory;
 import coza.opencollab.backbone.person.service.PersonService;
-import coza.opencollab.backbone.service.ServiceFactory;
 
 @ApplicationScoped
-public class NWUWorkflowServiceFactory extends ServiceFactory {
+public class PGSMSServiceFactory extends ServiceFactory {
 
     @Inject
     @ConfigurationProperty(value = "backbone.mode")
     private String mode;
     
     @Inject
-    @NWUWorkflowService 
+    @PGSMSService 
     PersonService workflowPersonService;
 
     @Produces

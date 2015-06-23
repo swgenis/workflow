@@ -11,7 +11,7 @@
 
 	<modules>
 		<module>pgsms-web</module>
-		<module>pgsms-applications</module>
+		<module>pgsms-application</module>
 	</modules>
 
 	<properties>
