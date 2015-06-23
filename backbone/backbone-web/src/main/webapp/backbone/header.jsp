@@ -19,10 +19,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/backbone.css">
 
-<!-- Include our scripts -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/backbone/js/backbone.app.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/backbone/js/backbone.directives.js"></script>
+<jsp:include page="/backbone/dependencies.jsp"></jsp:include>
 
 </head>

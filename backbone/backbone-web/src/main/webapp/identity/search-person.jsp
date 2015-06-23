@@ -7,10 +7,7 @@
 
 <body ng-app="identity">
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/identity/js/identity.app.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/identity/js/identity.directives.js"></script>
+	<jsp:include page="/identity/dependencies.jsp"></jsp:include>
 	<jsp:include page="../backbone/navbar.jsp"></jsp:include>
 
 	<!-- Main content view -->
