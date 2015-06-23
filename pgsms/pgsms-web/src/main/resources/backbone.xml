@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
 	<deployments>
-		<deployment>
-			<name>Leave Applications</name>
-			<group>nwu.workflow</group>
-			<artifact>leave-application</artifact>
-			<version>1.0-SNAPSHOT</version>
-			<type-source>leave-type.json</type-source>
-			<category>process.type.hr</category>
-			<url-launch>/jsp/leave/leave.jsp</url-launch>
-			<enable-workflow>true</enable-workflow>
-			<!-- 
-				Because we only have one process per deployment we can map the interpreter directly to the deployment
-				If we start using multiple processes per deployment, this interpreter will have to move down another 
-				level: to the process
-			 -->
-			<interpreter>za.ac.nwu.workflow.leave.LeaveTaskInterpreter</interpreter>
-			<!-- URL to view a task related to this process -->
-			<url-view>/jsp/leave/view-application.jsp?aid=%s</url-view>
-		</deployment>
-		<deployment>
-			<name>Pay Advice</name>
-			<group>nwu.workflow</group>
-			<artifact>pay-advice</artifact>
-			<version>1.0-SNAPSHOT</version>
-			<category>process.type.hr</category>
-			<url-launch>/jsp/pay/pay.jsp</url-launch>
-		</deployment>
+		<application>
+			<name>Identity</name>
+			<category>application.type.backbone</category>
+			<url>/identity/identity.jsp</url>
+		</application>
+		<application>
+			<name>Organization</name>
+			<category>application.type.backbone</category>
+			<url>/organization/org-home.jsp</url>
+		</application>
 	</deployments>
 </backbone>
