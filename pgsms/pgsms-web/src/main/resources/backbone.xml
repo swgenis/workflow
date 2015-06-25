@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
-	<deployments>
+	<applications>
 		<application>
 			<name>Identity</name>
 			<category>application.type.backbone</category>
@@ -11,5 +11,5 @@
 			<category>application.type.backbone</category>
 			<url>/organization/org-home.jsp</url>
 		</application>
-	</deployments>
+	</applications>
 </backbone>

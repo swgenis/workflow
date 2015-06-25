@@ -1,5 +1,6 @@
 package za.ac.nwu.workflow.backbone.producers;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.Specializes;
@@ -20,6 +21,10 @@ public class PGSMSServiceFactory extends ServiceFactory {
     @Inject
     @PGSMSService 
     PersonService workflowPersonService;
+    
+    @PostConstruct
+    public void init() {
+    }
 
     @Produces
     @Specializes
