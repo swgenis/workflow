@@ -34,7 +34,7 @@
 		 * Get tasks for the entered username
 		 */
 		$scope.searchPersons = function(){
-			PersonRestService.searchLeaveTasks($scope.username).then(function(persons){
+			PersonRestService.search($scope.name, $scope.surname).then(function(persons){
 				$scope.persons = persons;
 			});
 		};

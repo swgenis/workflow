@@ -11,7 +11,7 @@
 	<!-- Main content view -->
 	<div class="container" style="margin-top: 60px; margin-bottom: 60px">
 		<div>
-			<h1>Backbone</h1>
+			<h1>Welcome</h1>
 			<p>Select an option from the navigation menu to start</p>
 
 			<action-list></action-list>

@@ -14,8 +14,22 @@
 	<div class="container" ng-controller="IdentityCtrl"
 		style="margin-top: 60px; margin-bottom: 60px">
 		<h1>Search for persons</h1>
-		<person-lookup person="person"></person-lookup>
 
+		<div>
+
+			<form class="form-inline" ng-submit="searchPersons()">
+				<div class="form-group">
+					<label for="name">Name</label> <input type="text"
+						class="form-control" id="name" placeholder="Name" ng-model="name">
+				</div>
+				<div class="form-group">
+					<label for="surname">Surname</label> <input type="text"
+						class="form-control" id="surname" placeholder="Surname"
+						ng-model="surname">
+				</div>
+				<button type="submit" class="btn btn-default">Search</button>
+			</form>
+		</div>
 		<div>
 			<table class="table table-bordered">
 				<caption>Search Result</caption>
