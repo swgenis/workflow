@@ -10,12 +10,13 @@
 	<name>Kuali South Africa Community</name>
 
 	<modules>
-		<module>kzac-api</module>
+		<module>kzac-common-api</module>
+		<module>kzac-core-api</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<backbone.version>1.0</backbone.version>
+		<kzac.version>1.0</kzac.version>
 
 		<!-- Build settings -->
 		<maven.min.version>3.0.4</maven.min.version>
@@ -53,9 +54,14 @@
 		<dependencies>
 
 			<dependency>
-				<groupId>coza.opencollab.backbone</groupId>
-				<artifactId>backbone-api</artifactId>
-				<version>${backbone.version}</version>
+				<groupId>org.kzac</groupId>
+				<artifactId>kzac-common-api</artifactId>
+				<version>${kzac.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kzac</groupId>
+				<artifactId>kzac-core-api</artifactId>
+				<version>${kzac.version}</version>
 			</dependency>
 
 			<dependency>

@@ -9,13 +9,18 @@
 		<version>1.0</version>
 	</parent>
 	
-	<artifactId>kzac-api</artifactId>
+	<artifactId>kzac-core-api</artifactId>
 	<packaging>jar</packaging>
 
 	<name>KZAC API</name>
 	
 	<dependencies>
 	
+		<dependency>
+			<groupId>org.kzac</groupId>
+			<artifactId>kzac-common-api</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
