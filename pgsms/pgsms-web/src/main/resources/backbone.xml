@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
+	<title>PGSMS</title>
+	<brand-image>/images/nwu_logo_0.png</brand-image>
+	<types-source-files>
+		<type-source-file>type.json</type-source-file>
+		<type-source-file>pgsms-nav-types.json</type-source-file>
+	</types-source-files>
 	<applications>
 		<application>
 			<name>Identity</name>
@@ -7,9 +13,24 @@
 			<url>/identity/identity.jsp</url>
 		</application>
 		<application>
-			<name>Organization</name>
-			<category>application.type.backbone</category>
-			<url>/organization/org-home.jsp</url>
+			<name>Apply</name>
+			<category>application.type.pgsms.application</category>
+			<url>/application/index.jsp</url>
+		</application>
+		<application>
+			<name>Search</name>
+			<category>application.type.pgsms.application</category>
+			<url>/application/index.jsp</url>
+		</application>
+		<application>
+			<name>Register</name>
+			<category>application.type.pgsms.registration</category>
+			<url>/registration/index.jsp</url>
+		</application>
+		<application>
+			<name>Drop</name>
+			<category>application.type.pgsms.registration</category>
+			<url>/registration/index.jsp</url>
 		</application>
 	</applications>
 </backbone>

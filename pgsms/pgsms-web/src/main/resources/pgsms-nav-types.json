@@ -1,0 +1,12 @@
+[{
+    "key":"application.type.pgsms.application", 
+    "category":"orgunitmember.type.category",
+    "description":"Applications",
+    "active":"true"
+},
+{
+    "key":"application.type.pgsms.registration", 
+    "category":"application.type.category",
+    "description":"Registrations",
+    "active":"true"
+}]
