@@ -18,9 +18,6 @@ public class Application {
     @XmlElement(name = "category")
     private String category;
 
-    @XmlElement(name = "type-source")
-    private String typeSourceFile;
-
     @XmlElement(name = "url")
     private String url;
 
@@ -38,14 +35,6 @@ public class Application {
 
     public void setCategory(String category) {
 	this.category = category;
-    }
-
-    public String getTypeSourceFile() {
-	return typeSourceFile;
-    }
-
-    public void setTypeSourceFile(String typeSourceFile) {
-	this.typeSourceFile = typeSourceFile;
     }
 
     public String getUrl() {

@@ -7,11 +7,7 @@
 
 <body ng-app="backbone">
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/organization/js/organization.app.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/organization/js/organization.rest.js"></script>
-	<jsp:include page="../backbone/navbar.jsp"></jsp:include>
+	<nav-bar></nav-bar>
 
 	<!-- Main content view -->
 	<div class="container" ng-controller="OrganizationCtrl"
@@ -29,6 +25,11 @@
 	</div>
 
 	<jsp:include page="/shared/include/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/organization/js/organization.app.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/organization/js/organization.rest.js"></script>
 
 </body>
 </html>

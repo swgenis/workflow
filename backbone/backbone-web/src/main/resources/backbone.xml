@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
+	<title>Backbone Demo</title>
+	<brand-image>/images/OpenCollab-300x60.png</brand-image>
+	<types-source-files>
+		<type-source-file>type.json</type-source-file>
+	</types-source-files>
 	<applications>
 		<application>
 			<name>Identity</name>

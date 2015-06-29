@@ -33,3 +33,8 @@
 	height: 60px;
     padding: 0px;
 }
+
+.bacbone-content {
+    padding-bottom: 60px;
+    padding-top: 60px;
+}

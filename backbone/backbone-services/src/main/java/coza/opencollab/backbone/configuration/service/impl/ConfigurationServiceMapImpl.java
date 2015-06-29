@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.inject.Singleton;
@@ -25,7 +26,8 @@ public class ConfigurationServiceMapImpl implements ConfigurationService {
      */
     private Map<String, Application> applications = new HashMap<String, Application>();
     private Map<String, Deployment> deployments = new HashMap<String, Deployment>();
-    
+    private Properties properties = new Properties();
+
     @Override
     public void register(Application application) {
 	// Safety check
@@ -55,7 +57,7 @@ public class ConfigurationServiceMapImpl implements ConfigurationService {
     @Override
     public List<String> getApplicationCategories() {
 	Set<String> categories = new HashSet<String>();
-	for(Application deployment : applications.values()){
+	for (Application deployment : applications.values()) {
 	    categories.add(deployment.getCategory());
 	}
 	return Lists.newArrayList(categories);
@@ -64,12 +66,32 @@ public class ConfigurationServiceMapImpl implements ConfigurationService {
     @Override
     public List<Application> getApplicationsByCategory(String category) {
 	List<Application> returnApps = new ArrayList<Application>();
-	for(Application application : applications.values()){
-	    if(application.getCategory().equals(category)){
+	for (Application application : applications.values()) {
+	    if (application.getCategory().equals(category)) {
 		returnApps.add(application);
 	    }
 	}
 	return returnApps;
+    }
+
+    @Override
+    public Properties getProperties() {
+	return properties;
+    }
+
+    @Override
+    public void addProperties(Properties properties) {
+	this.properties.putAll(properties);
+    }
+
+    @Override
+    public String getPropertyForKey(String key) {
+	return properties.getProperty(key);
+    }
+
+    @Override
+    public void addProperty(String key, String value) {
+	properties.setProperty(key, value);
     }
 
 }

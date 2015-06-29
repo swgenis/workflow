@@ -35,6 +35,7 @@ import coza.opencollab.backbone.configuration.Application;
 import coza.opencollab.backbone.configuration.Backbone;
 import coza.opencollab.backbone.configuration.Deployment;
 import coza.opencollab.backbone.configuration.service.ConfigurationService;
+import coza.opencollab.backbone.configuration.service.ConfigurationServiceConstants;
 import coza.opencollab.backbone.data.JsonDataLoader;
 import coza.opencollab.backbone.type.Type;
 
@@ -68,13 +69,21 @@ public class StartupBean {
 	    // Unmarshall xml to java object.
 	    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 	    Backbone backbone = (Backbone) jaxbUnmarshaller.unmarshal(is);
+	    
+	    //Set Base properties.
+	    configurationService.addProperty(ConfigurationServiceConstants.TITLE_PROPERTY, backbone.getTitle());
+	    configurationService.addProperty(ConfigurationServiceConstants.BRAND_IMAGE_PROPERTY, backbone.getBrandImage());
 
+	    //Register the applications
 	    registerApplications(backbone);
 
+	    //Register the workflow deployments.
 	    registerDeployments(backbone);
 
-	    // Load default Backbone types
-	    typeDataLoader.loadData("type.json");
+	    // Load default Backbone types.
+	    for(String sourceFile : backbone.getTypeSourceFiles()){
+		typeDataLoader.loadData(sourceFile);
+	    }
 
 	} catch (JAXBException e) {
 	    throw new RuntimeException("Unable to initialize backbone", e);
@@ -84,11 +93,6 @@ public class StartupBean {
 
     private void registerApplications(Backbone backbone) {
 	for (Application application : backbone.getApplications()) {
-
-	    // Load types from source file.
-	    if (application.getTypeSourceFile() != null) {
-		typeDataLoader.loadData(application.getTypeSourceFile());
-	    }
 
 	    configurationService.register(application);
 

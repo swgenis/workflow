@@ -8,7 +8,7 @@
 <body ng-app="identity">
 
 	<jsp:include page="/identity/dependencies.jsp"></jsp:include>
-	<jsp:include page="../backbone/navbar.jsp"></jsp:include>
+	<nav-bar></nav-bar>
 
 	<!-- Main content view -->
 	<div class="container" ng-controller="IdentityCtrl"

@@ -6,8 +6,11 @@
 	src="${pageContext.request.contextPath}/resources/jquery/jquery-1.11.2.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jquery/dataTables/jquery.dataTables.js"></script>
+
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script type="text/javascript"
+	src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -18,7 +21,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
+
 <!-- Additional libraries -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/moment.min.js"></script>

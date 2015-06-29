@@ -24,6 +24,60 @@
 				};
 			}
 		}
+	}])
+	/**
+	 * Directive to show navigation bar
+	 */
+	.directive("navBar", 
+	["ConfigRestService","$location",
+	 function(ConfigRestService, $location){
+		return {
+			'restrict': 'E',
+			'scope': { },
+			'templateUrl': contextPath + '/backbone/html/navBar.html',
+			'link' : function(scope, element, attr){
+				
+				scope.contextPath = contextPath;
+				
+				ConfigRestService.getProcesses().then(function(processes){
+					scope.processes = processes;
+				});
+				
+				ConfigRestService.getPrincipal().then(function(principal){
+					scope.principal = principal;
+				});
+			}
+		}
+	}])
+	/**
+	 * Directive to show bread crumbs
+	 */
+	.directive("breadCrumbs", 
+	["ConfigRestService","$location",
+	 function(ConfigRestService, $location){
+		return {
+			'restrict': 'E',
+			'scope': { },
+			'templateUrl': contextPath + '/backbone/html/breadCrumbs.html',
+			'link' : function(scope, element, attr){
+
+			}
+		}
+	}])
+	/**
+	 * Directive to show thumb nails
+	 */
+	.directive("thumbNails", 
+	["ConfigRestService","$location",
+	 function(ConfigRestService, $location){
+		return {
+			'restrict': 'E',
+			'scope': { },
+			'templateUrl': contextPath + '/backbone/html/thumbNails.html',
+			'link' : function(scope, element, attr){
+
+			}
+		}
 	}]);
 	
 })(angular);

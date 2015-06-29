@@ -5,8 +5,9 @@
 <html>
 <jsp:include page="/backbone/header.jsp"></jsp:include>
 
-<body ng-app="backbone">
-	<jsp:include page="../backbone/navbar.jsp"></jsp:include>
+<body ng-app="backbone" ng-controller="ConfigCtrl">
+
+	<nav-bar></nav-bar>
 
 	<!-- Main content view -->
 	<div class="container" style="margin-top: 60px; margin-bottom: 60px">

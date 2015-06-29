@@ -33,6 +33,11 @@
 			<artifactId>backbone-organization</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
 		<!-- Java ee -->
 		<dependency>
 			<groupId>javax</groupId>

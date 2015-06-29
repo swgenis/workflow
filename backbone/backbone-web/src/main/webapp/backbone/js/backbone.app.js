@@ -115,11 +115,15 @@
 	function(BackboneRestServiceBase){
 		return angular.extend({
 			'getProcesses' : function(){
-				return this._callService('GET', 'config/processes/');
+				return this._callService('GET', 'config/applications/');
 				
 			},
 			'getPrincipal' : function(){
 				return this._callService('GET', 'config/principal/');
+				
+			},
+			'getProperties' : function(){
+				return this._callService('GET', 'config/properties/');
 				
 			}
 		},BackboneRestServiceBase);
@@ -131,15 +135,15 @@
 	.controller("ConfigCtrl", 
 	["$scope", "ConfigRestService", 
 	function($scope, ConfigRestService){
-		$scope.processes = null;
-		$scope.principal = null;
+
+		$scope.properties = null;
 		
-		ConfigRestService.getProcesses().then(function(processes){
-			$scope.processes = processes;
-		});
-		
-		ConfigRestService.getPrincipal().then(function(principal){
-			$scope.principal = principal;
+		// Get the leave types
+		ConfigRestService.getProperties().then(function(properties){
+			$scope.properties = properties;
+			
+			// Reset page title.
+			document.title = properties.title;
 		});
 		
 	}])
