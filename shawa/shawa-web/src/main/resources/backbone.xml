@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
+	<title>Backbone Demo</title>
+	<brand-image>/images/nwu_logo_0.png</brand-image>
+	<types-source-files>
+		<type-source-file>type.json</type-source-file>
+		<type-source-file>leave-type.json</type-source-file>
+	</types-source-files>
 	<applications>
 		<application>
 			<name>Identity</name>
@@ -27,7 +33,6 @@
 			<group>za.ac.nwu.shawa</group>
 			<artifact>leave-application</artifact>
 			<version>1.0</version>
-			<type-source>leave-type.json</type-source>
 			<!-- Because we only have one process per deployment we can map the interpreter 
 				directly to the deployment If we start using multiple processes per deployment, 
 				this interpreter will have to move down another level: to the process -->
