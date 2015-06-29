@@ -5,14 +5,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>coza.intelichem</groupId>
-		<artifactId>intelichem</artifactId>
+		<groupId>com.eta</groupId>
+		<artifactId>etacollege</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>intelitravel</artifactId>
+	<artifactId>applications</artifactId>
 	<packaging>jar</packaging>
-	<name>Intelichem App</name>
+	<name>Course Applications App</name>
 
 	<dependencies>
 		<dependency>

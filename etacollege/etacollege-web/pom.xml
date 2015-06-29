@@ -4,15 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>coza.intelichem</groupId>
-		<artifactId>intelichem</artifactId>
+		<groupId>com.eta</groupId>
+		<artifactId>etacollege</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>intelichem-web</artifactId>
+	<artifactId>etacollege-web</artifactId>
 	<packaging>war</packaging>
 
-	<name>Intelichem Web App</name>
+	<name>ETA College Web App</name>
 
 	<dependencies>
 
@@ -48,7 +48,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>intelichem</finalName>
+		<finalName>etacollege</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

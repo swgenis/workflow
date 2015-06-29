@@ -2,16 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>coza.intelichem</groupId>
-	<artifactId>intelichem</artifactId>
+	<groupId>com.eta</groupId>
+	<artifactId>etacollege</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
-	<name>Intelichem Workflow Apps</name>
+	<name>ETA College Apps</name>
 
 	<modules>
-		<module>intelichem-web</module>
-		<module>intelitravel</module>
+		<module>etacollege-web</module>
+		<module>applications</module>
 	</modules>
 
 	<properties>

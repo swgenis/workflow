@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
+	<title>eta college - applications</title>
+	<brand-image>/images/eta_logo2.png</brand-image>
 	<types-source-files>
 		<type-source-file>type.json</type-source-file>
 	</types-source-files>
@@ -15,15 +17,4 @@
 			<url>/organization/org-home.jsp</url>
 		</application>
 	</applications>
-	<deployments>
-		<deployment>
-			<group>coza.intelichem</group>
-			<artifact>intelitravel</artifact>
-			<version>1.0</version>
-			<type-source>travel-type.json</type-source>
-			<interpreter>coza.intelichem.travel.TravelTaskInterpreter
-			</interpreter>
-			<url-view>/jsp/leave/view-application.jsp?aid=%s</url-view>
-		</deployment>
-	</deployments>
 </backbone>
