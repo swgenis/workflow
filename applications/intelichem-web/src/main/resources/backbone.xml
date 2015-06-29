@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
-<types-source-files>
+	<types-source-files>
 		<type-source-file>type.json</type-source-file>
-		<type-source-file>travel-type.json</type-source-file>
 	</types-source-files>
 	<applications>
 		<application>
@@ -21,6 +20,7 @@
 			<group>coza.intelichem</group>
 			<artifact>intelitravel</artifact>
 			<version>1.0</version>
+			<type-source>travel-type.json</type-source>
 			<interpreter>coza.intelichem.travel.TravelTaskInterpreter
 			</interpreter>
 			<url-view>/jsp/leave/view-application.jsp?aid=%s</url-view>

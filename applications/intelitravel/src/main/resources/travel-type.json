@@ -1,0 +1,48 @@
+[{
+	"key":"travel.seat.preference.type.annual", 
+    "category":"travel.type.seat.preference.category",
+    "description":"Annual",
+    "active":"true"
+},
+{
+    "key":"travel.seat.preference.type", 
+    "category":"travel.type.seat.preference.category",
+    "description":"Accumulated",
+    "active":"true"
+},
+{
+    "key":"travel.seat.preference.type.familyResponsibility", 
+    "category":"travel.type.seat.preference.category",
+    "description":"Family Responsibility",
+    "active":"true"
+},
+{
+    "key":"travel.seat.preference.type.sick", 
+    "category":"travel.type.seat.preference.category",
+    "description":"Sick",
+    "active":"true"
+},
+{
+    "key":"travel.departure.preference.type.injuryOnDuty", 
+    "category":"travel.type.departure.preference.category",
+    "description":"Injury on Duty",
+    "active":"true"
+},
+{
+    "key":"travel.departure.preference.type.study", 
+    "category":"travel.type.departure.preference.category",
+    "description":"Study",
+    "active":"true"
+},
+{
+    "key":"travel.departure.preference.type.maternity", 
+    "category":"travel.type.departure.preference.category",
+    "description":"Maternity",
+    "active":"true"
+},
+{
+    "key":"travel.departure.preference.type.unpaid", 
+    "category":"travel.type.departure.preference.category",
+    "description":"Unpaid",
+    "active":"true"
+}]

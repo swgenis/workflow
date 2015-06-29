@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>coza.intelichem</groupId>
+		<artifactId>intelichem</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>intelichem-web</artifactId>
+	<packaging>war</packaging>
+
+	<name>Intelichem Web App</name>
+
+	<dependencies>
+
+		<!-- Backbone dependencies -->
+		<dependency>
+			<groupId>coza.opencollab.backbone</groupId>
+			<artifactId>backbone-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>coza.opencollab.backbone</groupId>
+			<artifactId>backbone-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>coza.opencollab.backbone</groupId>
+			<artifactId>backbone-web</artifactId>
+			<type>war</type>
+		</dependency>
+		
+		<!-- Workflow dependencies -->
+		<dependency>
+			<groupId>coza.intelichem</groupId>
+			<artifactId>intelitravel</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- Java ee -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>intelichem</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<overlays>
+						<overlay>
+							<groupId>coza.opencollab.backbone</groupId>
+							<artifactId>backbone-web</artifactId>
+						</overlay>
+					</overlays>
+				</configuration>
+			</plugin>
+			<!-- JBoss AS plugin to deploy war -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>maven-snapshots</id>
+			<url>http://kualidev.nwu.ac.za:8082/nexus/content/repositories/snapshots</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+</project>
