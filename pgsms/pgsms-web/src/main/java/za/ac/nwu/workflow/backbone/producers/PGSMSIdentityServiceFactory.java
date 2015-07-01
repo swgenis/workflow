@@ -6,13 +6,14 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.Specializes;
 import javax.inject.Inject;
 
+import org.kzac.core.person.service.PersonService;
+
 import za.ac.nwu.workflow.PGSMSService;
 import coza.opencollab.backbone.ConfigurationProperty;
-import coza.opencollab.backbone.ServiceFactory;
-import coza.opencollab.backbone.person.service.PersonService;
+import coza.opencollab.backbone.identity.IdentityServiceFactory;
 
 @ApplicationScoped
-public class PGSMSServiceFactory extends ServiceFactory {
+public class PGSMSIdentityServiceFactory extends IdentityServiceFactory {
 
     @Inject
     @ConfigurationProperty(value = "backbone.mode")

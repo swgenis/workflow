@@ -1,0 +1,22 @@
+.navbar-brand {
+	height: 114px;
+    padding: 0px;
+}
+
+.navbar-brand img {
+    height: auto;
+    padding-bottom: 18px;
+    padding-left: 18px;
+    padding-top: 18px;
+    width: 300px;
+}
+
+.bacbone-content {
+    padding-bottom: 60px;
+    padding-top: 114px;
+}
+
+.navbar-bottom {
+	padding-top: 68px;
+	vertical-align : bottom;
+}

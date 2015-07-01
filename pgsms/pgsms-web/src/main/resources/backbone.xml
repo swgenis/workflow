@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
 	<title>PGSMS</title>
-	<brand-image>/images/nwu_logo_0.png</brand-image>
+	<brand-image>/images/NWU-Logo-SW.png</brand-image>
 	<types-source-files>
 		<type-source-file>type.json</type-source-file>
 		<type-source-file>pgsms-nav-types.json</type-source-file>
@@ -11,26 +11,36 @@
 			<name>Identity</name>
 			<category>application.type.backbone</category>
 			<url>/identity/identity.jsp</url>
+			<description>The Identity module is used to maintain person information including biographical information and addresses.</description>
+			<thumbnail>false</thumbnail>
 		</application>
 		<application>
 			<name>Apply</name>
 			<category>application.type.pgsms.application</category>
 			<url>/application/index.jsp</url>
+			<description>Apply for a post graduate course.</description>
+			<thumbnail>true</thumbnail>
 		</application>
 		<application>
 			<name>Search</name>
 			<category>application.type.pgsms.application</category>
 			<url>/application/index.jsp</url>
+			<description>Search for post graduate course applications.</description>
+			<thumbnail>true</thumbnail>
 		</application>
 		<application>
 			<name>Register</name>
 			<category>application.type.pgsms.registration</category>
 			<url>/registration/index.jsp</url>
+			<description>Register for a post graduate course.</description>
+			<thumbnail>true</thumbnail>
 		</application>
 		<application>
 			<name>Drop</name>
 			<category>application.type.pgsms.registration</category>
+			<description>Drop a post graduate course.</description>
 			<url>/registration/index.jsp</url>
+			<thumbnail>false</thumbnail>
 		</application>
 	</applications>
 </backbone>
