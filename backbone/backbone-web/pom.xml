@@ -21,6 +21,10 @@
 		</dependency>
 		<dependency>
 			<groupId>coza.opencollab.backbone</groupId>
+			<artifactId>backbone-identity</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>coza.opencollab.backbone</groupId>
 			<artifactId>backbone-services</artifactId>
 		</dependency>
 

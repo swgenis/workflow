@@ -1,9 +1,11 @@
-package coza.opencollab.backbone.data;
+package coza.opencollab.backbone;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
+import coza.opencollab.backbone.data.DataLoaderCallback;
+import coza.opencollab.backbone.data.JsonDataLoader;
 import coza.opencollab.backbone.type.Type;
 import coza.opencollab.backbone.type.service.TypeService;
 

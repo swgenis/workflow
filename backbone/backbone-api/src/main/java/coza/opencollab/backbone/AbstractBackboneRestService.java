@@ -10,9 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.io.IOUtils;
+import org.kzac.common.dto.ContextInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +41,12 @@ public class AbstractBackboneRestService {
 	    logger.error("Unable to load resoure.", e);
 	}
 	return null;
+    }
+    
+    protected ContextInfo getContextInfo(SecurityContext context) {
+	ContextInfo contextInfo = new ContextInfo();
+	contextInfo.setPrincipalId(context.getUserPrincipal().getName());
+	return contextInfo;
     }
 
 }
