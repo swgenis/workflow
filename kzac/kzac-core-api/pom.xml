@@ -12,7 +12,7 @@
 	<artifactId>kzac-core-api</artifactId>
 	<packaging>jar</packaging>
 
-	<name>KZAC API</name>
+	<name>KZAC Core API</name>
 	
 	<dependencies>
 	

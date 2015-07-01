@@ -15,7 +15,7 @@
 package org.kzac.core.person.dto;
 
 import org.kzac.common.dto.IdEntityInfo;
-import org.kzac.person.infc.Person;
+import org.kzac.core.person.infc.Person;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
