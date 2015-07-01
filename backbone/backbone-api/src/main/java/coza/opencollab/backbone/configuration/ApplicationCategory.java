@@ -7,7 +7,7 @@ public class ApplicationCategory {
 
     private String name;
 
-    private List<SubProcess> subProcesses;
+    private List<Application> applications;
 
     public ApplicationCategory(String name) {
 	super();
@@ -22,11 +22,11 @@ public class ApplicationCategory {
 	this.name = name;
     }
 
-    public List<SubProcess> getSubProcesses() {
-	if (subProcesses == null) {
-	    subProcesses = new ArrayList<SubProcess>();
+    public List<Application> getApplications() {
+	if (applications == null) {
+	    applications = new ArrayList<Application>();
 	}
-	return subProcesses;
+	return applications;
     }
 
 }

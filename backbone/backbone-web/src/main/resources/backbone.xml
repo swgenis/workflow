@@ -9,11 +9,15 @@
 		<application>
 			<name>Identity</name>
 			<category>application.type.backbone</category>
+			<description>The Identity module is used to maintain person information including biographical information and addresses.</description>
+			<thumbnail>true</thumbnail>
 			<url>/identity/identity.jsp</url>
 		</application>
 		<application>
 			<name>Organization</name>
 			<category>application.type.backbone</category>
+			<description>The Organization module is used to maintain the organization hierarchy of the enterprise.</description>
+			<thumbnail>true</thumbnail>
 			<url>/organization/org-home.jsp</url>
 		</application>
 	</applications>

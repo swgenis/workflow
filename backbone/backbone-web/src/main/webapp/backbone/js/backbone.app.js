@@ -114,7 +114,7 @@
 	["BackboneRestServiceBase",
 	function(BackboneRestServiceBase){
 		return angular.extend({
-			'getProcesses' : function(){
+			'getApplications' : function(){
 				return this._callService('GET', 'config/applications/');
 				
 			},

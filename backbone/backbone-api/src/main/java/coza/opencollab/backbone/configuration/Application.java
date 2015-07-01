@@ -18,6 +18,12 @@ public class Application {
     @XmlElement(name = "category")
     private String category;
 
+    @XmlElement(name = "description")
+    private String description;
+
+    @XmlElement(name = "thumbnail")
+    private boolean thumbnail;
+
     @XmlElement(name = "url")
     private String url;
 
@@ -35,6 +41,22 @@ public class Application {
 
     public void setCategory(String category) {
 	this.category = category;
+    }
+
+    public String getDescription() {
+	return description;
+    }
+
+    public void setDescription(String description) {
+	this.description = description;
+    }
+
+    public boolean isThumbnail() {
+	return thumbnail;
+    }
+
+    public void setThumbnail(boolean thumbnail) {
+	this.thumbnail = thumbnail;
     }
 
     public String getUrl() {

@@ -28,7 +28,6 @@ import coza.opencollab.backbone.authorization.service.AuthorizationService;
 import coza.opencollab.backbone.configuration.Application;
 import coza.opencollab.backbone.configuration.ApplicationCategory;
 import coza.opencollab.backbone.configuration.ConfigProperties;
-import coza.opencollab.backbone.configuration.SubProcess;
 import coza.opencollab.backbone.configuration.service.ConfigurationRestService;
 import coza.opencollab.backbone.configuration.service.ConfigurationService;
 import coza.opencollab.backbone.configuration.service.ConfigurationServiceConstants;
@@ -96,9 +95,7 @@ public class ConfigurationRestServiceImpl extends AbstractBackboneRestService im
 	    ApplicationCategory applicationCategory = new ApplicationCategory(type.getDescription());
 
 	    List<Application> applications = configurationService.getApplicationsByCategory(category);
-	    for (Application application : applications) {
-		applicationCategory.getSubProcesses().add(new SubProcess(application.getName(), application.getUrl()));
-	    }
+	    applicationCategory.getApplications().addAll(applications);
 	    applicationCategories.add(applicationCategory);
 	}
 	return applicationCategories;
