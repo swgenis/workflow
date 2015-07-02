@@ -1,18 +1,36 @@
 package za.ac.nwu.workflow.person.service.impl;
 
 import org.kuali.rice.kim.api.identity.entity.EntityDefault;
+import org.kzac.common.dto.MetaInfo;
+import org.kzac.core.person.dto.PersonInfo;
 
-import coza.opencollab.backbone.person.Person;
+import coza.opencollab.backbone.person.service.impl.PersonServiceConstants;
 
 public class PersonAssembler {
     
-    public Person assemblePerson(EntityDefault kimEntity) {
-	Person person = new Person();
-	person.setId(kimEntity.getEntityId());
-	person.setName(kimEntity.getName().getFirstNameUnmasked());
-	person.setSurname(kimEntity.getName().getLastNameUnmasked());
-	person.setEmail(kimEntity.getEntityTypeContactInfos().get(0).getDefaultEmailAddress().getEmailAddressUnmasked());
-	return person;
+    public PersonInfo assemblePerson(EntityDefault entityDefault) {
+	PersonInfo info = new PersonInfo();
+        info.setId(entityDefault.getEntityId());
+        info.setTypeKey(PersonServiceConstants.PERSON_TYPE_KEY);
+        if (entityDefault.isActive()) {
+            info.setStateKey(PersonServiceConstants.PERSON_TYPE_KEY);
+        } else {
+            info.setStateKey(PersonServiceConstants.PERSON_TYPE_KEY);
+        }
+
+        MetaInfo metaInfo = new MetaInfo();
+        if (entityDefault.getName() == null) {
+            info.setName("*** no default name  ***");
+            metaInfo.setVersionInd("0");
+        } else {
+            info.setName(entityDefault.getName().getCompositeName());
+            metaInfo.setVersionInd(entityDefault.getName().getVersionNumber() + "");
+            if (entityDefault.getName().getNameChangedDate() != null) {
+                metaInfo.setUpdateTime(entityDefault.getName().getNameChangedDate().toDate());
+            }
+        }
+        info.setMeta(metaInfo);
+        return info;
     }
 
 }

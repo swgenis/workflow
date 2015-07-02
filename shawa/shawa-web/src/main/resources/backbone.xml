@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <backbone>
 	<title>Backbone Demo</title>
-	<brand-image>/images/nwu_logo_0.png</brand-image>
+	<brand-image>/images/NWU-Logo-SW.png</brand-image>
 	<types-source-files>
 		<type-source-file>type.json</type-source-file>
 		<type-source-file>leave-type.json</type-source-file>
